@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="sw">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/png" href="assets/favicon.png">
+<meta name="theme-color" content="#211D5A">
+<title>My Library — Dennis Nazar</title>
+<meta name="description" content="Maktaba yako ya vitabu vya Dennis Nazar. Soma softcopy zako moja kwa moja ndani ya tovuti.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="js/supabase-config.js"></script>
+<link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/library.css">
+</head>
+<body class="library-page">
+<header class="library-nav"><div class="container library-nav-inner"><a class="brand" href="index.html"><img src="assets/dn-logo-white.png" alt="Dennis Nazar logo"></a><div class="library-nav-actions"><a href="index.html#books" class="library-back"><i data-lucide="arrow-left"></i><span>Store</span></a><button id="logoutBtn" class="library-logout" hidden>Logout <i data-lucide="log-out"></i></button></div></div></header>
+<main>
+<section class="library-hero"><div class="container"><p class="section-kicker light">DENNIS NAZAR · DIGITAL LIBRARY</p><h1>Your <span>Library.</span></h1><p>Soma vitabu ulivyonunua moja kwa moja ndani ya tovuti. Hakuna PDF ya kawaida ya kusambaza — access yako imefungwa kwenye akaunti yako.</p></div></section>
+<section class="library-main section"><div class="container">
+  <div id="authCard" class="library-auth-card">
+    <div class="auth-copy"><span class="auth-icon"><i data-lucide="book-open-check"></i></span><div><p class="section-kicker">PRIVATE READING</p><h2>Access your books</h2><p>Weka email ileile uliyotumia wakati wa kununua kitabu. Tutakutumia link salama ya kuingia kwenye Library yako.</p></div></div>
+    <form id="magicForm" class="magic-form"><label>Email address<input id="libraryEmail" type="email" autocomplete="email" required placeholder="jina@email.com"></label><button type="submit" class="library-primary">Send Secure Login Link <i data-lucide="arrow-right"></i></button></form>
+    <div id="authMessage" class="library-message" hidden></div>
+    <div class="auth-note"><i data-lucide="shield-check"></i><span>Access yako inahusishwa na email yako. Usishiriki login link yako na mtu mwingine.</span></div>
+  </div>
+  <div id="libraryView" hidden>
+    <div class="library-head"><div><p class="section-kicker">MY BOOKS</p><h2>Your purchased books</h2><p id="libraryEmailLabel"></p></div><button id="refreshLibrary" class="library-secondary"><i data-lucide="refresh-cw"></i> Refresh</button></div>
+    <div id="libraryMessage" class="library-message" hidden></div>
+    <div id="bookGrid" class="owned-book-grid"></div>
+    <div id="emptyLibrary" class="empty-library" hidden><span><i data-lucide="library"></i></span><h3>Your library is empty</h3><p>Hakuna purchase iliyothibitishwa kwa email hii bado. Ukishalipia kitabu, tumia email ileile uliyoweka kwenye checkout.</p><a href="index.html#books" class="library-primary">Explore Books <i data-lucide="arrow-right"></i></a></div>
+  </div>
+</div></section>
+</main>
+<footer class="library-footer">© 2026 Dennis Nazar · Official Books Store · <a href="mailto:dennisnazar123@gmail.com">dennisnazar123@gmail.com</a></footer>
+<script src="js/store.js"></script><script src="js/library.js"></script>
+</body></html>

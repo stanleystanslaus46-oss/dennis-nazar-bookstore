@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="sw">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/png" href="assets/favicon.png">
+<meta name="theme-color" content="#211D5A"><title>Checkout — Dennis Nazar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="js/supabase-config.js"></script>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="checkout-page">
+<header class="checkout-navbar"><a class="brand checkout-brand" href="index.html"><img src="assets/dn-logo-white.png" alt="Dennis Nazar"></a><a href="index.html#books" class="back-store"><i data-lucide="arrow-left"></i> Back to Store</a></header>
+<main class="checkout-page-main"><div class="checkout-page-shell">
+<section class="checkout-panel">
+  <div class="checkout-page-head"><div><p class="section-kicker light">DENNIS NAZAR</p><h1>Secure <span>Checkout</span></h1><p>Jaza taarifa zako, fanya malipo kwa Mobile Money, kisha weka transaction ID au screenshot ya malipo.</p></div><div class="checkout-secure"><i data-lucide="shield-check"></i><span>Secure order</span></div></div>
+  <div class="checkout-progress"><span class="active">01 <small>DETAILS</small></span><i></i><span id="stepPay">02 <small>PAYMENT PROOF</small></span><i></i><span id="stepDone">03 <small>VERIFIED</small></span></div>
+  <form id="checkoutPageForm" class="checkout-page-form">
+    <div class="customer-grid"><label>Full name<input id="customerName" required autocomplete="name" placeholder="Jina lako kamili"></label><label>Email address<input id="customerEmail" type="email" required autocomplete="email" placeholder="jina@email.com"><small>Order confirmation na taarifa za Library zitatumwa hapa baada ya admin kuthibitisha malipo.</small></label><label class="phone-field">WhatsApp number<input id="customerPhone" type="tel" required autocomplete="tel" inputmode="tel" placeholder="07XX XXX XXX"><small>WhatsApp number inapendekezwa kwa order updates.</small></label></div>
+    <div class="payment-method-box"><div><p class="mini-label">PAYMENT METHOD</p><h2>Mobile Money</h2><p>Bank / Transfer imeondolewa. Tumia namba hii kufanya malipo.</p></div><div class="mobile-money-selected"><i data-lucide="smartphone"></i><span id="paymentNumberInline">+255 765 889 395</span><b>ONLY</b></div></div>
+    <div class="payment-number-large"><span>PAYMENT NUMBER</span><strong id="paymentNumber">+255 765 889 395</strong><small>Amount: <b id="payAmount">2,500 TZS</b></small></div>
+    <div class="payment-proof-box"><div><p class="mini-label">PAYMENT VERIFICATION</p><h2>Provide payment proof</h2><p>Weka <strong>Transaction ID</strong> au upload <strong>screenshot</strong>. Moja kati ya hizo inatosha.</p></div><label>Transaction ID <input id="transactionId" placeholder="Mfano: MPESA123456789" autocomplete="off"></label><div class="or-line"><span>OR</span></div><label class="file-label">Payment screenshot <input id="paymentScreenshot" type="file" accept="image/jpeg,image/png,image/webp"><small>JPG, PNG au WEBP · max 8MB</small></label></div>
+    <div class="checkout-hint"><i data-lucide="info"></i><span>Baada ya kutuma taarifa, order itaingia <strong>Pending Verification</strong>. Kitabu hakitaonekana kwenye Library mpaka admin athibitishe malipo.</span></div>
+    <button class="checkout-page-submit" type="submit">Submit Payment Proof <span id="submitAmount">2,500 TZS</span><i data-lucide="arrow-right"></i></button>
+  </form>
+  <div id="paymentState" class="payment-state" hidden></div>
+</section>
+<aside class="checkout-order-card"><p class="mini-label">YOUR ORDER</p><h2>Order Summary</h2><div id="orderItems"></div><div class="checkout-total"><span>Amount due</span><strong id="orderTotal">0 TZS</strong></div><div class="delivery-note"><i data-lucide="message-circle"></i><div><strong>Private library access after verification</strong><p>Admin akithibitisha malipo, utaweza kuingia kwenye My Library kwa email ileile uliyotumia wakati wa checkout.</p></div></div><div class="checkout-contact"><span>Payment number</span><strong id="paymentNumberSide">+255 765 889 395</strong></div></aside>
+</div></main>
+<footer class="checkout-footer">© 2026 Dennis Nazar · Official Books Store · <a href="mailto:dennisnazar123@gmail.com">dennisnazar123@gmail.com</a></footer>
+<script src="js/store.js"></script><script src="js/checkout.js"></script>
+</body></html>

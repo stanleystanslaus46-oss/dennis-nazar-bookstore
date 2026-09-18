@@ -1,0 +1,43 @@
+V13 Edge Function deployment manifest
+
+Project: mnxnwstxbunugmrurhkw
+
+For each function upload these files together:
+- index.ts
+- ../_shared.ts (uploaded as _shared.ts at the function source root)
+- deno.json
+
+Functions:
+- confirm-payment (verify JWT: true)
+- resend-library-access (verify JWT: true)
+- reject-order (verify JWT: true)
+
+Required secrets:
+- PUBLIC_SITE_URL
+- RESEND_API_KEY
+- RESEND_FROM
+
+Optional:
+- WHATSAPP_ACCESS_TOKEN
+- WHATSAPP_PHONE_NUMBER_ID
+- WHATSAPP_API_VERSION
+
+Phase 6 live deployment notes (2026-09-17)
+
+The following production-facing functions use the approved production origins `https://dennisnazar-bookstore.com` and `https://www.dennisnazar-bookstore.com`, plus the retained local preview origins `http://localhost:4175` and `http://127.0.0.1:4175`:
+
+- `create-order` v6: guest checkout, canonical pricing, separate IP/identity rate limits, and abuse events.
+- `track-order` v3: separate IP/identity rate limits, ownership lookup, and abuse events.
+- `ensure-access` v3: Auth-backed profile provisioning, confirmed-order linking, and idempotent entitlement grants.
+- `reader-manifest` v2: authenticated active-entitlement checks.
+- `reader-page` v2: authenticated active-entitlement checks and private 300-second signed URLs.
+- `revoke-access` v2: admin authorization and entitlement audit events.
+- `reject-order` v3: admin authorization and rejection audit events.
+- `confirm-payment` v3: admin authorization, approved-origin CORS, and event-keyed notification logs.
+- `resend-library-access` v2: admin authorization, approved-origin CORS, and duplicate-success suppression through event keys.
+
+The four private Storage buckets remain configured as follows: `book-covers` public; `book-pages`, `book-pdfs`, and `payment-proofs` private. The Phase 6 database migration adds server-only rate-limit and security-event infrastructure and event-key fields for notification idempotency.
+
+Manual or privileged verification still required before Phase 7
+
+Supabase Auth leaked-password protection remains a live Security Advisor warning and must be enabled in the Supabase Dashboard. The production Site URL and redirect allowlist also require Dashboard verification, with `https://dennisnazar-bookstore.com` as the intended production origin. Positive authenticated QA requires two dedicated non-real test accounts and a private test reader book/page set; no such credentials or content were created in the public codebase or sent through real notification providers.

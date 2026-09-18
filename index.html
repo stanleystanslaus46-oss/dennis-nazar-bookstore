@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="sw">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" type="image/png" href="assets/favicon.png">
+  <meta name="theme-color" content="#211D5A">
+  <meta name="description" content="Dennis Nazar — vitabu vya kusoma, kutafakari na kukua. Nunua softcopy moja kwa moja.">
+  <meta property="og:title" content="Dennis Nazar — Official Books Store">
+  <meta property="og:description" content="Nunua softcopy za vitabu vya Dennis Nazar.">
+  <meta property="og:type" content="website">
+  <meta name="robots" content="index,follow">
+  <meta property="og:image" content="assets/book-shelf.webp">
+  <link rel="canonical" href="./">
+  <link rel="preload" as="image" href="assets/book-shelf.webp">
+  <title>Dennis Nazar — Official Books Store</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest" defer></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css?v=premium-editorial">
+</head>
+<body>
+  <header class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a class="brand" href="#home" aria-label="Dennis Nazar home">
+        <img src="assets/dn-logo-white.png" alt="Dennis Nazar logo">
+      </a>
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a class="active" href="#home">Home</a>
+        <a href="#books">Books</a>
+        <a href="#about">About</a>
+        <a href="#coming-soon">Coming Soon</a>
+        <a href="#contact">Contact</a>
+        <a href="library.html">My Library</a>
+        <a href="track.html">Track Order</a>
+      </nav>
+      <a class="nav-cta" href="#books">Get a Book <i data-lucide="arrow-up-right"></i></a>
+      <button class="cart-trigger" id="cartTrigger" aria-label="Shopping cart" aria-expanded="false"><i data-lucide="shopping-bag"></i><span class="cart-count" id="cartCount">0</span></button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Fungua menyu" aria-expanded="false"><i data-lucide="menu"></i></button>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <div class="mobile-menu-inner container">
+      <button class="menu-close" id="menuClose" aria-label="Funga menyu"><i data-lucide="x"></i></button>
+      <img class="mobile-logo" src="assets/dn-logo-white.png" alt="Dennis Nazar">
+      <p class="mobile-kicker">OFFICIAL BOOK STORE</p>
+      <a href="#home">Home <i data-lucide="arrow-up-right"></i></a>
+      <a href="#books">Books <i data-lucide="arrow-up-right"></i></a>
+      <a href="#about">About <i data-lucide="arrow-up-right"></i></a>
+      <a href="#coming-soon">Coming Soon <i data-lucide="arrow-up-right"></i></a>
+      <a href="#contact">Contact <i data-lucide="arrow-up-right"></i></a>
+      <a href="library.html">My Library <i data-lucide="library"></i></a>
+      <a href="track.html">Track Order <i data-lucide="search-check"></i></a>
+    </div>
+  </div>
+
+  <main id="home">
+    <section class="hero">
+      <div class="hero-glow"></div>
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <div class="eyebrow"><span></span> DENNIS NAZAR · AUTHOR</div>
+          <h1>Books that <span>shape</span><br>how you <span>think.</span></h1>
+          <p class="hero-lead">Vitabu vinavyogusa maisha, mahusiano, kusudi, maamuzi na ukuaji binafsi — vikiwa vimeandikwa kwa mtazamo wa maisha halisi.</p>
+          <div class="hero-actions">
+            <a class="primary-btn" href="#books">Explore Books <i data-lucide="arrow-right"></i></a>
+            <a class="secondary-link" href="#about">About the Author <i data-lucide="arrow-up-right"></i></a>
+          </div>
+          <div class="hero-trust">
+            <div><strong>03</strong><span>Books available<br>now</span></div>
+            <div class="trust-divider"></div>
+            <div><strong>02</strong><span>New books<br>coming soon</span></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="editorial-statement" aria-labelledby="editorialStatementTitle">
+      <div class="container editorial-statement-inner reveal">
+        <p class="section-kicker">THE DENNIS NAZAR EDITION</p>
+        <h2 id="editorialStatementTitle">Words that stay <span>with you.</span></h2>
+        <p>Vitabu vinavyokualika kufikiri,<br>kutafakari na kuishi kwa kusudi.</p>
+      </div>
+    </section>
+
+    <div class="brand-strip" aria-label="Dennis Nazar themes"><div class="marquee-viewport"><div class="marquee-track"><div class="marquee-group"><span>THOUGHT</span><i data-lucide="circle"></i><span>PURPOSE</span><i data-lucide="circle"></i><span>GROWTH</span><i data-lucide="circle"></i><span>REFLECTION</span><i data-lucide="circle"></i><span>DENNIS NAZAR</span><i data-lucide="circle"></i></div><div class="marquee-group" aria-hidden="true"><span>THOUGHT</span><i data-lucide="circle"></i><span>PURPOSE</span><i data-lucide="circle"></i><span>GROWTH</span><i data-lucide="circle"></i><span>REFLECTION</span><i data-lucide="circle"></i><span>DENNIS NAZAR</span><i data-lucide="circle"></i></div></div></div></div>
+
+    <section class="featured-reading section" id="featuredReading" aria-labelledby="featuredTitle">
+      <div class="container featured-shell reveal">
+        <div class="featured-cover-stage">
+          <span class="featured-index">01</span>
+          <img id="featuredImage" src="assets/book-1.webp" alt="Featured Dennis Nazar book" loading="lazy">
+        </div>
+        <div class="featured-copy">
+          <p class="section-kicker">FEATURED READING</p>
+          <h2 id="featuredTitle">Hatua 10 za Kuchagua Mwenzi Sahihi wa Maisha</h2>
+          <p id="featuredDescription">Mwongozo wa kujitambua na kufanya maamuzi ya busara unapochagua mwenzi wa maisha.</p>
+          <div class="featured-meta">
+            <span><i data-lucide="book-open"></i> Digital Edition</span>
+            <span><i data-lucide="lock-keyhole"></i> Private Library Access</span>
+          </div>
+          <div class="featured-purchase">
+            <strong id="featuredPrice">2,500 <small>TZS</small></strong>
+            <button class="editorial-button" id="featuredDetails" data-book-details="book1">Explore Book <i data-lucide="arrow-up-right"></i></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ideas-section section" aria-labelledby="ideasTitle">
+      <div class="container">
+        <div class="ideas-heading reveal">
+          <p class="section-kicker">A LIBRARY OF IDEAS</p>
+          <h2 id="ideasTitle">Books for the questions <span>that matter.</span></h2>
+        </div>
+        <div class="ideas-grid">
+          <article class="idea-row reveal"><span>01</span><h3>Love</h3><p>Mahusiano, uchaguzi na safari ya kujenga maisha yenye maana.</p></article>
+          <article class="idea-row reveal reveal-delay"><span>02</span><h3>Life</h3><p>Maamuzi, uzoefu na maswali yanayotengeneza safari yetu.</p></article>
+          <article class="idea-row reveal reveal-delay-2"><span>03</span><h3>Purpose</h3><p>Kusudi, ukuaji na maisha yanayoishi kwa maana.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="books section collection-section" id="books">
+      <div class="container">
+        <div class="section-top reveal">
+          <div><p class="section-kicker">THE COLLECTION</p><h2>Three books. <span>One purpose.</span></h2></div>
+          <p class="section-copy">Different journeys, each written to invite deeper thought, wiser choices and purposeful living.</p>
+        </div>
+        <div class="book-grid">
+          <article class="book-card reveal">
+            <div class="book-image"><img src="assets/book-1.webp" alt="HATUA 10 ZA KUCHAGUA MWENZI SAHIHI WA MAISHA" loading="lazy"><span class="book-badge"><i data-lucide="check"></i> Available</span></div>
+            <div class="book-body"><div class="book-meta">01 · CURRENT RELEASE</div><h3>Hatua 10 za Kuchagua Mwenzi Sahihi wa Maisha</h3><p>Siri za Kuamua Vyema Leo, ili Uepuke Maumivu ya Baadae.</p><div class="book-format"><i data-lucide="library"></i><span>Digital edition · Private Library access</span></div><button class="book-details-link" data-book-details="book1">View Book Details <i data-lucide="arrow-up-right"></i></button><div class="book-footer"><strong>2,500 <small>TZS</small></strong><button class="buy-btn" data-book="book1">Buy Softcopy <i data-lucide="arrow-right"></i></button><div class="cart-action"><button class="add-cart-btn" data-add-cart="book1" aria-label="Add Hatua 10 to cart"><i data-lucide="shopping-cart"></i><span>Add to cart</span></button></div></div></div>
+          </article>
+          <article class="book-card reveal reveal-delay">
+            <div class="book-image"><img src="assets/book-2.webp" alt="MAAJABU YA MWANAMKE" loading="lazy"><span class="book-badge"><i data-lucide="check"></i> Available</span></div>
+            <div class="book-body"><div class="book-meta">02 · CURRENT RELEASE</div><h3>Maajabu Ya Mwanamke</h3><p>Kitabu cha kutafakari thamani, nafasi na safari ya mwanamke.</p><div class="book-format"><i data-lucide="library"></i><span>Digital edition · Private Library access</span></div><button class="book-details-link" data-book-details="book2">View Book Details <i data-lucide="arrow-up-right"></i></button><div class="book-footer"><strong>2,500 <small>TZS</small></strong><button class="buy-btn" data-book="book2">Buy Softcopy <i data-lucide="arrow-right"></i></button><div class="cart-action"><button class="add-cart-btn" data-add-cart="book2" aria-label="Add Maajabu Ya Mwanamke to cart"><i data-lucide="shopping-cart"></i><span>Add to cart</span></button></div></div></div>
+          </article>
+          <article class="book-card reveal reveal-delay-2">
+            <div class="book-image"><img src="assets/book-3.webp" alt="Historia Yako Itasomekaje?" loading="lazy"><span class="book-badge"><i data-lucide="check"></i> Available</span></div>
+            <div class="book-body"><div class="book-meta">03 · CURRENT RELEASE</div><h3>Historia Yako Itasomekaje?</h3><p>Jiulize jinsi historia yako itaandikwa na kusomeka katika maisha ya watu wanaokuzunguka.</p><div class="book-format"><i data-lucide="library"></i><span>Digital edition · Private Library access</span></div><button class="book-details-link" data-book-details="book3">View Book Details <i data-lucide="arrow-up-right"></i></button><div class="book-footer"><strong>2,500 <small>TZS</small></strong><button class="buy-btn" data-book="book3">Buy Softcopy <i data-lucide="arrow-right"></i></button><div class="cart-action"><button class="add-cart-btn" data-add-cart="book3" aria-label="Add Historia Yako Itasomekaje to cart"><i data-lucide="shopping-cart"></i><span>Add to cart</span></button></div></div></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="why section dark-section">
+      <div class="container">
+        <div class="why-heading reveal"><p class="section-kicker light">WHY READ DENNIS NAZAR</p><h2>More than a <span>book.</span></h2><p>Maandishi yanayokusukuma kufikiri, kutafakari na kuchukua hatua.</p></div>
+        <div class="why-grid">
+          <article class="why-item reveal"><div class="icon-circle"><i data-lucide="brain"></i></div><h3>Thought-Provoking</h3><p>Ideas zinazokualika ujiulize maswali muhimu.</p></article>
+          <article class="why-item reveal reveal-delay"><div class="icon-circle"><i data-lucide="book-open"></i></div><h3>Practical Wisdom</h3><p>Mtazamo unaounganisha maarifa na maisha ya kila siku.</p></article>
+          <article class="why-item reveal reveal-delay-2"><div class="icon-circle"><i data-lucide="heart-handshake"></i></div><h3>Meaningful Stories</h3><p>Maudhui yenye kugusa mahusiano, kusudi na ukuaji.</p></article>
+          <article class="why-item reveal reveal-delay-2"><div class="icon-circle"><i data-lucide="trending-up"></i></div><h3>Read & Grow</h3><p>Ukurasa mmoja unaweza kuanzisha mabadiliko makubwa.</p></article>
+        </div>
+      </div>
+    </section>
+    <section class="store-benefits section" id="why-buy">
+      <div class="container">
+        <div class="section-top reveal"><div><p class="section-kicker">WHY BUY HERE</p><h2>A better way to <span>read.</span></h2></div><p class="section-copy">Hununui faili pekee. Unapata uzoefu wa digital reading uliounganishwa na Private Library yako.</p></div>
+        <div class="benefit-grid">
+          <article class="benefit-card reveal"><div class="benefit-icon"><i data-lucide="lock-keyhole"></i></div><div><span>01</span><h3>Private Access</h3><p>Kitabu chako kinaunganishwa na account yako badala ya kutumwa kama public download.</p></div></article>
+          <article class="benefit-card reveal reveal-delay"><div class="benefit-icon"><i data-lucide="smartphone"></i></div><div><span>02</span><h3>Read Anywhere</h3><p>Soma kwenye simu, tablet au computer yenye internet kupitia My Library.</p></div></article>
+          <article class="benefit-card reveal reveal-delay-2"><div class="benefit-icon"><i data-lucide="shield-check"></i></div><div><span>03</span><h3>Verified Purchase</h3><p>Payment yako inathibitishwa kabla ya digital access kupewa.</p></div></article>
+          <article class="benefit-card reveal"><div class="benefit-icon"><i data-lucide="bookmark-check"></i></div><div><span>04</span><h3>Keep Your Progress</h3><p>Reader huhifadhi ukurasa uliouishia ili uweze kuendelea baadaye.</p></div></article>
+        </div>
+      </div>
+    </section>
+    <section class="editorial-quote" aria-label="Dennis Nazar brand statement">
+      <div class="container reveal"><p>Thought <span>·</span> Purpose <span>·</span> Growth <span>·</span> Reflection</p></div>
+    </section>
+
+    <section class="coming section next-chapter" id="coming-soon">
+      <div class="container">
+        <div class="section-top reveal"><div><p class="section-kicker">THE NEXT CHAPTER</p><h2>More books are <span>on the way.</span></h2></div><p class="section-copy">Kurasa mpya bado zinaandaliwa. Jiunge na updates ili uwe wa kwanza kujua zinapofunguliwa.</p></div>
+        <div class="coming-grid">
+          <article class="coming-card reveal"><div class="coming-cover"><img src="assets/coming-soon-cover.jpg" alt="Dennis Nazar book coming soon"><div class="coming-overlay"><span>COMING SOON</span><strong>BOOK 04</strong></div></div><div class="coming-body"><div><small>NEW RELEASE</small><h3>Kitabu kipya kinakuja</h3></div><button class="outline-btn" data-notify>Notify Me <i data-lucide="bell"></i></button></div></article>
+          <article class="coming-card reveal reveal-delay"><div class="coming-cover"><img src="assets/coming-soon-cover-04.jpg" alt="Dennis Nazar next book coming soon"><div class="coming-overlay"><span>COMING SOON</span><strong>BOOK 05</strong></div></div><div class="coming-body"><div><small>NEW RELEASE</small><h3>Hadithi nyingine inakuja</h3></div><button class="outline-btn" data-notify>Notify Me <i data-lucide="bell"></i></button></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="about section dark-section" id="about">
+      <div class="container about-single">
+        <div class="about-copy reveal">
+          <p class="section-kicker light">ABOUT THE AUTHOR</p><h2>Dennis <span>Nazar.</span></h2><div class="signature">Dennis Nazar</div>
+          <p class="about-text">Dennis Nazar ni mwandishi wa vitabu, mwalimu wa Biblia, mkufunzi mwelekezi (mentor) na mshauri katika masuala ya uongozi, afya, ndoa na familia.</p>
+          <p class="about-text">Ametoa mchango mkubwa katika kujenga kizazi cha vijana wanaoelewa kusudi lao, ukuaji binafsi na nguvu ya kutembea katika maono ya Mungu kupitia programu ya ELEVATED LIFE SERIES.</p>
+          <p class="about-text">Akiwa na stashahada ya juu ya ufamasia kutoka NOCOHAS pamoja na shahada ya Theology kutoka AUCA, Kigali-Rwanda, ameunganisha maarifa ya afya ya mwili, afya ya akili na mafundisho ya kiroho.</p>
+          <p class="about-text">Anaamini kila kijana amewekewa ndani yake maono, ndoto na wito unaokusudiwa kuibua thamani yake duniani — na kupitia maandishi na mafundisho yake, anahamasisha watu kuishi maisha ya kusudi, kanuni na uongozi wenye maadili.</p>
+          <a class="author-editorial-link" href="#books">Explore His Books <i data-lucide="arrow-up-right"></i></a>
+        </div>
+        <div class="about-author-image reveal reveal-delay"><img src="assets/author-portrait.webp" alt="Dennis Nazar portrait"></div>
+      </div>
+    </section>
+
+    <section class="how section">
+      <div class="container">
+        <div class="center-heading reveal"><p class="section-kicker">HOW IT WORKS</p><h2>Your book is just <span>a few steps away.</span></h2></div>
+        <div class="steps-grid">
+          <article class="step-card reveal"><div class="step-number">01</div><i data-lucide="book-open"></i><h3>Choose Your Book</h3><p>Chagua digital edition unayotaka kutoka kwenye catalog.</p></article>
+          <article class="step-card reveal reveal-delay"><div class="step-number">02</div><i data-lucide="credit-card"></i><h3>Make Payment</h3><p>Fuata maelekezo ya Mobile Money kwenye checkout.</p></article>
+          <article class="step-card reveal reveal-delay-2"><div class="step-number">03</div><i data-lucide="receipt"></i><h3>Submit Proof</h3><p>Weka Transaction ID au upload screenshot ya malipo.</p></article>
+          <article class="step-card reveal"><div class="step-number">04</div><i data-lucide="shield-check"></i><h3>Payment Verified</h3><p>Order yako inakaguliwa na kuthibitishwa na store admin.</p></article>
+          <article class="step-card reveal reveal-delay"><div class="step-number">05</div><i data-lucide="library"></i><h3>Access Your Library</h3><p>Baada ya confirmation, kitabu kinaongezwa kwenye My Library yako.</p></article>
+          <article class="step-card reveal reveal-delay-2"><div class="step-number">06</div><i data-lucide="book-open-check"></i><h3>Start Reading</h3><p>Soma online na endelea kutoka ukurasa uliouishia.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="library-cta" aria-labelledby="libraryCtaTitle">
+      <div class="container library-cta-inner reveal">
+        <div>
+          <p class="section-kicker light">PRIVATE DIGITAL READING</p>
+          <h2 id="libraryCtaTitle">Your books. <span>Your Library.</span></h2>
+          <p>Once payment is verified, your books live inside your private Library—ready whenever you are.</p>
+        </div>
+        <a class="editorial-button light-button" href="library.html">Open My Library <i data-lucide="arrow-up-right"></i></a>
+      </div>
+    </section>
+
+<section class="faq section" id="faq">
+      <div class="container">
+        <div class="center-heading reveal"><p class="section-kicker">QUESTIONS</p><h2>Frequently Asked <span>Questions</span></h2></div>
+        <div class="faq-list">
+          <details class="faq-item reveal"><summary>Je, nitanunua PDF na kuituma kwa wengine?</summary><p>Unanunua access ya digital edition ndani ya Private Library yako. Original book files hazipelekwi kama public download.</p></details>
+          <details class="faq-item reveal"><summary>Nitatumia kifaa gani kusoma?</summary><p>Unaweza kutumia smartphone, tablet au computer yenye internet. Ingia My Library kwa email uliyotumia wakati wa kununua.</p></details>
+          <details class="faq-item reveal"><summary>Kitabu kitaonekana lini kwenye Library?</summary><p>Baada ya payment yako kuthibitishwa na admin, access itaongezwa kwenye Library yako na utaelekezwa kuanza kusoma.</p></details>
+          <details class="faq-item reveal"><summary>Je, reading progress yangu inahifadhiwa?</summary><p>Ndiyo. Reader huhifadhi progress yako ili uweze kuendelea kutoka ulipoishia.</p></details>
+          <details class="faq-item reveal"><summary>Nikiweka email isiyo sahihi nifanye nini?</summary><p>Wasiliana na support kupitia WhatsApp au email ya store. Email ya purchase ndiyo hutumika kuhusisha Library access.</p></details>
+          <details class="faq-item reveal"><summary>Je, naweza kushare account yangu?</summary><p>Library access ni ya matumizi binafsi ya mnunuzi. Usishiriki credentials au maudhui ya kitabu na watu wengine.</p></details>
+        </div>
+      </div>
+    </section>
+
+        <section class="email-purchase section" id="contact">
+      <div class="container">
+        <div class="email-shell reveal">
+          <div class="email-brand"><img src="assets/dn-logo-white.png" alt="Dennis Nazar logo"></div>
+          <div class="email-content">
+            <p class="email-kicker">THE NEXT CHAPTER</p>
+            <h2 class="purchase-title">Be the first to know<br><span>what comes next.</span></h2>
+            <p class="purchase-copy">Pata taarifa kuhusu vitabu vipya na updates muhimu za Dennis Nazar Bookstore.</p>
+            <form id="newsletterForm" class="email-form"><input id="email" type="email" placeholder="Enter your email" required><button type="submit">Notify Me <i data-lucide="bell"></i></button></form>
+            <small>Hatuta-spam inbox yako. Taarifa muhimu tu kuhusu vitabu vya Dennis Nazar.</small>
+          </div>
+          <div class="email-footer"><span>© 2026 Dennis Nazar. All Rights Reserved.</span><span>Official Books Store</span></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="footer"><div class="container footer-grid"><div class="footer-brand-col"><img src="assets/dn-logo-white.png" alt="Dennis Nazar" class="footer-logo"><p>Books that inspire thought, reflection & better living.</p><div class="footer-socials" aria-label="Dennis Nazar social media"><a class="instagram" href="https://instagram.com/dennisnazar_" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a><a class="tiktok" href="https://www.tiktok.com/@dennisnazar_" target="_blank" rel="noopener" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a><a class="threads" href="https://www.threads.net/@dennisnazar_" target="_blank" rel="noopener" aria-label="Threads"><i class="fa-brands fa-threads"></i></a><a class="facebook" href="https://facebook.com/dennisnazar_" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a></div></div><div class="footer-links"><a href="#books">Books</a><a href="#about">About</a><a href="#why-buy">Why Buy</a><a href="#coming-soon">Coming Soon</a><a href="#contact">Contact</a><a href="library.html">My Library</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="refunds.html">Refunds</a></div><div class="footer-contact"><span>OFFICIAL STORE</span><strong>Dennis Nazar</strong><a class="footer-email" href="mailto:dennisnazar123@gmail.com">dennisnazar123@gmail.com</a><a class="footer-phone" href="tel:+255765889395">+255 765 889 395</a><a class="footer-phone footer-phone-secondary" href="tel:+255775789395">+255 775 789 395</a><a class="footer-map" href="https://www.google.com/maps/search/?api=1&query=66MH%2BQCF%20Dar%20es%20Salaam%2C%20Tanzania" target="_blank" rel="noopener">66MH+QCF Dar es Salaam, Tanzania</a><small>© 2026 All Rights Reserved.</small></div></div></footer>
+
+  <div class="cart-backdrop" id="cart" aria-hidden="true">
+    <aside class="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+      <div class="cart-head"><div><span>DENNIS NAZAR</span><h2 id="cartTitle">Your Cart</h2></div><button id="cartClose" aria-label="Close cart"><i data-lucide="x"></i></button></div>
+      <div class="cart-items" id="cartItems"></div>
+      <div class="cart-empty" id="cartEmpty"><i data-lucide="shopping-bag"></i><h3>Your cart is empty</h3><p>Chagua kitabu kutoka AVAILABLE NOW ili kukiongeza kwenye cart yako.</p><a href="#books" id="cartBrowse">Explore Books <i data-lucide="arrow-right"></i></a></div>
+      <div class="cart-foot" id="cartFoot"><div class="cart-total"><span>Total</span><strong id="cartTotal">0 TZS</strong></div><button class="checkout-submit" id="cartCheckout">Proceed to Checkout <i data-lucide="arrow-right"></i></button><small>Private library access begins after payment verification.</small></div>
+    </aside>
+  </div>
+
+  <div class="checkout-backdrop" id="checkout" aria-hidden="true">
+    <div class="checkout-shell" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle">
+      <button class="checkout-close" id="checkoutClose" aria-label="Close checkout"><i data-lucide="x"></i></button>
+      <div class="checkout-head"><div><span>DENNIS NAZAR</span><h2 id="checkoutTitle">Secure Checkout</h2></div><div class="secure"><i data-lucide="shield-check"></i> Secure order</div></div>
+      <div class="checkout-body" id="checkoutFormView">
+        <div class="checkout-form-area">
+          <div class="progress"><span class="active">01</span><i></i><span>02</span></div>
+          <h3>Customer details</h3>
+          <p class="checkout-muted">Taarifa hizi zitatumika kufanya order na delivery ya softcopy.</p>
+          <form id="checkoutForm">
+            <label>Full name<input id="customerName" type="text" required placeholder="Jina lako kamili"></label>
+            <label>Email address<input id="customerEmail" type="email" required placeholder="jina@email.com"></label>
+            <label>Phone number<input id="customerPhone" type="tel" required placeholder="07XX XXX XXX"></label>
+            <label>Payment method<select id="paymentMethod" required><option value="">Chagua njia ya malipo</option><option>Mobile Money</option></select></label>
+            <div class="payment-note"><i data-lucide="info"></i><span id="paymentHint">Payment instructions zitaonyeshwa baada ya order kuundwa.</span></div>
+            <button class="checkout-submit" type="submit">Continue to Payment <i data-lucide="arrow-right"></i></button>
+          </form>
+        </div>
+        <aside class="order-summary"><p>YOUR ORDER</p><div class="summary-product"><img id="summaryImage" src="assets/book-1.webp" alt=""><div><strong id="summaryTitle">Book</strong><small>Digital Softcopy</small></div></div><div class="summary-row"><span>Amount due</span><strong id="summaryPrice">2,500 TZS</strong></div><div class="summary-note"><i data-lucide="download"></i><span>Private library access begins after payment verification.</span></div></aside>
+      </div>
+      <div class="pending-view" id="pendingView" hidden>
+        <div class="pending-brand"><img src="assets/dn-logo-white.png" alt="Dennis Nazar"></div>
+        <div class="pending-main"><p class="email-kicker">ORDER CREATED</p><h3>Your order <strong id="orderNumber">DN-20260914-XXXXXX</strong> is waiting for payment</h3><p>Hi <strong id="pendingName">Customer</strong>, your order is saved. Complete payment using the instructions below; Library access will be available after payment verification.</p><div class="pending-card"><span id="pendingOrderMini">ORDER DN-20260914-XXXXXX</span><strong id="pendingBook">Book title</strong><div><span>Amount due</span><b id="pendingAmount">TZS 2,500</b></div></div><button class="complete-payment" id="completePayment">Complete Payment <i data-lucide="arrow-right"></i></button><p class="expiry">Payment instructions are editable in <code>js/script.js</code>. If you have already paid, contact the store with your order number.</p><div class="pending-divider"></div><small>Need help? Use the store contact details or WhatsApp once configured.</small></div>
+        <div class="pending-footer">© 2026 Dennis Nazar · Privacy · Terms of Service</div>
+      </div>
+    </div>
+  </div>
+
+  <a class="whatsapp-float" href="https://wa.me/255765889395" target="_blank" rel="noopener" aria-label="Chat with Dennis Nazar on WhatsApp" title="WhatsApp Dennis Nazar"><i class="fa-brands fa-whatsapp"></i></a>
+<div class="book-modal-backdrop" id="bookModal" aria-hidden="true">
+      <div class="book-modal" role="dialog" aria-modal="true" aria-labelledby="bookModalTitle">
+        <button class="book-modal-close" id="bookModalClose" aria-label="Close book details"><i data-lucide="x"></i></button>
+        <div class="book-modal-grid">
+          <div class="book-modal-cover"><img id="bookModalImage" src="assets/book-1.webp" alt=""></div>
+          <div class="book-modal-content">
+            <span class="book-modal-kicker" id="bookModalKicker">DIGITAL EDITION</span><h2 id="bookModalTitle">Book title</h2>
+            <p class="book-modal-subtitle" id="bookModalSubtitle"></p>
+            <div class="book-modal-price"><strong id="bookModalPrice">2,500</strong><span>TZS</span></div>
+            <div class="book-modal-feature-list"></div>
+            <div class="book-modal-actions"><button class="primary-btn" id="bookModalBuy">Buy Softcopy <i data-lucide="arrow-right"></i></button><button class="modal-cart-btn" id="bookModalCart"><i data-lucide="shopping-cart"></i> Add to Cart</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+      <div class="toast" id="toast"><i data-lucide="check"></i><span></span></div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/script.js?v=premium-editorial-2"></script>
+</body>
+</html>

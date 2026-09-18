@@ -1,0 +1,39 @@
+project_id = "mnxnwstxbunugmrurhkw"
+
+[functions.create-order]
+verify_jwt = false
+
+[functions.confirm-order]
+verify_jwt = true
+
+[functions.reject-order]
+verify_jwt = true
+
+[functions.send-delivery]
+verify_jwt = true
+
+[functions.ensure-access]
+verify_jwt = false
+
+[functions.reader-manifest]
+verify_jwt = false
+
+[functions.reader-page]
+verify_jwt = false
+
+[functions.confirm-payment]
+verify_jwt = true
+
+[functions.resend-library-access]
+verify_jwt = true
+
+[functions.track-order]
+verify_jwt = false
+
+[functions.revoke-access]
+verify_jwt = true
+# Branded Supabase Auth email template for My Library magic-link sign-in.
+# For hosted Supabase projects, copy the same HTML into Authentication > Email Templates > Magic Link.
+[auth.email.template.magic_link]
+subject = "Dennis Nazar Private Library — Your secure access link"
+content_path = "./supabase/templates/magic_link.html"

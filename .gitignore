@@ -1,0 +1,27 @@
+# Local and secret configuration
+.env
+.env.*
+!.env.example
+*.local
+
+# Dependencies and generated output
+node_modules/
+dist/
+build/
+
+# Local QA and deployment artifacts
+*.zip
+*.log
+coverage/
+playwright-report/
+test-results/
+qa/
+
+# OS/editor files
+.DS_Store
+.vscode/
+.idea/
+
+# Local screenshots and temporary exports
+screenshots/
+*.png

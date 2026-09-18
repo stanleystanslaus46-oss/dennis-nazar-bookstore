@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="sw">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/png" href="assets/favicon.png">
+<meta name="theme-color" content="#211D5A">
+<meta name="description" content="Book details — Dennis Nazar Official Books Store.">
+<title>Book Details — Dennis Nazar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+<link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/book.css">
+</head>
+<body class="book-detail-page">
+<header class="book-detail-nav"><div class="container book-detail-nav-inner">
+<a class="brand" href="index.html"><img src="assets/dn-logo-white.png" alt="Dennis Nazar"></a>
+<div class="book-nav-actions"><a href="index.html#books" class="nav-back"><i data-lucide="arrow-left"></i><span>Back to Books</span></a><a href="library.html" class="library-nav-link"><i data-lucide="library"></i><span>My Library</span></a><a href="track.html" class="track-nav-link"><i data-lucide="search-check"></i><span>Track Order</span></a></div>
+</div></header>
+<main>
+<section class="book-detail-hero"><div class="container book-detail-grid">
+<div class="book-detail-cover"><span class="detail-badge"><i data-lucide="check"></i> AVAILABLE NOW</span><img id="bookImage" src="assets/book-1.webp" alt=""></div>
+<div class="book-detail-copy">
+<p id="bookKicker" class="section-kicker">DIGITAL EDITION</p><h1 id="bookTitle">Book Details</h1><p id="bookSubtitle" class="book-detail-subtitle"></p>
+<div class="book-price-row"><strong id="bookPrice">2,500</strong><span>TZS</span><span class="price-note">Private digital access</span></div>
+<div class="detail-divider"></div>
+<h2>What you will get</h2><ul id="bookFeatures" class="detail-features"></ul>
+<div class="detail-actions"><button id="buyBook" class="primary-btn">Buy Softcopy <i data-lucide="arrow-right"></i></button><button id="addBook" class="detail-cart-btn"><i data-lucide="shopping-cart"></i> Add to Cart</button></div>
+<p class="detail-note"><i data-lucide="shield-check"></i> Payment is verified before the book is added to your private My Library.</p>
+</div></div></section>
+<section class="book-confidence"><div class="container confidence-grid">
+<div><i data-lucide="lock-keyhole"></i><div><strong>Private Library</strong><span>Read online from your account.</span></div></div>
+<div><i data-lucide="bookmark-check"></i><div><strong>Saved Progress</strong><span>Continue from where you stopped.</span></div></div>
+<div><i data-lucide="smartphone"></i><div><strong>Any Screen</strong><span>Phone, tablet or computer.</span></div></div>
+</div></section>
+<section class="book-next section"><div class="container"><div class="book-next-head"><div><p class="section-kicker">KEEP EXPLORING</p><h2>More books to <span>read.</span></h2></div><a href="index.html#books" class="secondary-link dark-link">View all books <i data-lucide="arrow-up-right"></i></a></div><div id="relatedBooks" class="related-grid"></div></div></section>
+</main>
+<div id="bookToast" class="toast"><i data-lucide="check-circle"></i><span></span></div>
+<script src="js/store.js"></script><script src="js/book.js?v=phase7"></script>
+</body></html>
