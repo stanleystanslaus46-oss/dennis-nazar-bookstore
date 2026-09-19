@@ -1022,3 +1022,9 @@ body{background:var(--editorial-paper)}
 /* Treat unpublished cover art as intentionally soft previews, not finished products. */
 .next-chapter .coming-cover img{filter:blur(1.35px) saturate(.58) brightness(.72);transform:scale(1.035)}
 .next-chapter .coming-overlay{background:linear-gradient(180deg,rgba(20,17,52,.12),rgba(20,17,52,.46))}
+
+/* FINAL LOGO VISIBILITY FIX */
+.brand{position:relative;z-index:61;display:flex!important;align-items:center!important;visibility:visible!important;opacity:1!important;overflow:visible!important}
+.brand img{display:block!important;position:relative!important;z-index:62!important;visibility:visible!important;opacity:1!important;width:100%!important;height:100%!important;max-width:100%!important;object-fit:contain!important;object-position:left center!important}
+.mobile-logo{display:block!important;visibility:visible!important;opacity:1!important}
+.footer-logo{display:block!important;visibility:visible!important;opacity:1!important}
