@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
-
+Disallow: /admin.html
+Disallow: /supabase/
 Sitemap: https://dennisnazar-bookstore.com/sitemap.xml
