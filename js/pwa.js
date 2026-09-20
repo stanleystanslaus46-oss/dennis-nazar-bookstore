@@ -70,7 +70,7 @@
     const splash = document.createElement("div");
     splash.id = "dn-pwa-splash";
     splash.setAttribute("aria-hidden", "true");
-    splash.innerHTML = '<img src="/assets/dn-logo-white.png" alt="" decoding="async">';
+    splash.innerHTML = '<img src="/assets/dn-logo-white.png?v=2" alt="" decoding="async">';
     document.body.appendChild(splash);
     const hide = () => {
       splash.classList.add("is-hidden");
@@ -148,7 +148,7 @@
     if (isAndroid) {
       action.textContent = "Install app";
       content.innerHTML = `
-        <p class="dn-pwa-copy" style="margin-bottom:16px">On Android, the Install App button can open the browser's native install dialog.</p>
+        <p class="dn-pwa-copy" style="margin-bottom:16px">On Android, use <strong>Install app</strong> to install Dennis Nazar as an app. Do not choose the shortcut option.</p>
       `;
       return;
     }
@@ -160,23 +160,35 @@
   }
 
   async function handleInstall() {
+    const action = document.getElementById("dn-pwa-action");
+
+    // After the native prompt is unavailable, the button becomes a simple close action.
+    if (action?.dataset.mode === "close") {
+      dismiss();
+      return;
+    }
+
     if (isIOS) {
       dismiss();
       return;
     }
+
     if (!deferredPrompt) {
       renderInstructions();
       const content = document.getElementById("dn-pwa-content");
-      const action = document.getElementById("dn-pwa-action");
       if (content && isAndroid) {
         content.innerHTML = `
           <ol class="dn-pwa-steps">
             <li><span class="dn-pwa-step">1</span><span>Open the browser menu.</span></li>
-            <li><span class="dn-pwa-step">2</span><span>Choose <strong>Install app</strong> or <strong>Add to Home screen</strong>.</span></li>
+            <li><span class="dn-pwa-step">2</span><span>Choose <strong>Install app</strong> — not <strong>Add to Home screen</strong>.</span></li>
           </ol>
+          <p class="dn-pwa-note">If only “Add to Home screen” appears, this browser has not recognized the site as installable yet. Update the page after the latest PWA deployment.</p>
         `;
       }
-      if (action) action.textContent = "Got it";
+      if (action) {
+        action.textContent = "Got it";
+        action.dataset.mode = "close";
+      }
       return;
     }
 
@@ -198,7 +210,7 @@
     event.preventDefault();
     deferredPrompt = event;
     if (!isStandalone && !recentlyDismissed()) {
-      setTimeout(showInstallModal, 900);
+      setTimeout(showInstallModal, 700);
     }
   });
 
