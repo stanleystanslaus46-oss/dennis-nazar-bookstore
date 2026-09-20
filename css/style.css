@@ -390,7 +390,7 @@ body.locked{overflow:hidden}
 }
 .hero:before{
   background:
-    linear-gradient(180deg, rgba(11,9,31,.14) 0%, rgba(11,9,31,.05) 48%, rgba(11,9,31,.26) 100%);
+    linear-gradient(180deg, rgba(11,9,31,.14) 0%, rgba(11,9,31,.05) 48%, rgba(11,9,31,.38) 100%);
 }
 .hero-glow{opacity:.35}
 @media(max-width:760px){
@@ -400,8 +400,8 @@ body.locked{overflow:hidden}
       linear-gradient(180deg,
         rgba(18,15,45,.92) 0%,
         rgba(18,15,45,.78) 34%,
-        rgba(18,15,45,.52) 68%,
-        rgba(18,15,45,.34) 100%),
+        rgba(18,15,45,.62) 68%,
+        rgba(18,15,45,.52) 100%),
       url("../assets/book-shelf.webp");
     background-size:cover;
   }
