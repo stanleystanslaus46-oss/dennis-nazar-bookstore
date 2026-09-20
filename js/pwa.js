@@ -23,11 +23,24 @@
     style.id = "dn-pwa-styles";
     style.textContent = `
       #dn-pwa-splash{
-        position:fixed;inset:0;z-index:2147483646;display:flex;align-items:center;justify-content:center;
-        background:#211D5A;opacity:1;visibility:visible;transition:opacity .35s ease,visibility .35s ease;
+        position:fixed;inset:0;z-index:2147483646;display:flex;flex-direction:column;align-items:center;justify-content:center;
+        gap:24px;background:#211D5A;opacity:1;visibility:visible;
+        transition:opacity .35s ease,visibility .35s ease;
       }
       #dn-pwa-splash.is-hidden{opacity:0;visibility:hidden;pointer-events:none}
-      #dn-pwa-splash img{width:min(72vw,360px);height:auto;display:block;object-fit:contain}
+      #dn-pwa-splash .dn-splash-logo{
+        width:min(42vw,192px);height:auto;display:block;object-fit:contain;
+      }
+      #dn-pwa-splash .dn-splash-copy{
+        min-height:44px;text-align:center;color:#fff;font:600 16px/1.35 Manrope,Arial,sans-serif;
+        letter-spacing:.22em;text-transform:uppercase;
+      }
+      #dn-pwa-splash .dn-splash-line{display:block;white-space:nowrap}
+      #dn-pwa-splash .dn-splash-cursor{
+        display:inline-block;width:1px;height:1em;margin-left:4px;vertical-align:-.12em;background:#f47721;
+        animation:dn-splash-caret .7s step-end infinite;
+      }
+      @keyframes dn-splash-caret{50%{opacity:0}}
       #dn-pwa-install{
         position:fixed;inset:0;z-index:2147483645;display:flex;align-items:flex-end;justify-content:center;
         padding:18px;background:rgba(12,10,28,.54);backdrop-filter:blur(8px);
@@ -61,23 +74,73 @@
         #dn-pwa-install{align-items:center}
         .dn-pwa-card{margin-bottom:0}
       }
+      @media(max-width:520px){
+        #dn-pwa-splash .dn-splash-copy{font-size:13px;letter-spacing:.18em}
+      }
     `;
     document.head.appendChild(style);
   }
 
+  function typeText(element, text, speed, done) {
+    let index = 0;
+    const step = () => {
+      element.textContent = text.slice(0, index);
+      if (index < text.length) {
+        index += 1;
+        setTimeout(step, speed);
+      } else if (typeof done === "function") {
+        done();
+      }
+    };
+    step();
+  }
+
   function showSplash() {
     if (!isStandalone) return;
+
     const splash = document.createElement("div");
     splash.id = "dn-pwa-splash";
     splash.setAttribute("aria-hidden", "true");
-    splash.innerHTML = '<img src="/assets/dn-logo-white.png?v=2" alt="" decoding="async">';
+    splash.innerHTML = `
+      <img class="dn-splash-logo" src="/assets/pwa-icon-512.png?v=splash-20260920" alt="" decoding="async">
+      <div class="dn-splash-copy" aria-hidden="true">
+        <span class="dn-splash-line" id="dn-splash-name"><span class="dn-splash-cursor"></span></span>
+        <span class="dn-splash-line" id="dn-splash-store"><span class="dn-splash-cursor"></span></span>
+      </div>
+    `;
     document.body.appendChild(splash);
-    const hide = () => {
-      splash.classList.add("is-hidden");
-      setTimeout(() => splash.remove(), 500);
+
+    const name = splash.querySelector("#dn-splash-name");
+    const store = splash.querySelector("#dn-splash-store");
+
+    const finish = () => {
+      setTimeout(() => {
+        splash.classList.add("is-hidden");
+        setTimeout(() => splash.remove(), 500);
+      }, 550);
     };
-    window.addEventListener("load", () => setTimeout(hide, 250), { once: true });
-    setTimeout(hide, 1800);
+
+    const startTyping = () => {
+      typeText(name, "DENNIS NAZAR", 75, () => {
+        name.innerHTML = "DENNIS NAZAR";
+        setTimeout(() => {
+          typeText(store, "BOOKSTORE", 75, finish);
+        }, 180);
+      });
+    };
+
+    startTyping();
+
+    window.addEventListener("load", () => {
+      setTimeout(() => splash.classList.remove("is-hidden"), 0);
+    }, { once: true });
+
+    setTimeout(() => {
+      if (!splash.classList.contains("is-hidden")) {
+        splash.classList.add("is-hidden");
+        setTimeout(() => splash.remove(), 500);
+      }
+    }, 4200);
   }
 
   function recentlyDismissed() {
