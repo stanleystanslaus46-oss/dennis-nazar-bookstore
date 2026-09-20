@@ -1,4 +1,4 @@
-name: Generate Dennis Nazar PWA icons
+name: Generate Dennis Nazar PWA icons v2
 
 on:
   push:
