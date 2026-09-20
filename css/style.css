@@ -376,7 +376,7 @@ body.locked{overflow:hidden}
 .hero{
   background-image:
     linear-gradient(90deg, rgba(18,15,45,.94) 0%, rgba(18,15,45,.78) 42%, rgba(18,15,45,.40) 72%, rgba(18,15,45,.48) 100%),
-    url("../assets/book-shelf.webp");
+    url("../assets/hero-bookshelf.webp");
   background-size: cover;
   background-position: center 42%;
   background-repeat: no-repeat;
@@ -393,7 +393,7 @@ body.locked{overflow:hidden}
     background-position:center center;
     background-image:
       linear-gradient(180deg, rgba(18,15,45,.91) 0%, rgba(18,15,45,.72) 52%, rgba(18,15,45,.88) 100%),
-      url("../assets/book-shelf.webp");
+      url("../assets/hero-bookshelf.webp");
     background-size:cover;
   }
 }
