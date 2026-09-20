@@ -12,7 +12,7 @@
   <meta name="robots" content="index,follow,max-image-preview:large">
   <meta property="og:image" content="assets/book-shelf.webp">
   <link rel="canonical" href="https://dennisnazar-bookstore.com/">
-  <link rel="preload" as="image" href="assets/book-shelf.webp">
+  <link rel="stylesheet" href="assets/hero-image.css"><link rel="preload" as="image" href="assets/book-shelf.webp">
   <title>Dennis Nazar — Official Website & Books Store</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,7 +23,7 @@
 html,body{margin:0;background:#211D5A;color:#fff}
 body{min-height:100vh}
 .navbar{min-height:74px}
-.hero{min-height:clamp(620px,82vh,820px);background:linear-gradient(90deg,rgba(18,15,45,.90) 0%,rgba(18,15,45,.76) 24%,rgba(18,15,45,.48) 46%,rgba(18,15,45,.20) 68%,rgba(18,15,45,.06) 100%),url("assets/book-shelf.webp") center 42%/cover no-repeat}
+.hero{min-height:clamp(620px,82vh,820px);background:linear-gradient(90deg,rgba(18,15,45,.90) 0%,rgba(18,15,45,.76) 24%,rgba(18,15,45,.48) 46%,rgba(18,15,45,.20) 68%,rgba(18,15,45,.06) 100%),var(--hero-image, url("assets/book-shelf.webp")) center 42%/cover no-repeat}
 @media(max-width:760px){.hero{min-height:680px;background:linear-gradient(180deg,rgba(18,15,45,.82) 0%,rgba(18,15,45,.66) 34%,rgba(18,15,45,.42) 68%,rgba(18,15,45,.28) 100%),url("assets/book-shelf.webp") center center/cover no-repeat}}
 </style>
 <link rel="stylesheet" href="css/style.css?v=hero-fast-20260920">
