@@ -1038,3 +1038,8 @@ body{background:var(--editorial-paper)}
 .brand img{display:block!important;position:relative!important;z-index:62!important;visibility:visible!important;opacity:1!important;width:100%!important;height:100%!important;max-width:100%!important;object-fit:contain!important;object-position:left center!important}
 .mobile-logo{display:block!important;visibility:visible!important;opacity:1!important}
 .footer-logo{display:block!important;visibility:visible!important;opacity:1!important}
+
+
+/* Hero paragraph readability */
+.hero-lead{font-size:16px;line-height:1.75}
+@media(max-width:760px){.hero-lead{font-size:14px;line-height:1.7}}
