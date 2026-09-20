@@ -28,10 +28,10 @@ jobs:
       - name: Generate square PWA icons
         run: |
           mkdir -p assets
-          magick assets/dn-logo-white.png -resize 420x420 -gravity center -background "#211D5A" -extent 512x512 -alpha remove -strip assets/pwa-icon-512.png
-          magick assets/dn-logo-white.png -resize 330x330 -gravity center -background "#211D5A" -extent 512x512 -alpha remove -strip assets/pwa-icon-512-maskable.png
-          magick assets/dn-logo-white.png -resize 150x150 -gravity center -background "#211D5A" -extent 192x192 -alpha remove -strip assets/pwa-icon-192.png
-          magick assets/dn-logo-white.png -resize 142x142 -gravity center -background "#211D5A" -extent 180x180 -alpha remove -strip assets/apple-touch-icon.png
+          convert assets/dn-logo-white.png -resize 420x420 -gravity center -background "#211D5A" -extent 512x512 -alpha remove -strip assets/pwa-icon-512.png
+          convert assets/dn-logo-white.png -resize 330x330 -gravity center -background "#211D5A" -extent 512x512 -alpha remove -strip assets/pwa-icon-512-maskable.png
+          convert assets/dn-logo-white.png -resize 150x150 -gravity center -background "#211D5A" -extent 192x192 -alpha remove -strip assets/pwa-icon-192.png
+          convert assets/dn-logo-white.png -resize 142x142 -gravity center -background "#211D5A" -extent 180x180 -alpha remove -strip assets/apple-touch-icon.png
 
       - name: Commit generated icons
         run: |
