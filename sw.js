@@ -1,10 +1,24 @@
-const CACHE_NAME = "dennis-nazar-pwa-v1";
+const CACHE_NAME = "dennis-nazar-pwa-v2";
+
 const APP_SHELL = [
   "/",
+  "/book.html",
+  "/checkout.html",
+  "/library.html",
+  "/track.html",
+  "/privacy.html",
+  "/terms.html",
+  "/refunds.html",
   "/manifest.webmanifest",
   "/assets/dn-logo-white.png",
-  "/css/style.css",
-  "/js/pwa.js"
+  "/assets/favicon.png",
+  "/assets/book-1.webp",
+  "/assets/book-2.webp",
+  "/assets/book-3.webp",
+  "/assets/coming-soon-cover.jpg",
+  "/assets/coming-soon-cover-04.jpg",
+  "/css/style.css?v=logo-render-fix",
+  "/js/pwa.js?v=2"
 ];
 
 self.addEventListener("install", event => {
@@ -41,23 +55,22 @@ self.addEventListener("fetch", event => {
     event.respondWith(
       fetch(request)
         .then(response => {
-          if (url.pathname === "/" && response.ok) {
+          if (response.ok) {
             const copy = response.clone();
-            caches.open(CACHE_NAME).then(cache => cache.put("/", copy));
+            caches.open(CACHE_NAME).then(cache => cache.put(request, copy));
           }
           return response;
         })
-        .catch(() => caches.match("/"))
+        .catch(() => caches.match(request).then(cached => cached || caches.match("/")))
     );
     return;
   }
 
-  // Static same-origin assets: use cache immediately and refresh in the background.
   event.respondWith(
     caches.match(request).then(cached => {
       const network = fetch(request)
         .then(response => {
-          if (response.ok) {
+          if (response.ok && response.type === "basic") {
             const copy = response.clone();
             caches.open(CACHE_NAME).then(cache => cache.put(request, copy));
           }
