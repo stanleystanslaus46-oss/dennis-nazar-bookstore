@@ -214,6 +214,7 @@ body.locked{overflow:hidden}
   .book-card:nth-child(3){grid-column:1;grid-row:1}
 }
 @media(max-width:760px){
+  .brand-strip{height:40px}
   .whatsapp-float{width:50px;height:50px;right:16px;bottom:16px;font-size:24px}
 }
 
@@ -224,7 +225,7 @@ body.locked{overflow:hidden}
 /* Buy + Add to cart actions sit side-by-side on larger screens. */
 .book-footer{display:grid;grid-template-columns:minmax(0,1fr) 46px;gap:8px;align-items:center}.buy-btn{width:100%;min-height:42px}.add-cart-btn{width:46px;height:42px;border:1px solid #d7d7de;background:#fff;color:var(--navy);border-radius:5px;display:grid;place-items:center;transition:.2s}.add-cart-btn:hover{border-color:var(--orange);color:var(--orange);transform:translateY(-1px)}.add-cart-btn svg{width:17px;height:17px}
 /* Compact marquee */
-.brand-strip{height:54px;display:flex;align-items:center;background:#efeff2}.marquee-viewport{height:100%;display:flex;align-items:center}.marquee-track{height:100%;align-items:center}.marquee-group span{font-size:11px}.marquee-group{gap:24px}
+.brand-strip{height:60px;display:flex;align-items:center;background:#efeff2}.marquee-viewport{height:100%;display:flex;align-items:center}.marquee-track{height:100%;align-items:center}.marquee-group span{font-size:11px}.marquee-group{gap:24px}
 /* Purchase update is full-width but its content stays comfortably constrained. */
 .email-purchase>.container{width:100%;max-width:none}.email-shell{width:min(100%,1120px);margin:0 auto;box-shadow:none}.email-content{max-width:1120px;margin:auto}.email-form{max-width:650px}
 /* Dedicated checkout page */
@@ -658,6 +659,7 @@ button,a,input,select,textarea{touch-action:manipulation}
   .book-body p{max-width:275px}
 }
 @media(max-width:760px){
+  .brand-strip{height:40px}
   .container{width:calc(100% - 28px)}
   .section{padding:68px 0}
   .section-top{margin-bottom:30px}
