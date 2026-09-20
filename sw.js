@@ -18,7 +18,7 @@ const APP_SHELL = [
   "/assets/coming-soon-cover.jpg",
   "/assets/coming-soon-cover-04.jpg",
   "/css/style.css?v=logo-render-fix",
-  "/js/pwa.js?v=2"
+  "/js/pwa.js?v=3"
 ];
 
 self.addEventListener("install", event => {
