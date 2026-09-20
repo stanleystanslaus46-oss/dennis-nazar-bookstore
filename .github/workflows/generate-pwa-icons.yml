@@ -1,0 +1,45 @@
+name: Generate Dennis Nazar PWA icons
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "assets/dn-logo-white.png"
+      - ".github/workflows/generate-pwa-icons.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate-icons:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Install ImageMagick
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y imagemagick
+
+      - name: Generate square PWA icons
+        run: |
+          mkdir -p assets
+          magick assets/dn-logo-white.png -resize 420x420 -gravity center -background "#211D5A" -extent 512x512 -alpha remove -strip assets/pwa-icon-512.png
+          magick assets/dn-logo-white.png -resize 150x150 -gravity center -background "#211D5A" -extent 192x192 -alpha remove -strip assets/pwa-icon-192.png
+          magick assets/dn-logo-white.png -resize 142x142 -gravity center -background "#211D5A" -extent 180x180 -alpha remove -strip assets/apple-touch-icon.png
+
+      - name: Commit generated icons
+        run: |
+          git config user.name "Dennis Nazar PWA Bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/pwa-icon-512.png assets/pwa-icon-192.png assets/apple-touch-icon.png
+          if git diff --cached --quiet; then
+            echo "PWA icons are already current."
+            exit 0
+          fi
+          git commit -m "Generate Dennis Nazar PWA icons"
+          git push
