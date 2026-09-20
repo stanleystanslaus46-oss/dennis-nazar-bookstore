@@ -1,5 +1,11 @@
 # Customer Email & Library Access
 
+## Branded email UI
+
+Customer emails use the Dennis Nazar visual system: deep navy brand header, the official Dennis Nazar logo, restrained orange CTA accents, editorial serif headings, compact information panels, and a branded footer. The goal is for authentication and order emails to feel like one continuous Dennis Nazar Books Store experience rather than generic transactional mail.
+
+The live `confirm-payment` Edge Function now renders this branded UI directly when payment is approved.
+
 The Dennis Nazar store uses a private digital Library. Customers do **not** receive the original PDF as a public download.
 
 ## Customer email types
