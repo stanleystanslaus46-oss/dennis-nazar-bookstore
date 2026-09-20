@@ -29,6 +29,7 @@ jobs:
         run: |
           mkdir -p assets
           magick assets/dn-logo-white.png -resize 420x420 -gravity center -background "#211D5A" -extent 512x512 -alpha remove -strip assets/pwa-icon-512.png
+          magick assets/dn-logo-white.png -resize 330x330 -gravity center -background "#211D5A" -extent 512x512 -alpha remove -strip assets/pwa-icon-512-maskable.png
           magick assets/dn-logo-white.png -resize 150x150 -gravity center -background "#211D5A" -extent 192x192 -alpha remove -strip assets/pwa-icon-192.png
           magick assets/dn-logo-white.png -resize 142x142 -gravity center -background "#211D5A" -extent 180x180 -alpha remove -strip assets/apple-touch-icon.png
 
@@ -36,7 +37,7 @@ jobs:
         run: |
           git config user.name "Dennis Nazar PWA Bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/pwa-icon-512.png assets/pwa-icon-192.png assets/apple-touch-icon.png
+          git add assets/pwa-icon-512.png assets/pwa-icon-512-maskable.png assets/pwa-icon-192.png assets/apple-touch-icon.png
           if git diff --cached --quiet; then
             echo "PWA icons are already current."
             exit 0
