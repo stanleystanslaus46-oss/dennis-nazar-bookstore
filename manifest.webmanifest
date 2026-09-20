@@ -1,0 +1,37 @@
+{
+  "id": "/",
+  "name": "Dennis Nazar",
+  "short_name": "Dennis Nazar",
+  "description": "Official Dennis Nazar digital books store.",
+  "lang": "sw-TZ",
+  "dir": "ltr",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "portrait-primary",
+  "theme_color": "#211D5A",
+  "background_color": "#211D5A",
+  "prefer_related_applications": false,
+  "categories": ["books", "shopping", "education"],
+  "icons": [
+    {
+      "src": "/assets/pwa-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/pwa-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/pwa-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
