@@ -375,7 +375,7 @@ body.locked{overflow:hidden}
 /* ===== Hero background: Emil Widlund Unsplash library image ===== */
 .hero{
   background-image:
-    linear-gradient(90deg, rgba(18,15,45,.94) 0%, rgba(18,15,45,.78) 42%, rgba(18,15,45,.40) 72%, rgba(18,15,45,.48) 100%),
+    linear-gradient(90deg, rgba(18,15,45,.82) 0%, rgba(18,15,45,.62) 42%, rgba(18,15,45,.28) 72%, rgba(18,15,45,.34) 100%),
     url("../assets/book-shelf.webp");
   background-size: cover;
   background-position: center 42%;
@@ -383,7 +383,7 @@ body.locked{overflow:hidden}
 }
 .hero:before{
   background:
-    linear-gradient(180deg, rgba(11,9,31,.28) 0%, rgba(11,9,31,.08) 45%, rgba(11,9,31,.42) 100%);
+    linear-gradient(180deg, rgba(11,9,31,.16) 0%, rgba(11,9,31,.04) 45%, rgba(11,9,31,.22) 100%);
 }
 .hero-glow{
   opacity:.55;
@@ -392,7 +392,7 @@ body.locked{overflow:hidden}
   .hero{
     background-position:center center;
     background-image:
-      linear-gradient(180deg, rgba(18,15,45,.91) 0%, rgba(18,15,45,.72) 52%, rgba(18,15,45,.88) 100%),
+      linear-gradient(180deg, rgba(18,15,45,.80) 0%, rgba(18,15,45,.58) 52%, rgba(18,15,45,.72) 100%),
       url("../assets/book-shelf.webp");
     background-size:cover;
   }
