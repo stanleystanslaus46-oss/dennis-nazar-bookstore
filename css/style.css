@@ -382,7 +382,7 @@ body.locked{overflow:hidden}
       rgba(18,15,45,.48) 46%,
       rgba(18,15,45,.20) 68%,
       rgba(18,15,45,.06) 100%),
-    url("../assets/book-shelf.webp");
+    var(--hero-image, url("../assets/book-shelf.webp"));
   background-size: cover;
   background-position: center 42%;
   background-repeat: no-repeat;
