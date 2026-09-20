@@ -1,4 +1,5 @@
 import { createClient } from 'npm:@supabase/supabase-js@2';
+import { paymentConfirmedEmail } from '../_shared/email.ts';
 
 const ORIGINS = new Set([
   'https://dennisnazar-bookstore.com',
@@ -40,10 +41,6 @@ async function assertAdmin(req: Request) {
   const row = await admin.from('admin_users').select('user_id,role').eq('user_id', user.data.user.id).maybeSingle();
   if (row.error || !row.data || row.data.role !== 'admin') throw new Error('Admin access required.');
   return { admin, user: user.data.user };
-}
-
-function esc(value: string) {
-  return String(value).replace(/[&<>]/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[char] || char));
 }
 
 async function sendEmail(to: string, subject: string, html: string) {
@@ -91,7 +88,7 @@ Deno.serve(async (req) => {
     if (claim.error) throw claim.error;
     if (!claim.data) throw new Error('Order is already being confirmed or is no longer pending.');
 
-    const html = `<div><h2>Your Dennis Nazar order is confirmed</h2><p>Hello ${esc(order.customer_name)},</p><p>Your payment for order <strong>${esc(order.order_number)}</strong> has been confirmed.</p><p>Your books: ${esc(titles)}</p><p><a href='${libraryUrl}'>Open My Library</a></p></div>`;
+    const html = paymentConfirmedEmail({ customerName: order.customer_name, orderNumber: order.order_number, titles, libraryUrl, siteUrl: Deno.env.get('PUBLIC_SITE_URL') || 'https://dennisnazar-bookstore.com' });
     const text = `Payment confirmed. Order ${order.order_number}. Books: ${titles}. Open your private library: ${libraryUrl}.`;
     let email: any = { configured: false, ok: false };
     let whatsapp: any = { configured: false, ok: false };
