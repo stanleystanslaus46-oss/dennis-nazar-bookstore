@@ -1232,3 +1232,12 @@ body{background:var(--editorial-paper)}
   .fries-icon span:nth-child(3){width:16px!important}
   .fries-icon span:nth-child(2){width:20px!important}
 }
+
+
+/* Mobile collection purchase spacing — move cart action slightly left */
+@media(max-width:760px){
+  .collection-section .cart-action{
+    position:relative!important;
+    left:-28px!important;
+  }
+}
