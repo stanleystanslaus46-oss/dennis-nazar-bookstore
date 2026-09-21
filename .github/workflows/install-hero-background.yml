@@ -9,7 +9,6 @@ permissions:
 
 jobs:
   install-hero:
-    if: hashFiles('assets/.hero-new.b64.part0') != ''
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
