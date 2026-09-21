@@ -14,16 +14,16 @@ jobs:
       - uses: actions/checkout@v4
       - name: Assemble supplied background
         run: |
-          cat assets/.hero-new.b64.part0 assets/.hero-new.b64.part1 assets/.hero-new.b64.part2 assets/.hero-new.b64.part3 | base64 -d > assets/book-shelf.webp
+          cat assets/.hero-new.b64.part0 assets/.hero-new.b64.part1 assets/.hero-new.b64.part2a assets/.hero-new.b64.part2b assets/.hero-new.b64.part3 | base64 -d > assets/book-shelf.webp
           file assets/book-shelf.webp
           test -s assets/book-shelf.webp
       - name: Remove staging files
-        run: rm -f assets/.hero-new.b64.part0 assets/.hero-new.b64.part1 assets/.hero-new.b64.part2 assets/.hero-new.b64.part3
+        run: rm -f assets/.hero-new.b64.part0 assets/.hero-new.b64.part1 assets/.hero-new.b64.part2 assets/.hero-new.b64.part2a assets/.hero-new.b64.part2b assets/.hero-new.b64.part3
       - name: Commit new background
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add assets/book-shelf.webp
-          git add -u assets/.hero-new.b64.part0 assets/.hero-new.b64.part1 assets/.hero-new.b64.part2 assets/.hero-new.b64.part3
+          git add -u assets/.hero-new.b64.part0 assets/.hero-new.b64.part1 assets/.hero-new.b64.part2 assets/.hero-new.b64.part2a assets/.hero-new.b64.part2b assets/.hero-new.b64.part3
           git commit -m "Replace hero background image"
           git push
