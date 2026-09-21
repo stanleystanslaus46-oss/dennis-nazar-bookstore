@@ -1043,3 +1043,124 @@ body{background:var(--editorial-paper)}
 /* Hero paragraph readability */
 .hero-lead{font-size:16px;line-height:1.75}
 @media(max-width:760px){.hero-lead{font-size:14px;line-height:1.7}}
+
+
+/* =========================================================
+   REFERENCE HERO MATCH — 21 SEPTEMBER 2026
+   Match the supplied mobile reference: full bookshelf background,
+   left-aligned editorial copy, dark copy-side gradient and a
+   stronger lower fade. Existing commerce/layout flows untouched.
+   ========================================================= */
+.hero{
+  background-image:
+    linear-gradient(180deg,
+      rgba(11,9,31,.02) 0%,
+      rgba(11,9,31,.03) 52%,
+      rgba(11,9,31,.72) 100%),
+    linear-gradient(90deg,
+      rgba(18,15,45,.94) 0%,
+      rgba(18,15,45,.82) 30%,
+      rgba(18,15,45,.50) 60%,
+      rgba(18,15,45,.16) 100%),
+    url("../assets/book-shelf.webp");
+  background-position:center center;
+  background-size:cover;
+  background-repeat:no-repeat;
+}
+.hero:before{
+  background:linear-gradient(180deg,
+    rgba(11,9,31,.02) 0%,
+    rgba(11,9,31,.01) 52%,
+    rgba(11,9,31,.28) 100%);
+}
+.hero-glow{opacity:0}
+.hero-grid{
+  display:block;
+  width:min(100%,1220px);
+  max-width:1220px;
+  margin:0 auto;
+}
+.hero-copy{
+  width:100%;
+  max-width:760px;
+  margin:0;
+  text-align:left;
+}
+.hero .eyebrow{justify-content:flex-start}
+.hero h1{
+  max-width:900px!important;
+  margin:24px 0 23px!important;
+}
+.hero-lead{max-width:690px!important}
+.hero-actions{justify-content:flex-start}
+.hero-trust{justify-content:flex-start}
+
+@media(max-width:760px){
+  .navbar{height:72px}
+  .brand{width:150px;height:60px}
+  .brand img{width:146px;height:61px}
+  .nav-inner{gap:10px}
+  .menu-toggle{
+    width:auto!important;
+    height:auto!important;
+    min-width:24px!important;
+    min-height:24px!important;
+    padding:0!important;
+    margin-left:0!important;
+    display:grid!important;
+    place-items:center!important;
+  }
+  .menu-toggle svg{
+    width:24px!important;
+    height:24px!important;
+    stroke-width:2!important;
+  }
+  .hero{
+    min-height:610px!important;
+    padding:56px 0 44px!important;
+    background-image:
+      linear-gradient(180deg,
+        rgba(11,9,31,.02) 0%,
+        rgba(11,9,31,.03) 55%,
+        rgba(11,9,31,.78) 100%),
+      linear-gradient(90deg,
+        rgba(18,15,45,.94) 0%,
+        rgba(18,15,45,.82) 32%,
+        rgba(18,15,45,.50) 62%,
+        rgba(18,15,45,.16) 100%),
+      url("../assets/book-shelf.webp");
+    background-position:center center;
+    background-size:cover;
+    background-repeat:no-repeat;
+  }
+  .hero-grid{width:100%;max-width:none}
+  .hero-copy{max-width:100%;text-align:left!important}
+  .hero .eyebrow{justify-content:flex-start!important}
+  .hero h1{
+    max-width:100%!important;
+    font-size:clamp(42px,12.5vw,56px)!important;
+    line-height:1!important;
+    text-align:left!important;
+    margin:18px 0 20px!important;
+  }
+  .hero-lead{
+    max-width:690px!important;
+    font-size:14px!important;
+    line-height:1.7!important;
+    text-align:left!important;
+  }
+  .hero-actions{
+    justify-content:flex-start!important;
+    margin-top:28px!important;
+  }
+  .hero-trust{
+    justify-content:flex-start!important;
+    margin-top:40px!important;
+  }
+  .hero-trust strong{font-size:30px}
+  .hero-trust span{font-size:7px;letter-spacing:.17em}
+}
+
+@media(min-width:761px){
+  .hero{padding:82px 0 62px!important}
+}
