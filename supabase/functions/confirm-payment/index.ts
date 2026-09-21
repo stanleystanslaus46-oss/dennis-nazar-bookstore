@@ -122,17 +122,6 @@ async function sendEmail(to: string, subject: string, html: string) {
   return { configured: true, ok: true, id: data?.id || null };
 }
 
-async function sendWhatsApp(to: string, body: string) {
-  const token = Deno.env.get('WHATSAPP_ACCESS_TOKEN');
-  const phone = Deno.env.get('WHATSAPP_PHONE_NUMBER_ID');
-  const version = Deno.env.get('WHATSAPP_API_VERSION') || 'v23.0';
-  if (!token || !phone) return { configured: false, ok: false };
-  const response = await fetch(`https://graph.facebook.com/${version}/${phone}/messages`, { method: 'POST', headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' }, body: JSON.stringify({ messaging_product: 'whatsapp', to: to.replace(/\D/g, ''), type: 'text', text: { preview_url: true, body } }) });
-  const data = await response.json().catch(() => ({}));
-  if (!response.ok) throw new Error(`WhatsApp: ${data?.error?.message || response.statusText}`);
-  return { configured: true, ok: true, id: data?.messages?.[0]?.id || null };
-}
-
 Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') return new Response('ok', { headers: cors(req) });
   if (req.headers.get('Origin') && !cors(req)['Access-Control-Allow-Origin']) return json({ error: 'Origin not allowed.' }, 403, req);
@@ -158,17 +147,13 @@ Deno.serve(async (req) => {
     if (!claim.data) throw new Error('Order is already being confirmed or is no longer pending.');
 
     const html = brandedPaymentEmail({ customerName: order.customer_name, orderNumber: order.order_number, titles, libraryUrl, siteUrl: Deno.env.get('PUBLIC_SITE_URL') || 'https://dennisnazar-bookstore.com' });
-    const text = `Payment confirmed. Order ${order.order_number}. Books: ${titles}. Open your private library: ${libraryUrl}.`;
     let email: any = { configured: false, ok: false };
-    let whatsapp: any = { configured: false, ok: false };
     const errors: string[] = [];
     try { email = await sendEmail(order.customer_email, `Order ${order.order_number} confirmed — Dennis Nazar`, html); } catch (error) { errors.push(error instanceof Error ? error.message : 'Email delivery failed'); }
-    try { whatsapp = await sendWhatsApp(order.whatsapp_number, text); } catch (error) { errors.push(error instanceof Error ? error.message : 'WhatsApp delivery failed'); }
     await admin.from('delivery_logs').upsert([
-      { order_id: order.id, channel: 'email', event_key: eventKey, status: email.ok ? 'sent' : email.configured ? 'failed' : 'not_configured', provider_message_id: email.id || null, error_message: email.ok || !email.configured ? null : errors.join('; ') },
-      { order_id: order.id, channel: 'whatsapp', event_key: eventKey, status: whatsapp.ok ? 'sent' : whatsapp.configured ? 'failed' : 'not_configured', provider_message_id: whatsapp.id || null, error_message: whatsapp.ok || !whatsapp.configured ? null : errors.join('; ') }
+      { order_id: order.id, channel: 'email', event_key: eventKey, status: email.ok ? 'sent' : email.configured ? 'failed' : 'not_configured', provider_message_id: email.id || null, error_message: email.ok || !email.configured ? null : errors.join('; ') }
     ], { onConflict: 'order_id,channel,event_key', ignoreDuplicates: true });
-    return json({ ok: true, status: 'CONFIRMED', email, whatsapp, errors, libraryUrl, orderNumber: order.order_number }, 200, req);
+    return json({ ok: true, status: 'CONFIRMED', email, errors, libraryUrl, orderNumber: order.order_number }, 200, req);
   } catch (error) {
     return json({ error: error instanceof Error ? error.message : 'Unable to confirm order.' }, 400, req);
   }
