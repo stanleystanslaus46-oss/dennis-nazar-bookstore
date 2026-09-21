@@ -1194,14 +1194,14 @@ body{background:var(--editorial-paper)}
   .fries-icon span:nth-child(2){width:22px}
 }
 
-/* Mobile menu — match cart square treatment */
+/* Mobile menu — match cart size with minimal Fries icon */
 @media(max-width:760px){
   .menu-toggle{
-    width:42px!important;
-    height:42px!important;
-    min-width:42px!important;
-    min-height:42px!important;
-    margin-left:4px!important;
+    width:46px!important;
+    height:46px!important;
+    min-width:46px!important;
+    min-height:46px!important;
+    margin-left:2px!important;
     padding:0!important;
     border:1px solid rgba(255,255,255,.18)!important;
     border-radius:5px!important;
@@ -1211,16 +1211,20 @@ body{background:var(--editorial-paper)}
     place-items:center!important;
   }
   .fries-icon{
-    width:18px!important;
-    height:14px!important;
+    width:22px!important;
+    height:18px!important;
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:center!important;
+    justify-content:space-between!important;
   }
   .fries-icon span{
+    display:block!important;
     height:2px!important;
     border-radius:999px!important;
+    background:currentColor!important;
   }
   .fries-icon span:nth-child(1),
-  .fries-icon span:nth-child(3),
-  .fries-icon span:nth-child(2){
-    width:18px!important;
-  }
+  .fries-icon span:nth-child(3){width:18px!important}
+  .fries-icon span:nth-child(2){width:22px!important}
 }
