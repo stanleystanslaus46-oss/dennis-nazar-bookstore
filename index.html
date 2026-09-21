@@ -12,7 +12,7 @@
   <meta name="robots" content="index,follow,max-image-preview:large">
   <meta property="og:image" content="assets/book-shelf.webp">
   <link rel="canonical" href="https://dennisnazar-bookstore.com/">
-  <link rel="stylesheet" href="assets/hero-image.css"><link rel="preload" as="image" href="assets/book-shelf.webp">
+  <link rel="preload" as="image" href="assets/book-shelf.webp">
   <title>Dennis Nazar — Official Website & Books Store</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,11 +22,37 @@
   <style>
 html,body{margin:0;background:#211D5A;color:#fff}
 body{min-height:100vh}
-.navbar{min-height:74px}
-.hero{min-height:clamp(620px,82vh,820px);background:linear-gradient(90deg,rgba(18,15,45,.96) 0%,rgba(18,15,45,.86) 24%,rgba(18,15,45,.62) 46%,rgba(18,15,45,.30) 68%,rgba(18,15,45,.10) 100%),var(--hero-image, url("assets/book-shelf.webp")) center 42%/cover no-repeat}
-@media(max-width:760px){.hero{min-height:auto;padding:118px 0 45px;background:linear-gradient(180deg,rgba(18,15,45,.92) 0%,rgba(18,15,45,.78) 34%,rgba(18,15,45,.52) 68%,rgba(18,15,45,.34) 100%),url("assets/book-shelf.webp") center center/cover no-repeat}.hero-visual{height:350px;margin-top:10px}.hero-trust{margin-top:26px}.strip-inner{height:30px;gap:14px;font-size:8px}}
+.navbar{min-height:72px}
+.hero{
+  min-height:720px;
+  background:
+    linear-gradient(180deg,rgba(11,9,31,.02) 0%,rgba(11,9,31,.03) 52%,rgba(11,9,31,.72) 100%),
+    linear-gradient(90deg,rgba(18,15,45,.94) 0%,rgba(18,15,45,.82) 30%,rgba(18,15,45,.50) 60%,rgba(18,15,45,.16) 100%),
+    url("assets/book-shelf.webp") center center/cover no-repeat;
+}
+@media(max-width:760px){
+  .navbar{height:72px}
+  .hero{
+    min-height:610px;
+    padding:56px 0 44px;
+    background:
+      linear-gradient(180deg,rgba(11,9,31,.02) 0%,rgba(11,9,31,.03) 55%,rgba(11,9,31,.78) 100%),
+      linear-gradient(90deg,rgba(18,15,45,.94) 0%,rgba(18,15,45,.82) 32%,rgba(18,15,45,.50) 62%,rgba(18,15,45,.16) 100%),
+      url("assets/book-shelf.webp") center center/cover no-repeat;
+  }
+  .hero-grid{display:block}
+  .hero-copy{text-align:left}
+  .hero .eyebrow{justify-content:flex-start}
+  .hero h1{text-align:left}
+  .hero-lead{font-size:14px;line-height:1.7;text-align:left}
+  .hero-actions{justify-content:flex-start}
+  .hero-trust{justify-content:flex-start;margin-top:40px}
+  .menu-toggle{width:auto;height:auto;padding:0;display:grid;place-items:center}
+  .menu-toggle svg{width:24px;height:24px;stroke-width:2}
+  .strip-inner{height:40px}
+}
 </style>
-<link rel="stylesheet" href="css/style.css?v=hero-fast-20260920">
+<link rel="stylesheet" href="css/style.css?v=reference-hero-20260921">
 
   <meta property="og:url" content="https://dennisnazar-bookstore.com/">
   <meta property="og:site_name" content="Dennis Nazar">
