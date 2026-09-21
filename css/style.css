@@ -769,7 +769,6 @@ body{background:var(--editorial-paper)}
 .hero{padding:88px 0 72px!important;isolation:isolate}
 .hero:after{content:"";position:absolute;inset:auto 0 0;height:1px;background:rgba(255,255,255,.14)}
 .hero-grid{position:relative}
-.hero-grid:after{content:"READ · REFLECT · GROW";position:absolute;left:50%;bottom:-30px;transform:translateX(-50%);width:max-content;z-index:-1;font:700 clamp(74px,10vw,142px)/.8 var(--serif);letter-spacing:-.065em;color:rgba(255,255,255,.035);white-space:nowrap;pointer-events:none}
 .hero-copy{position:relative;z-index:2}
 .hero .eyebrow{font-size:9px;letter-spacing:.28em;color:#efedf5}
 .hero h1{max-width:940px!important;font-size:clamp(58px,6.6vw,88px)!important;line-height:.97!important;margin-top:24px!important;text-shadow:0 12px 40px rgba(0,0,0,.18)}
@@ -952,7 +951,6 @@ body{background:var(--editorial-paper)}
 @media(max-width:760px){
   .section{padding:78px 0}
   .hero{padding:58px 0 48px!important}
-  .hero-grid:after{content:"READ";bottom:-8px;font-size:88px}
   .hero h1{font-size:clamp(42px,12.5vw,56px)!important;line-height:1!important;text-align:left!important;margin:18px 0 19px!important}
   .hero-copy{text-align:left!important}
   .hero .eyebrow{justify-content:flex-start!important}
@@ -1163,4 +1161,35 @@ body{background:var(--editorial-paper)}
 
 @media(min-width:761px){
   .hero{padding:82px 0 62px!important}
+}
+
+/* Mobile menu — Fries icon treatment */
+@media(max-width:760px){
+  .menu-toggle{
+    width:44px!important;
+    height:44px!important;
+    min-width:44px!important;
+    min-height:44px!important;
+    padding:0!important;
+    margin-left:4px!important;
+    display:grid!important;
+    place-items:center!important;
+  }
+  .fries-icon{
+    width:36px;
+    height:30px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .fries-icon span{
+    display:block;
+    height:5px;
+    border-radius:999px;
+    background:currentColor;
+  }
+  .fries-icon span:nth-child(1),
+  .fries-icon span:nth-child(3){width:25px}
+  .fries-icon span:nth-child(2){width:36px}
 }
