@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   install-hero:
-    if: contains(github.event.head_commit.message, 'Stage new hero background asset part 4')
+    if: hashFiles('assets/.hero-new.b64.part0') != ''
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
