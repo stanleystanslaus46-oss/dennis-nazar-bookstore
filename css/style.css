@@ -1193,3 +1193,34 @@ body{background:var(--editorial-paper)}
   .fries-icon span:nth-child(3){width:18px}
   .fries-icon span:nth-child(2){width:22px}
 }
+
+/* Mobile menu — match cart square treatment */
+@media(max-width:760px){
+  .menu-toggle{
+    width:42px!important;
+    height:42px!important;
+    min-width:42px!important;
+    min-height:42px!important;
+    margin-left:4px!important;
+    padding:0!important;
+    border:1px solid rgba(255,255,255,.18)!important;
+    border-radius:5px!important;
+    background:transparent!important;
+    color:#fff!important;
+    display:grid!important;
+    place-items:center!important;
+  }
+  .fries-icon{
+    width:18px!important;
+    height:14px!important;
+  }
+  .fries-icon span{
+    height:2px!important;
+    border-radius:999px!important;
+  }
+  .fries-icon span:nth-child(1),
+  .fries-icon span:nth-child(3),
+  .fries-icon span:nth-child(2){
+    width:18px!important;
+  }
+}
