@@ -2005,3 +2005,208 @@ body{background:var(--editorial-paper)}
     font-size:20px!important;
   }
 }
+
+
+
+/* =========================================================
+   WHY READ DENNIS NAZAR — FINAL COMPACT 2x2
+   Horizontal cards: image left, editorial copy right.
+   The counter is positioned independently so it never
+   creates unwanted whitespace inside the card.
+   ========================================================= */
+
+.why-grid{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:18px!important;
+  border:0!important;
+}
+
+.why-item{
+  position:relative!important;
+  display:grid!important;
+  grid-template-columns:38% minmax(0,1fr)!important;
+  grid-template-rows:1fr!important;
+  height:190px!important;
+  min-height:190px!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:hidden!important;
+  border:1px solid rgba(255,255,255,.12)!important;
+  border-radius:15px!important;
+  background:#fff!important;
+  color:var(--ink)!important;
+  box-shadow:0 14px 32px rgba(0,0,0,.16)!important;
+}
+
+.why-item:before{
+  position:absolute!important;
+  top:9px!important;
+  left:10px!important;
+  z-index:5!important;
+  margin:0!important;
+  padding:0!important;
+  font-size:7px!important;
+  line-height:1!important;
+  letter-spacing:.16em!important;
+  color:var(--orange)!important;
+  background:rgba(255,255,255,.9);
+  padding:4px 5px!important;
+  border-radius:4px;
+}
+
+.why-image{
+  position:relative!important;
+  width:100%!important;
+  height:100%!important;
+  min-height:0!important;
+  overflow:hidden!important;
+  background:#e8e5e1!important;
+}
+
+.why-image img{
+  width:100%!important;
+  height:100%!important;
+  display:block!important;
+  object-fit:cover!important;
+  object-position:center center!important;
+  transform:none!important;
+}
+
+.why-item:hover .why-image img{
+  transform:scale(1.035)!important;
+}
+
+.why-content{
+  min-width:0!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:center!important;
+  padding:24px 19px 20px!important;
+  background:#fff!important;
+}
+
+.why-content h3{
+  margin:0 0 8px!important;
+  font-size:20px!important;
+  line-height:1.08!important;
+}
+
+.why-content p{
+  margin:0!important;
+  max-width:100%!important;
+  color:#737078!important;
+  font-size:9px!important;
+  line-height:1.62!important;
+}
+
+.why-tag{
+  left:10px!important;
+  bottom:10px!important;
+  padding:5px 8px!important;
+  gap:5px!important;
+  font-size:6px!important;
+}
+
+.why-tag svg{
+  width:10px!important;
+  height:10px!important;
+}
+
+@media(max-width:1000px) and (min-width:761px){
+  .why-item{
+    grid-template-columns:38% minmax(0,1fr)!important;
+    height:178px!important;
+    min-height:178px!important;
+  }
+
+  .why-content{
+    padding:22px 17px 18px!important;
+  }
+
+  .why-content h3{
+    font-size:18px!important;
+  }
+
+  .why-content p{
+    font-size:8.5px!important;
+  }
+}
+
+@media(max-width:760px){
+  .why{
+    padding:58px 0 62px!important;
+  }
+
+  .why-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:12px!important;
+  }
+
+  .why-item{
+    grid-template-columns:40% minmax(0,1fr)!important;
+    height:150px!important;
+    min-height:150px!important;
+    border-radius:13px!important;
+  }
+
+  .why-item:before{
+    top:7px!important;
+    left:7px!important;
+    font-size:5.5px!important;
+    padding:3px 4px!important;
+  }
+
+  .why-content{
+    padding:18px 9px 12px!important;
+  }
+
+  .why-content h3{
+    font-size:14px!important;
+    line-height:1.05!important;
+    margin-bottom:6px!important;
+  }
+
+  .why-content p{
+    font-size:7px!important;
+    line-height:1.5!important;
+  }
+
+  .why-tag{
+    left:6px!important;
+    bottom:7px!important;
+    padding:4px 6px!important;
+    font-size:4.5px!important;
+    gap:3px!important;
+  }
+
+  .why-tag svg{
+    width:8px!important;
+    height:8px!important;
+  }
+}
+
+@media(max-width:390px){
+  .why-grid{
+    gap:10px!important;
+  }
+
+  .why-item{
+    grid-template-columns:39% minmax(0,1fr)!important;
+    height:142px!important;
+    min-height:142px!important;
+  }
+
+  .why-content{
+    padding:17px 8px 11px!important;
+  }
+
+  .why-content h3{
+    font-size:13px!important;
+  }
+
+  .why-content p{
+    font-size:6.6px!important;
+    line-height:1.48!important;
+  }
+}
