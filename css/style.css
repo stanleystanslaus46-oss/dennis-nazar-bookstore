@@ -1649,7 +1649,7 @@ body{background:var(--editorial-paper)}
   clip:auto!important;
   white-space:nowrap!important;
   border:0!important;
-  order:1;
+  order:2;
   font-size:8px!important;
   font-weight:800!important;
   letter-spacing:.035em!important;
@@ -1657,7 +1657,7 @@ body{background:var(--editorial-paper)}
 }
 
 .collection-section .cart-action .add-cart-btn svg{
-  order:2;
+  order:1;
   width:14px!important;
   height:14px!important;
   flex:none;
