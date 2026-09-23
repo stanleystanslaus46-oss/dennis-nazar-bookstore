@@ -2913,3 +2913,53 @@ body{background:var(--editorial-paper)}
     line-height:1.62!important;
   }
 }
+
+
+
+/* WHY READ — give all mobile cards enough breathing room */
+@media(max-width:760px){
+  .why-item{
+    height:300px!important;
+    min-height:300px!important;
+  }
+
+  .why-image{
+    height:145px!important;
+    min-height:145px!important;
+    flex:0 0 145px!important;
+  }
+
+  .why-content{
+    flex:1 1 auto!important;
+    min-height:155px!important;
+    padding:20px 12px 22px!important;
+    justify-content:flex-start!important;
+  }
+
+  .why-content h3{
+    margin-bottom:10px!important;
+  }
+
+  .why-content p{
+    margin:0!important;
+    line-height:1.6!important;
+  }
+}
+
+@media(max-width:390px){
+  .why-item{
+    height:285px!important;
+    min-height:285px!important;
+  }
+
+  .why-image{
+    height:135px!important;
+    min-height:135px!important;
+    flex-basis:135px!important;
+  }
+
+  .why-content{
+    min-height:150px!important;
+    padding:18px 11px 20px!important;
+  }
+}
