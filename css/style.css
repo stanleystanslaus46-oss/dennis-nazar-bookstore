@@ -2330,3 +2330,55 @@ body{background:var(--editorial-paper)}
     font-size:6.6px!important;
   }
 }
+
+
+
+/* WHY READ — readability and second-card image correction */
+.why-content h3{
+  font-size:23px!important;
+  line-height:1.08!important;
+  margin-bottom:10px!important;
+}
+
+.why-content p{
+  font-size:10.5px!important;
+  line-height:1.65!important;
+}
+
+.why-item:nth-child(2) .why-image img{
+  object-position:center bottom!important;
+  transform:scale(1.08)!important;
+}
+
+.why-item:nth-child(2):hover .why-image img{
+  transform:scale(1.12)!important;
+}
+
+@media(max-width:760px){
+  .why-content h3{
+    font-size:17px!important;
+  }
+
+  .why-content p{
+    font-size:8px!important;
+    line-height:1.55!important;
+  }
+
+  .why-item:nth-child(2) .why-image img{
+    transform:scale(1.09)!important;
+  }
+
+  .why-item:nth-child(2):hover .why-image img{
+    transform:scale(1.12)!important;
+  }
+}
+
+@media(max-width:390px){
+  .why-content h3{
+    font-size:15px!important;
+  }
+
+  .why-content p{
+    font-size:7.2px!important;
+  }
+}
