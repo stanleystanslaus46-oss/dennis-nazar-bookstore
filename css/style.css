@@ -4258,108 +4258,196 @@ body{background:var(--editorial-paper)}
   }
 }
 
-
-/* ===== HOW IT WORKS — mobile horizontal process rail ===== */
+/* ===== HOW IT WORKS — mobile horizontal editorial rail ===== */
+/*
+  Mobile deliberately uses a landscape process-card rail rather than
+  a vertical stack. Cards reveal one step at a time with the next step
+  partially visible, creating a native swipe cue without hijacking page scroll.
+*/
 @media(max-width:760px){
   .how{
-    padding-top:54px!important;
-    padding-bottom:54px!important;
+    padding-top:56px!important;
+    padding-bottom:52px!important;
     overflow:hidden!important;
   }
+
   .how .center-heading{
-    margin-bottom:24px!important;
+    margin-bottom:28px!important;
     text-align:left!important;
   }
+
+  .how .center-heading .section-kicker{
+    margin-bottom:10px!important;
+  }
+
   .how .center-heading h2{
     font-size:38px!important;
     line-height:1.02!important;
-    max-width:340px;
+    letter-spacing:-.04em!important;
+    max-width:330px!important;
   }
+
   .steps-grid{
     display:flex!important;
-    grid-template-columns:none!important;
-    gap:12px!important;
+    align-items:stretch!important;
+    gap:14px!important;
+    width:auto!important;
+    margin-right:-24px!important;
+    padding:0 24px 10px 0!important;
+    border:0!important;
     overflow-x:auto!important;
     overflow-y:hidden!important;
-    border-top:1px solid rgba(20,20,22,.16)!important;
-    border-bottom:0!important;
-    padding:0 0 12px!important;
-    margin-right:-24px;
-    padding-right:24px!important;
-    scroll-snap-type:x mandatory;
+    scroll-snap-type:x mandatory!important;
+    overscroll-behavior-x:contain;
     -webkit-overflow-scrolling:touch;
     scrollbar-width:none;
   }
-  .steps-grid::-webkit-scrollbar{display:none}
+
+  .steps-grid::-webkit-scrollbar{
+    display:none;
+  }
+
   .step-card,
   .step-card:nth-child(3n),
   .step-card:nth-child(3n+2),
   .step-card:nth-child(n+4),
   .step-card:nth-child(n+5){
-    flex:0 0 min(78vw,330px)!important;
-    width:min(78vw,330px)!important;
-    min-height:238px!important;
+    flex:0 0 min(82vw,330px)!important;
+    width:min(82vw,330px)!important;
+    min-height:188px!important;
     margin:0!important;
-    padding:20px 20px 22px!important;
-    border-right:1px solid rgba(20,20,22,.14)!important;
-    border-bottom:0!important;
-    scroll-snap-align:start;
-    display:flex;
-    flex-direction:column;
-    justify-content:flex-start;
+    padding:22px 22px 20px!important;
+    border:1px solid rgba(20,20,22,.13)!important;
+    border-radius:18px!important;
+    background:rgba(255,255,255,.72)!important;
+    box-shadow:0 10px 30px rgba(20,20,22,.045)!important;
+    scroll-snap-align:start!important;
+    display:grid!important;
+    grid-template-columns:54px minmax(0,1fr)!important;
+    grid-template-rows:auto 1fr!important;
+    column-gap:16px!important;
+    row-gap:8px!important;
+    position:relative!important;
+    overflow:hidden!important;
+    transition:transform .25s ease,box-shadow .25s ease!important;
   }
-  .step-card:last-child{border-right:0!important}
+
+  .step-card:before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:3px;
+    height:100%;
+    background:var(--orange);
+    opacity:.9;
+  }
+
+  .step-card:after{
+    display:none!important;
+  }
+
   .step-number{
-    font-size:8px!important;
-    letter-spacing:.18em!important;
+    grid-column:1!important;
+    grid-row:1!important;
+    align-self:start!important;
+    display:block!important;
+    padding-top:1px!important;
+    font-size:24px!important;
+    line-height:1!important;
+    letter-spacing:-.06em!important;
+    color:#c2c2c8!important;
+    font-weight:700!important;
   }
+
+  .step-card>svg{
+    grid-column:1!important;
+    grid-row:2!important;
+    align-self:end!important;
+    width:23px!important;
+    height:23px!important;
+    margin:0!important;
+    color:var(--orange)!important;
+    stroke-width:1.65!important;
+  }
+
+  .step-card h3{
+    grid-column:2!important;
+    grid-row:1!important;
+    align-self:end!important;
+    margin:0!important;
+    font-size:20px!important;
+    line-height:1.08!important;
+    letter-spacing:-.025em!important;
+    max-width:210px!important;
+  }
+
+  .step-card p{
+    grid-column:2!important;
+    grid-row:2!important;
+    align-self:start!important;
+    margin:0!important;
+    max-width:230px!important;
+    font-size:12px!important;
+    line-height:1.55!important;
+    color:#686871!important;
+  }
+
+  .steps-grid:after{
+    content:"";
+    flex:0 0 1px;
+    width:1px;
+  }
+
+  .how .container{
+    overflow:visible!important;
+  }
+}
+
+@media(max-width:390px){
+  .how{
+    padding-top:50px!important;
+    padding-bottom:46px!important;
+  }
+
+  .how .center-heading{
+    margin-bottom:24px!important;
+  }
+
+  .how .center-heading h2{
+    font-size:35px!important;
+    max-width:300px!important;
+  }
+
+  .step-card,
+  .step-card:nth-child(3n),
+  .step-card:nth-child(3n+2),
+  .step-card:nth-child(n+4),
+  .step-card:nth-child(n+5){
+    flex-basis:84vw!important;
+    width:84vw!important;
+    min-height:180px!important;
+    padding:20px 19px 18px!important;
+    border-radius:16px!important;
+    grid-template-columns:48px minmax(0,1fr)!important;
+    column-gap:14px!important;
+  }
+
+  .step-number{
+    font-size:22px!important;
+  }
+
   .step-card>svg{
     width:21px!important;
     height:21px!important;
-    margin:20px 0 13px!important;
   }
+
   .step-card h3{
-    font-size:20px!important;
-    line-height:1.12!important;
-    margin-bottom:9px!important;
-    letter-spacing:-.015em!important;
+    font-size:18px!important;
   }
-  .step-card p{
-    font-size:12px!important;
-    line-height:1.65!important;
-    max-width:285px!important;
-    color:#686871!important;
-  }
-  .how:after{
-    content:"Swipe horizontally to explore all 6 steps";
-    display:block;
-    margin-top:11px;
-    font-size:8px;
-    font-weight:800;
-    letter-spacing:.12em;
-    text-transform:uppercase;
-    color:#9a9aa2;
-  }
-}
-@media(max-width:390px){
-  .how{
-    padding-top:48px!important;
-    padding-bottom:48px!important;
-  }
-  .how .center-heading h2{font-size:35px!important}
-  .step-card,
-  .step-card:nth-child(3n),
-  .step-card:nth-child(3n+2),
-  .step-card:nth-child(n+4),
-  .step-card:nth-child(n+5){
-    flex-basis:82vw!important;
-    width:82vw!important;
-    min-height:225px!important;
-    padding:18px 18px 20px!important;
-  }
-  .step-card h3{font-size:18px!important}
+
   .step-card p{
     font-size:11.5px!important;
-    line-height:1.65!important;
+    line-height:1.55!important;
   }
 }
