@@ -1241,3 +1241,383 @@ body{background:var(--editorial-paper)}
     left:-28px!important;
   }
 }
+
+
+/* =========================================================
+   COLLECTION CARD REVIEW — 23 SEPTEMBER 2026
+   Compact premium product cards inspired by the supplied
+   card references. Reference imagery is NOT used.
+   ========================================================= */
+
+.collection-section{
+  padding:78px 0 82px!important;
+  background:#f7f5f1!important;
+}
+
+.collection-section .section-top{
+  align-items:flex-end;
+  margin-bottom:38px!important;
+  padding-top:22px;
+  border-top:1px solid #cbc5bc;
+}
+
+.collection-section .section-top h2{
+  font-size:clamp(43px,5vw,66px)!important;
+  margin-top:10px;
+}
+
+.collection-section .section-copy{
+  max-width:430px;
+  font-size:11px;
+  line-height:1.75;
+}
+
+.collection-section .book-grid{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:22px!important;
+  align-items:stretch;
+}
+
+.collection-section .book-card,
+.collection-section .book-card:nth-child(3){
+  display:flex!important;
+  flex-direction:column!important;
+  min-width:0;
+  padding:0!important;
+  margin:0!important;
+  overflow:hidden;
+  border:1px solid #d8d3cc!important;
+  border-radius:18px!important;
+  background:#fff!important;
+  box-shadow:0 12px 32px rgba(24,20,28,.07)!important;
+  transition:transform .28s ease,box-shadow .28s ease,border-color .28s ease!important;
+}
+
+.collection-section .book-card:hover{
+  transform:translateY(-5px)!important;
+  border-color:#c5beb5!important;
+  box-shadow:0 22px 45px rgba(24,20,28,.13)!important;
+}
+
+.collection-section .book-image,
+.collection-section .book-card:nth-child(1) .book-image,
+.collection-section .book-card:nth-child(3) .book-image{
+  height:300px!important;
+  min-height:300px;
+  flex:none;
+  padding:24px 30px!important;
+  background:
+    radial-gradient(circle at 50% 28%,rgba(255,255,255,.96),rgba(239,237,233,.88) 56%,rgba(225,222,216,.95) 100%)!important;
+  border:0!important;
+}
+
+.collection-section .book-image:before{
+  content:"";
+  position:absolute;
+  width:58%;
+  height:72%;
+  left:21%;
+  top:13%;
+  border-radius:10px;
+  background:rgba(255,255,255,.32);
+  filter:blur(18px);
+  pointer-events:none;
+}
+
+.collection-section .book-image:after{
+  background:linear-gradient(145deg,rgba(255,255,255,.42),transparent 40%,rgba(0,0,0,.045))!important;
+}
+
+.collection-section .book-image img{
+  position:relative;
+  z-index:1;
+  width:100%!important;
+  height:100%!important;
+  object-fit:contain!important;
+  filter:drop-shadow(12px 16px 15px rgba(22,18,28,.22))!important;
+  transition:transform .35s cubic-bezier(.2,.8,.2,1)!important;
+}
+
+.collection-section .book-card:hover .book-image img{
+  transform:translateY(-4px) scale(1.025)!important;
+}
+
+.collection-section .book-badge{
+  top:16px!important;
+  left:16px!important;
+  padding:7px 10px!important;
+  border-radius:999px!important;
+  background:rgba(33,29,90,.94)!important;
+  backdrop-filter:blur(8px);
+  font-size:8px!important;
+  letter-spacing:.1em!important;
+}
+
+.collection-section .book-body{
+  flex:1;
+  display:flex!important;
+  flex-direction:column!important;
+  padding:21px 22px 19px!important;
+  min-width:0;
+}
+
+.collection-section .book-meta{
+  font-size:8px!important;
+  letter-spacing:.16em!important;
+  color:#8b8580!important;
+}
+
+.collection-section .book-body h3{
+  font-size:clamp(21px,2vw,27px)!important;
+  line-height:1.08!important;
+  letter-spacing:-.025em!important;
+  margin:10px 0 9px!important;
+  min-height:0!important;
+}
+
+.collection-section .book-body p{
+  font-size:10.5px!important;
+  line-height:1.62!important;
+  color:#716d70!important;
+  min-height:51px!important;
+  margin:0!important;
+  display:-webkit-box;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:3;
+  overflow:hidden;
+}
+
+.collection-section .book-format{
+  display:flex!important;
+  align-items:center;
+  gap:7px;
+  margin-top:14px!important;
+  padding-top:12px!important;
+  border-top:1px solid #e3dfda!important;
+  font-size:8px!important;
+  line-height:1.4;
+  color:#817c7b;
+}
+
+.collection-section .book-format svg{
+  width:14px!important;
+  height:14px!important;
+  flex:none;
+  color:var(--orange)!important;
+}
+
+.collection-section .book-details-link{
+  align-self:flex-start;
+  display:inline-flex!important;
+  align-items:center;
+  gap:6px;
+  margin-top:11px!important;
+  padding:0!important;
+  border:0!important;
+  background:transparent!important;
+  color:var(--navy)!important;
+  font-size:8px!important;
+  font-weight:800!important;
+  letter-spacing:.075em!important;
+  text-transform:uppercase;
+}
+
+.collection-section .book-details-link svg{
+  width:12px!important;
+  height:12px!important;
+  transition:transform .2s ease;
+}
+
+.collection-section .book-details-link:hover svg{
+  transform:translate(2px,-2px);
+}
+
+.collection-section .book-footer{
+  display:grid!important;
+  grid-template-columns:auto 1fr auto;
+  align-items:center;
+  gap:8px;
+  margin-top:16px!important;
+  padding-top:14px!important;
+  border-top:1px solid #e3dfda!important;
+}
+
+.collection-section .book-footer>strong{
+  display:inline-flex;
+  align-items:baseline;
+  gap:4px;
+  width:max-content;
+  padding:7px 9px;
+  border-radius:999px;
+  background:#f1eff5;
+  color:var(--navy)!important;
+  font-size:13px!important;
+  line-height:1!important;
+  white-space:nowrap;
+}
+
+.collection-section .book-footer>strong small{
+  font-size:7px!important;
+  letter-spacing:.06em;
+}
+
+.collection-section .book-footer>.buy-btn{
+  justify-self:end;
+  min-height:34px;
+  padding:9px 11px!important;
+  border-radius:8px!important;
+  font-size:8px!important;
+  letter-spacing:.045em!important;
+  white-space:nowrap;
+}
+
+.collection-section .cart-action{
+  position:static!important;
+  left:auto!important;
+  justify-self:end;
+}
+
+.collection-section .cart-action .add-cart-btn{
+  width:34px!important;
+  height:34px!important;
+  padding:0!important;
+  border:1px solid #d6d1cb!important;
+  border-radius:9px!important;
+  background:#fff!important;
+  color:var(--navy)!important;
+  display:grid!important;
+  place-items:center!important;
+  transition:.2s ease!important;
+}
+
+.collection-section .cart-action .add-cart-btn:hover{
+  background:var(--navy)!important;
+  border-color:var(--navy)!important;
+  color:#fff!important;
+  transform:translateY(-1px);
+}
+
+.collection-section .cart-action .add-cart-btn svg{
+  width:15px!important;
+  height:15px!important;
+}
+
+.collection-section .cart-action .add-cart-btn span{
+  position:absolute!important;
+  width:1px!important;
+  height:1px!important;
+  padding:0!important;
+  margin:-1px!important;
+  overflow:hidden!important;
+  clip:rect(0,0,0,0)!important;
+  white-space:nowrap!important;
+  border:0!important;
+}
+
+/* Tablet: preserve the compact product-card composition. */
+@media(max-width:1000px) and (min-width:761px){
+  .collection-section .book-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:20px!important;
+  }
+
+  .collection-section .book-card:nth-child(3){
+    grid-column:1 / -1!important;
+    display:flex!important;
+    flex-direction:row!important;
+  }
+
+  .collection-section .book-card:nth-child(3) .book-image{
+    width:42%;
+    height:auto!important;
+    min-height:300px;
+  }
+
+  .collection-section .book-card:nth-child(3) .book-body{
+    width:58%;
+  }
+}
+
+/* Mobile: one complete product card at a time, without the
+   oversized cover area used by the previous collection. */
+@media(max-width:760px){
+  .collection-section{
+    padding:68px 0 70px!important;
+  }
+
+  .collection-section .section-top{
+    margin-bottom:30px!important;
+  }
+
+  .collection-section .section-top h2{
+    font-size:clamp(40px,11vw,54px)!important;
+  }
+
+  .collection-section .section-copy{
+    margin-top:13px;
+    font-size:10.5px;
+  }
+
+  .collection-section .book-grid{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    gap:18px!important;
+  }
+
+  .collection-section .book-card,
+  .collection-section .book-card:nth-child(3){
+    display:flex!important;
+    flex-direction:column!important;
+    border-radius:16px!important;
+  }
+
+  .collection-section .book-image,
+  .collection-section .book-card:nth-child(1) .book-image,
+  .collection-section .book-card:nth-child(3) .book-image{
+    width:100%!important;
+    height:310px!important;
+    min-height:310px!important;
+    padding:22px 28px!important;
+  }
+
+  .collection-section .book-body{
+    padding:19px 19px 17px!important;
+  }
+
+  .collection-section .book-body h3{
+    font-size:23px!important;
+  }
+
+  .collection-section .book-body p{
+    font-size:10px!important;
+    min-height:48px!important;
+  }
+
+  .collection-section .book-footer{
+    grid-template-columns:auto 1fr auto;
+    gap:7px;
+  }
+
+  .collection-section .book-footer>.buy-btn{
+    padding:9px 10px!important;
+  }
+}
+
+@media(max-width:390px){
+  .collection-section .book-image,
+  .collection-section .book-card:nth-child(1) .book-image,
+  .collection-section .book-card:nth-child(3) .book-image{
+    height:285px!important;
+    min-height:285px!important;
+  }
+
+  .collection-section .book-body h3{
+    font-size:21px!important;
+  }
+
+  .collection-section .book-footer>.buy-btn{
+    font-size:7.5px!important;
+    padding:8px 9px!important;
+  }
+}
