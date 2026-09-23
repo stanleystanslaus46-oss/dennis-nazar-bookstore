@@ -5075,18 +5075,18 @@ body{background:var(--editorial-paper)}
 }
 
 
-/* ===== MOBILE HERO — slightly tighter left inset ===== */
+/* ===== MOBILE HERO — move content slightly further left ===== */
 @media(max-width:760px){
   .hero-grid{
     width:calc(100% - 12px)!important;
-    margin-left:6px!important;
-    margin-right:6px!important;
+    margin-left:3px!important;
+    margin-right:9px!important;
   }
 }
 @media(max-width:390px){
   .hero-grid{
     width:calc(100% - 12px)!important;
-    margin-left:6px!important;
-    margin-right:6px!important;
+    margin-left:3px!important;
+    margin-right:9px!important;
   }
 }
