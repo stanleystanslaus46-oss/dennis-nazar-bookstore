@@ -5228,3 +5228,28 @@ body{background:var(--editorial-paper)}
     margin-right:auto!important;
   }
 }
+
+/* Final online courses visual alignment */
+.course-intro-banner{
+  background:#f2f3f7!important;
+}
+.course-poster-wrap{
+  width:100%!important;
+}
+.course-poster-btn{
+  display:inline-flex!important;
+  width:auto!important;
+  min-width:0!important;
+  max-width:max-content!important;
+  flex:0 0 auto!important;
+  padding-left:20px!important;
+  padding-right:20px!important;
+}
+@media(max-width:760px){
+  .course-poster-btn{
+    width:auto!important;
+    max-width:max-content!important;
+    margin-left:auto!important;
+    margin-right:auto!important;
+  }
+}
