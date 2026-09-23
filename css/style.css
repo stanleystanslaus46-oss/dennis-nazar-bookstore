@@ -5208,3 +5208,23 @@ body{background:var(--editorial-paper)}
   .course-poster{width:100%;}
   .course-poster-btn{width:100%;}
 }
+
+/* Online Courses section: match poster background and fit CTA to content */
+.course-intro-banner{
+  background:#eef1fa!important;
+}
+.course-poster-btn{
+  width:max-content!important;
+  min-width:0!important;
+  padding-left:22px!important;
+  padding-right:22px!important;
+  align-self:center!important;
+}
+@media(max-width:760px){
+  .course-poster-btn{
+    width:max-content!important;
+    min-width:0!important;
+    margin-left:auto!important;
+    margin-right:auto!important;
+  }
+}
