@@ -2210,3 +2210,29 @@ body{background:var(--editorial-paper)}
     line-height:1.48!important;
   }
 }
+
+
+
+/* WHY READ — medium-height refinement */
+.why-item{
+  height:225px!important;
+  min-height:225px!important;
+}
+@media(max-width:1000px) and (min-width:761px){
+  .why-item{
+    height:215px!important;
+    min-height:215px!important;
+  }
+}
+@media(max-width:760px){
+  .why-item{
+    height:185px!important;
+    min-height:185px!important;
+  }
+}
+@media(max-width:390px){
+  .why-item{
+    height:175px!important;
+    min-height:175px!important;
+  }
+}
