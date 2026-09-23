@@ -5253,3 +5253,38 @@ body{background:var(--editorial-paper)}
     margin-right:auto!important;
   }
 }
+
+/* Online Courses section heading */
+.course-section-heading{
+  max-width:720px;
+  margin:0 auto 42px;
+  text-align:center;
+}
+.course-section-heading h2{
+  font:700 clamp(38px,5vw,62px)/1.02 var(--serif);
+  letter-spacing:-.04em;
+  margin:14px 0 16px;
+}
+.course-section-heading h2 span{
+  color:var(--orange);
+}
+.course-section-heading>p:not(.section-kicker){
+  max-width:600px;
+  margin:0 auto;
+  color:#65656d;
+  font-size:14px;
+  line-height:1.8;
+}
+@media(max-width:760px){
+  .course-section-heading{
+    margin-bottom:30px;
+    padding:0 6px;
+  }
+  .course-section-heading h2{
+    font-size:40px;
+  }
+  .course-section-heading>p:not(.section-kicker){
+    font-size:13px;
+    line-height:1.7;
+  }
+}
