@@ -78,6 +78,17 @@ body{min-height:100vh}
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<style id="peach-scroll-story">
+html{scroll-behavior:auto}
+body.peach-story{--story-ease:cubic-bezier(.16,1,.3,1)}
+.peach-story .reveal,.peach-story .reveal.visible{opacity:1!important;transform:none!important;transition:none!important}
+.peach-story .hero,.peach-story .section,.peach-story .brand-strip{position:relative;isolation:isolate}
+.peach-story .hero{overflow:hidden}
+.peach-story .hero-grid,.peach-story .hero-glow,.peach-story .hero-orbit,.peach-story .hero-author,.peach-story .hero-book,.peach-story .hero-tag,.peach-story .section-top,.peach-story .book-card,.peach-story .why-heading,.peach-story .why-item,.peach-story .coming-card,.peach-story .about-gallery,.peach-story .about-copy,.peach-story .step-card,.peach-story .email-shell{will-change:transform}
+.peach-story .hero-book,.peach-story .hero-author,.peach-story .book-card,.peach-story .coming-card,.peach-story .why-item,.peach-story .step-card{transition:transform .18s linear}
+.peach-story .hero-author img,.peach-story .gallery-frame img,.peach-story .book-image img,.peach-story .coming-cover img{transition:transform .18s linear,filter .25s ease}
+@media(prefers-reduced-motion:reduce){.peach-story .hero-book,.peach-story .hero-author,.peach-story .hero-tag,.peach-story .book-card,.peach-story .coming-card,.peach-story .why-item,.peach-story .step-card,.peach-story .email-shell,.peach-story .about-gallery,.peach-story .about-copy{transform:none!important}.peach-story .hero-author img,.peach-story .gallery-frame img,.peach-story .book-image img,.peach-story .coming-cover img{transform:none!important}}
+</style>
 </head>
 <body>
   <header class="navbar" id="navbar">
@@ -5534,5 +5545,59 @@ AAAAAElFTkSuQmCC
   <script src="js/store.js"></script>
   <script src="js/script.js?v=premium-editorial-2"></script>
   <script src="/js/pwa.js?v=2"></script>
+<script id="peach-scroll-story-script">
+(function(){
+  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.body.classList.add('peach-story');
+  if(reduce)return;
+  const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
+  const q=(s,p=document)=>p.querySelector(s);
+  const qa=(s,p=document)=>[...p.querySelectorAll(s)];
+  const sections=qa('main > section, main section.section');
+  let ticking=false;
+  function sectionProgress(el){
+    const r=el.getBoundingClientRect(),vh=innerHeight;
+    return clamp(-((r.top+r.height*.5-vh*.5)/Math.max(1,vh+r.height*.35)),-1,1);
+  }
+  function frame(){
+    ticking=false;
+    const hero=q('#home');
+    if(hero){
+      const r=hero.getBoundingClientRect(),p=clamp((0-r.top)/Math.max(1,r.height),0,1);
+      qa('.hero-book',hero).forEach((b,i)=>{
+        const dir=i%2?-1:1;
+        b.style.transform='translate3d('+(dir*p*42)+'px,'+(p*(i?-34:24))+'px,0) rotate('+((i?-5:5)+dir*p*5)+'deg) scale('+(1+p*(i?.08:.12))+')';
+      });
+      const author=q('.hero-author',hero);
+      if(author)author.style.transform='translate3d('+(p*-26)+'px,'+(p*20)+'px,0) scale('+(1+p*.06)+')';
+      const glow=q('.hero-glow',hero);
+      if(glow)glow.style.transform='translate3d('+(p*30)+'px,'+(p*-24)+'px,0) scale('+(1+p*.12)+')';
+      const tag=q('.hero-tag',hero);
+      if(tag)tag.style.transform='translate3d('+(p*20)+'px,'+(p*-30)+'px,0)';
+    }
+    sections.forEach((sec)=>{
+      const p=sectionProgress(sec);
+      const cards=qa('.book-card,.coming-card,.why-item,.step-card',sec);
+      cards.forEach((el,i)=>{
+        const spread=(i-(cards.length-1)/2)*9;
+        el.style.transform='translate3d('+(spread*p*.55)+'px,'+(-p*(14+(i%3)*5))+'px,0) rotate('+(p*(i%2?-1:1)*1.2)+'deg) scale(1.012)';
+      });
+      qa('.gallery-frame img',sec).forEach((img,i)=>img.style.transform='translate3d('+(p*(i%2?-2.5:2.5))+'%,'+(p*(i?-2.2:2.2))+'%,0) scale('+(1.035+Math.abs(p)*.035)+')');
+      qa('.book-image img',sec).forEach((img,i)=>img.style.transform='translate3d('+(p*(i%2?-4:4))+'px,'+(p*(i%3-1)*7)+'px,0) scale('+(1.02+Math.abs(p)*.025)+') rotate('+(p*(i%2?-1:1)*.5)+'deg)');
+      qa('.coming-cover img',sec).forEach((img,i)=>img.style.transform='translate3d('+(p*(i?-2.5:2.5))+'%,'+(p*(i?1.8:-1.8))+'%,0) scale('+(1.045+Math.abs(p)*.035)+')');
+      const heading=q('.section-top,.why-heading,.center-heading',sec);
+      if(heading)heading.style.transform='translate3d(0,'+(-p*10)+'px,0)';
+      const aboutCopy=q('.about-copy',sec);
+      if(aboutCopy)aboutCopy.style.transform='translate3d('+(p*-18)+'px,'+(-p*8)+'px,0)';
+      const aboutGallery=q('.about-gallery',sec);
+      if(aboutGallery)aboutGallery.style.transform='translate3d('+(p*18)+'px,'+(p*5)+'px,0) scale('+(1+Math.abs(p)*.018)+')';
+      const email=q('.email-shell',sec);
+      if(email)email.style.transform='translate3d(0,'+(-p*13)+'px,0) scale('+(1+Math.abs(p)*.012)+')';
+    });
+  }
+  function tick(){if(!ticking){ticking=true;requestAnimationFrame(frame)}}
+  addEventListener('scroll',tick,{passive:true}); addEventListener('resize',tick,{passive:true}); frame();
+})();
+</script>
 </body>
 </html>
