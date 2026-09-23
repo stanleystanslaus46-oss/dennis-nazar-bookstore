@@ -3314,3 +3314,24 @@ body{background:var(--editorial-paper)}
     padding:18px 11px 28px!important;
   }
 }
+
+
+/* WHY READ — keep multi-word card headings on one line on mobile */
+@media(max-width:760px){
+  .why-item:nth-child(1) .why-content h3,
+  .why-item:nth-child(2) .why-content h3,
+  .why-item:nth-child(3) .why-content h3{
+    white-space:nowrap!important;
+    font-size:17px!important;
+    letter-spacing:-0.025em!important;
+  }
+}
+
+@media(max-width:390px){
+  .why-item:nth-child(1) .why-content h3,
+  .why-item:nth-child(2) .why-content h3,
+  .why-item:nth-child(3) .why-content h3{
+    font-size:15.5px!important;
+    letter-spacing:-0.03em!important;
+  }
+}
