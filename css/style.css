@@ -3071,3 +3071,32 @@ body{background:var(--editorial-paper)}
     font-size:8.8px!important;
   }
 }
+
+
+
+/* WHY READ — only increase card 02 height for full text visibility */
+.why-item:nth-child(2){
+  height:330px!important;
+  min-height:330px!important;
+}
+.why-item:nth-child(2) .why-content{
+  padding-bottom:24px!important;
+}
+@media(max-width:1000px) and (min-width:761px){
+  .why-item:nth-child(2){
+    height:315px!important;
+    min-height:315px!important;
+  }
+}
+@media(max-width:760px){
+  .why-item:nth-child(2){
+    height:285px!important;
+    min-height:285px!important;
+  }
+}
+@media(max-width:390px){
+  .why-item:nth-child(2){
+    height:270px!important;
+    min-height:270px!important;
+  }
+}
