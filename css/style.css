@@ -2382,3 +2382,93 @@ body{background:var(--editorial-paper)}
     font-size:7.2px!important;
   }
 }
+
+
+
+/* WHY READ — final typography + full-bleed second image */
+.why-content h3{
+  font-size:26px!important;
+  line-height:1.08!important;
+  margin-bottom:11px!important;
+}
+
+.why-content p{
+  font-size:11.5px!important;
+  line-height:1.7!important;
+}
+
+.why-heading>p:last-child{
+  max-width:560px!important;
+  font-size:11px!important;
+  line-height:1.75!important;
+}
+
+/* The source image contains a light band at its top.
+   Scale it beyond the frame so the card image is completely filled. */
+.why-item:nth-child(2) .why-image{
+  overflow:hidden!important;
+}
+
+.why-item:nth-child(2) .why-image img{
+  width:100%!important;
+  height:125%!important;
+  max-width:none!important;
+  object-fit:cover!important;
+  object-position:center center!important;
+  transform:translateY(-10%) scale(1.02)!important;
+}
+
+.why-item:nth-child(2):hover .why-image img{
+  transform:translateY(-10%) scale(1.06)!important;
+}
+
+@media(max-width:1000px) and (min-width:761px){
+  .why-content h3{
+    font-size:23px!important;
+  }
+  .why-content p{
+    font-size:10.5px!important;
+  }
+  .why-heading>p:last-child{
+    font-size:10px!important;
+  }
+}
+
+@media(max-width:760px){
+  .why-heading>p:last-child{
+    font-size:9px!important;
+    line-height:1.65!important;
+  }
+
+  .why-content h3{
+    font-size:19px!important;
+  }
+
+  .why-content p{
+    font-size:8.5px!important;
+    line-height:1.58!important;
+  }
+
+  .why-item:nth-child(2) .why-image img{
+    height:130%!important;
+    transform:translateY(-11%) scale(1.02)!important;
+  }
+
+  .why-item:nth-child(2):hover .why-image img{
+    transform:translateY(-11%) scale(1.05)!important;
+  }
+}
+
+@media(max-width:390px){
+  .why-content h3{
+    font-size:17px!important;
+  }
+
+  .why-content p{
+    font-size:7.7px!important;
+  }
+
+  .why-heading>p:last-child{
+    font-size:8.2px!important;
+  }
+}
