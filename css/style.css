@@ -5073,3 +5073,20 @@ body{background:var(--editorial-paper)}
     margin-right:10px!important;
   }
 }
+
+
+/* ===== MOBILE HERO — slightly tighter left inset ===== */
+@media(max-width:760px){
+  .hero-grid{
+    width:calc(100% - 12px)!important;
+    margin-left:6px!important;
+    margin-right:6px!important;
+  }
+}
+@media(max-width:390px){
+  .hero-grid{
+    width:calc(100% - 12px)!important;
+    margin-left:6px!important;
+    margin-right:6px!important;
+  }
+}
