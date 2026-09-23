@@ -2963,3 +2963,111 @@ body{background:var(--editorial-paper)}
     padding:18px 11px 20px!important;
   }
 }
+
+
+
+/* WHY READ — final visual cleanup */
+.why-heading .why-intro{
+  display:block!important;
+  max-width:680px!important;
+  margin:16px 0 0!important;
+  font-size:15px!important;
+  line-height:1.8!important;
+  color:#c5c1d0!important;
+}
+
+.why-grid{
+  align-items:stretch!important;
+}
+
+.why-item{
+  height:100%!important;
+  min-height:0!important;
+}
+
+.why-image{
+  flex:0 0 180px!important;
+  height:180px!important;
+  min-height:180px!important;
+}
+
+.why-item:nth-child(2) .why-image img,
+.why-item:nth-child(2):hover .why-image img{
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+  object-position:center center!important;
+  transform:none!important;
+}
+
+.why-content{
+  min-height:205px!important;
+  padding:24px 22px 42px!important;
+  box-sizing:border-box!important;
+}
+
+.why-content h3{
+  font-size:26px!important;
+  line-height:1.08!important;
+  margin:0 0 14px!important;
+}
+
+.why-content p{
+  font-size:12px!important;
+  line-height:1.75!important;
+  margin:0!important;
+}
+
+@media(max-width:760px){
+  .why-heading .why-intro{
+    font-size:12px!important;
+    line-height:1.75!important;
+    margin-top:14px!important;
+  }
+
+  .why-image{
+    flex-basis:145px!important;
+    height:145px!important;
+    min-height:145px!important;
+  }
+
+  .why-content{
+    min-height:205px!important;
+    padding:20px 13px 38px!important;
+  }
+
+  .why-content h3{
+    font-size:19px!important;
+    margin-bottom:11px!important;
+  }
+
+  .why-content p{
+    font-size:9.5px!important;
+    line-height:1.68!important;
+  }
+}
+
+@media(max-width:390px){
+  .why-heading .why-intro{
+    font-size:10.8px!important;
+  }
+
+  .why-image{
+    flex-basis:135px!important;
+    height:135px!important;
+    min-height:135px!important;
+  }
+
+  .why-content{
+    min-height:195px!important;
+    padding:18px 11px 34px!important;
+  }
+
+  .why-content h3{
+    font-size:17px!important;
+  }
+
+  .why-content p{
+    font-size:8.8px!important;
+  }
+}
