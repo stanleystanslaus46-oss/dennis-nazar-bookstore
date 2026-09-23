@@ -5022,3 +5022,28 @@ body{background:var(--editorial-paper)}
   }
   .hero-trust{margin-top:20px!important;}
 }
+
+
+/* ===== MOBILE HERO FINAL POSITIONING ===== */
+@media(max-width:760px){
+  .hero{
+    padding-top:82px!important;
+  }
+  .hero-grid{
+    padding-left:14px!important;
+    padding-right:14px!important;
+  }
+  .hero-copy{
+    padding-left:0!important;
+    padding-right:0!important;
+  }
+}
+@media(max-width:390px){
+  .hero{
+    padding-top:76px!important;
+  }
+  .hero-grid{
+    padding-left:16px!important;
+    padding-right:16px!important;
+  }
+}
