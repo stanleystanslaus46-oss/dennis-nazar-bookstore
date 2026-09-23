@@ -3364,3 +3364,430 @@ body{background:var(--editorial-paper)}
     padding:15px 11px 16px!important;
   }
 }
+
+
+
+/* =========================================================
+   DENNIS NAZAR HERO — editorial showcase
+   Inspired by the supplied hero references: strong type,
+   asymmetric composition, layered visual cards, restrained
+   gradients, and responsive product storytelling.
+   ========================================================= */
+
+.hero{
+  min-height:clamp(680px,88vh,820px)!important;
+  padding:154px 0 76px!important;
+  background:
+    radial-gradient(circle at 82% 38%,rgba(244,119,33,.16),transparent 28%),
+    radial-gradient(circle at 56% 78%,rgba(84,75,184,.18),transparent 34%),
+    linear-gradient(135deg,#151238 0%,#211d5a 52%,#2b2768 100%)!important;
+}
+
+.hero:before{
+  background:
+    linear-gradient(90deg,rgba(8,7,25,.22),transparent 58%),
+    radial-gradient(circle at 78% 50%,rgba(255,255,255,.045),transparent 26%)!important;
+}
+
+.hero-glow{
+  width:560px!important;
+  height:560px!important;
+  right:-170px!important;
+  top:90px!important;
+  background:radial-gradient(circle,rgba(244,119,33,.20),transparent 68%)!important;
+}
+
+.hero-grid{
+  grid-template-columns:minmax(0,.88fr) minmax(430px,1.12fr)!important;
+  gap:35px!important;
+  min-height:590px;
+}
+
+.hero-copy{
+  position:relative;
+  z-index:6;
+  max-width:650px;
+}
+
+.hero h1{
+  max-width:680px!important;
+  font-size:clamp(55px,6.2vw,88px)!important;
+  line-height:.98!important;
+  margin:21px 0 24px!important;
+}
+
+.hero-lead{
+  max-width:535px!important;
+  font-size:13px!important;
+  line-height:1.85!important;
+}
+
+.hero-actions{
+  margin-top:28px!important;
+}
+
+.hero-trust{
+  margin-top:43px!important;
+}
+
+.hero-visual{
+  height:590px!important;
+  position:relative;
+  isolation:isolate;
+  overflow:visible;
+}
+
+.hero-visual-backdrop{
+  position:absolute;
+  width:520px;
+  height:520px;
+  right:0;
+  top:25px;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 45% 42%,rgba(255,255,255,.11),transparent 42%),
+    linear-gradient(145deg,rgba(255,255,255,.06),rgba(255,255,255,.015));
+  border:1px solid rgba(255,255,255,.09);
+  box-shadow:inset 0 0 80px rgba(255,255,255,.025),0 30px 80px rgba(0,0,0,.14);
+}
+
+.hero-visual-backdrop:after{
+  content:"";
+  position:absolute;
+  inset:12%;
+  border:1px solid rgba(244,119,33,.15);
+  border-radius:50%;
+}
+
+.hero-author{
+  right:8%!important;
+  top:7%!important;
+  width:42%!important;
+  height:82%!important;
+  border-radius:180px 180px 18px 18px!important;
+  z-index:2!important;
+  background:#111!important;
+  box-shadow:0 35px 75px rgba(0,0,0,.38)!important;
+}
+
+.hero-author img{
+  object-position:center top!important;
+  filter:saturate(.92) contrast(1.02);
+}
+
+.hero-author:after{
+  background:
+    linear-gradient(180deg,transparent 52%,rgba(17,15,47,.78) 100%),
+    linear-gradient(90deg,rgba(33,29,90,.05),rgba(244,119,33,.08))!important;
+}
+
+.hero-book{
+  z-index:4!important;
+  filter:drop-shadow(0 24px 28px rgba(0,0,0,.42))!important;
+}
+
+.hero-book img{
+  width:100%;
+  height:auto;
+  display:block;
+}
+
+.hero-book-a{
+  width:31%!important;
+  left:5%!important;
+  top:19%!important;
+  transform:rotate(-7deg)!important;
+}
+
+.hero-book-b{
+  width:27%!important;
+  left:28%!important;
+  bottom:2%!important;
+  transform:rotate(6deg)!important;
+  z-index:5!important;
+}
+
+.hero-book-a:hover{
+  transform:translateY(-9px) rotate(-2deg)!important;
+}
+
+.hero-book-b:hover{
+  transform:translateY(-9px) rotate(2deg)!important;
+}
+
+.hero-orbit{
+  z-index:1!important;
+  pointer-events:none;
+}
+
+.orbit-one{
+  width:510px!important;
+  height:510px!important;
+  right:-1%!important;
+  top:3%!important;
+}
+
+.orbit-two{
+  width:345px!important;
+  height:345px!important;
+  right:15%!important;
+  top:18%!important;
+  border-color:rgba(244,119,33,.22)!important;
+}
+
+.hero-floating-card{
+  position:absolute;
+  z-index:7;
+  left:0;
+  top:8%;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:11px 13px;
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:7px;
+  background:rgba(20,18,53,.78);
+  backdrop-filter:blur(12px);
+  box-shadow:0 16px 35px rgba(0,0,0,.22);
+  color:#fff;
+}
+
+.hero-floating-icon{
+  width:32px;
+  height:32px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:rgba(244,119,33,.14);
+  color:var(--orange);
+}
+
+.hero-floating-icon svg{
+  width:15px;
+  height:15px;
+}
+
+.hero-floating-card strong{
+  display:block;
+  font-size:7px;
+  letter-spacing:.13em;
+  line-height:1.3;
+}
+
+.hero-floating-card small{
+  display:block;
+  margin-top:3px;
+  color:#aaa8b8;
+  font-size:7px;
+}
+
+.hero-tag{
+  left:auto!important;
+  right:4%!important;
+  bottom:5%!important;
+  padding:10px 12px!important;
+  border-radius:6px!important;
+  background:#fff!important;
+  box-shadow:0 18px 35px rgba(0,0,0,.28)!important;
+}
+
+.hero-tag span{
+  font-size:7px!important;
+}
+
+@media(max-width:1000px){
+  .hero{
+    padding-top:145px!important;
+  }
+
+  .hero-grid{
+    grid-template-columns:1fr 1fr!important;
+    gap:20px!important;
+  }
+
+  .hero h1{
+    font-size:clamp(48px,6vw,68px)!important;
+  }
+
+  .hero-visual{
+    height:500px!important;
+  }
+
+  .hero-visual-backdrop{
+    width:430px;
+    height:430px;
+  }
+
+  .hero-author{
+    width:43%!important;
+    height:82%!important;
+  }
+
+  .hero-book-a{
+    width:34%!important;
+    left:1%!important;
+  }
+
+  .hero-book-b{
+    width:30%!important;
+    left:25%!important;
+  }
+
+  .orbit-one{
+    width:425px!important;
+    height:425px!important;
+  }
+
+  .orbit-two{
+    width:285px!important;
+    height:285px!important;
+  }
+}
+
+@media(max-width:760px){
+  .hero{
+    min-height:auto!important;
+    padding:128px 0 55px!important;
+  }
+
+  .hero-grid{
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:stretch!important;
+    gap:30px!important;
+    min-height:0!important;
+  }
+
+  .hero-copy{
+    max-width:none!important;
+  }
+
+  .hero h1{
+    font-size:clamp(46px,13vw,66px)!important;
+    line-height:.98!important;
+    margin:18px 0 18px!important;
+  }
+
+  .hero-lead{
+    max-width:100%!important;
+    font-size:12px!important;
+    line-height:1.75!important;
+  }
+
+  .hero-actions{
+    margin-top:23px!important;
+    gap:16px!important;
+  }
+
+  .hero-trust{
+    margin-top:29px!important;
+    gap:15px!important;
+  }
+
+  .hero-trust strong{
+    font-size:21px!important;
+  }
+
+  .hero-visual{
+    width:100%!important;
+    height:390px!important;
+    margin-top:2px;
+  }
+
+  .hero-visual-backdrop{
+    width:330px;
+    height:330px;
+    right:50%;
+    transform:translateX(50%);
+    top:22px;
+  }
+
+  .hero-author{
+    right:12%!important;
+    top:5%!important;
+    width:42%!important;
+    height:82%!important;
+  }
+
+  .hero-book-a{
+    width:34%!important;
+    left:8%!important;
+    top:17%!important;
+  }
+
+  .hero-book-b{
+    width:31%!important;
+    left:31%!important;
+    bottom:0!important;
+  }
+
+  .orbit-one{
+    width:340px!important;
+    height:340px!important;
+    right:50%!important;
+    transform:translateX(50%);
+    top:18px!important;
+  }
+
+  .orbit-two{
+    width:230px!important;
+    height:230px!important;
+    right:50%!important;
+    transform:translateX(50%);
+    top:73px!important;
+  }
+
+  .hero-floating-card{
+    left:3%!important;
+    top:1%!important;
+    transform:scale(.88);
+    transform-origin:left top;
+  }
+
+  .hero-tag{
+    right:3%!important;
+    bottom:1%!important;
+    transform:scale(.88);
+    transform-origin:right bottom;
+  }
+}
+
+@media(max-width:390px){
+  .hero{
+    padding-top:122px!important;
+    padding-bottom:48px!important;
+  }
+
+  .hero h1{
+    font-size:clamp(42px,12.8vw,54px)!important;
+  }
+
+  .hero-actions{
+    flex-wrap:wrap;
+  }
+
+  .hero-visual{
+    height:335px!important;
+  }
+
+  .hero-visual-backdrop{
+    width:285px;
+    height:285px;
+  }
+
+  .hero-author{
+    width:42%!important;
+  }
+
+  .hero-floating-card{
+    transform:scale(.76);
+  }
+
+  .hero-tag{
+    transform:scale(.76);
+  }
+
+  .hero-trust span{
+    font-size:7px!important;
+  }
+}
