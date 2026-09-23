@@ -5169,3 +5169,20 @@ body{background:var(--editorial-paper)}
   .courses-cta h2{font-size:45px}
   .courses-page .footer-bottom{flex-direction:column}
 }
+
+
+/* ===== UPCOMING ONLINE COURSES INTRO ===== */
+.course-intro-banner{background:#fff;padding-top:72px;padding-bottom:72px}
+.course-intro-card{background:linear-gradient(135deg,#211d5a,#181443);color:#fff;min-height:300px;padding:48px 54px;display:flex;align-items:center;justify-content:space-between;gap:50px;position:relative;overflow:hidden;box-shadow:0 24px 55px rgba(20,20,22,.10)}
+.course-intro-card:after{content:"";position:absolute;width:360px;height:360px;border:1px solid rgba(244,119,33,.24);border-radius:50%;right:-120px;top:-140px}
+.course-intro-card>div{position:relative;z-index:1;max-width:650px}
+.course-intro-card h2{font:700 clamp(38px,5vw,62px)/1.02 var(--serif);letter-spacing:-.04em;margin:15px 0 15px}
+.course-intro-card h2 span{color:var(--orange)}
+.course-intro-card p:not(.section-kicker){color:#cfccd9;font-size:13px;line-height:1.8;max-width:570px}
+.course-intro-card .primary-btn{position:relative;z-index:2;white-space:nowrap}
+@media(max-width:760px){
+  .course-intro-banner{padding-top:48px;padding-bottom:48px}
+  .course-intro-card{min-height:0;padding:34px 25px;display:block}
+  .course-intro-card h2{font-size:42px}
+  .course-intro-card .primary-btn{margin-top:25px;width:100%}
+}
