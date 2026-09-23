@@ -3274,3 +3274,43 @@ body{background:var(--editorial-paper)}
     line-height:1.6!important;
   }
 }
+
+
+/* WHY READ — equal card treatment
+   Keep cards 01–04 on the same natural height. Card 02 previously had
+   a dedicated height that made the first row unnecessarily taller.
+*/
+.why-item,
+.why-item:nth-child(2),
+.why-item:nth-child(3),
+.why-item:nth-child(4){
+  height:auto!important;
+  min-height:0!important;
+}
+
+.why-content{
+  min-height:205px!important;
+  padding:24px 22px 32px!important;
+}
+
+@media(max-width:760px){
+  .why-item,
+  .why-item:nth-child(2),
+  .why-item:nth-child(3),
+  .why-item:nth-child(4){
+    height:auto!important;
+    min-height:0!important;
+  }
+
+  .why-content{
+    min-height:190px!important;
+    padding:20px 13px 30px!important;
+  }
+}
+
+@media(max-width:390px){
+  .why-content{
+    min-height:180px!important;
+    padding:18px 11px 28px!important;
+  }
+}
