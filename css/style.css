@@ -4870,7 +4870,7 @@ body{background:var(--editorial-paper)}
   background:
     linear-gradient(180deg,rgba(11,9,31,.28) 0%,rgba(11,9,31,.22) 42%,rgba(11,9,31,.78) 100%),
     linear-gradient(90deg,rgba(18,15,45,.72) 0%,rgba(18,15,45,.42) 50%,rgba(18,15,45,.62) 100%),
-    url("https://images.pexels.com/photos/34149049/pexels-photo-34149049.jpeg?auto=compress&cs=tinysrgb&w=2400") center center/cover no-repeat!important;
+    url("../assets/dennis-nazar-hero-background.png") center center/cover no-repeat!important;
 }
 .hero-grid{
   grid-template-columns:1fr!important;
@@ -4899,7 +4899,7 @@ body{background:var(--editorial-paper)}
     background:
       linear-gradient(180deg,rgba(11,9,31,.34) 0%,rgba(11,9,31,.24) 40%,rgba(11,9,31,.82) 100%),
       linear-gradient(90deg,rgba(18,15,45,.55) 0%,rgba(18,15,45,.35) 50%,rgba(18,15,45,.58) 100%),
-      url("https://images.pexels.com/photos/34149049/pexels-photo-34149049.jpeg?auto=compress&cs=tinysrgb&w=1800") center center/cover no-repeat!important;
+      url("../assets/dennis-nazar-hero-background.png") center center/cover no-repeat!important;
     background-position:center center!important;
   }
   .hero-copy{padding:10px 8px 0!important;align-items:center!important}
