@@ -2729,3 +2729,21 @@ body{background:var(--editorial-paper)}
   .why-content h3{font-size:18px!important}
   .why-content p{font-size:8.8px!important;line-height:1.62!important}
 }
+
+
+
+/* WHY READ — compact cards 03 & 04 on mobile */
+@media(max-width:760px){
+  .why-item:nth-child(3),
+  .why-item:nth-child(4){
+    height:250px!important;
+    min-height:250px!important;
+  }
+}
+@media(max-width:390px){
+  .why-item:nth-child(3),
+  .why-item:nth-child(4){
+    height:235px!important;
+    min-height:235px!important;
+  }
+}
