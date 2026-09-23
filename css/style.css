@@ -1621,3 +1621,61 @@ body{background:var(--editorial-paper)}
     padding:8px 9px!important;
   }
 }
+
+
+/* =========================================================
+   COLLECTION CART LABEL — 23 SEPTEMBER 2026
+   Show the accessible cart label beside the icon.
+   ========================================================= */
+
+.collection-section .cart-action .add-cart-btn{
+  width:auto!important;
+  min-width:92px;
+  height:34px!important;
+  padding:0 10px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:7px!important;
+}
+
+.collection-section .cart-action .add-cart-btn span{
+  position:static!important;
+  width:auto!important;
+  height:auto!important;
+  padding:0!important;
+  margin:0!important;
+  overflow:visible!important;
+  clip:auto!important;
+  white-space:nowrap!important;
+  border:0!important;
+  order:1;
+  font-size:8px!important;
+  font-weight:800!important;
+  letter-spacing:.035em!important;
+  text-transform:uppercase;
+}
+
+.collection-section .cart-action .add-cart-btn svg{
+  order:2;
+  width:14px!important;
+  height:14px!important;
+  flex:none;
+}
+
+@media(max-width:390px){
+  .collection-section .cart-action .add-cart-btn{
+    min-width:84px;
+    padding:0 8px!important;
+    gap:5px!important;
+  }
+
+  .collection-section .cart-action .add-cart-btn span{
+    font-size:7px!important;
+  }
+
+  .collection-section .cart-action .add-cart-btn svg{
+    width:13px!important;
+    height:13px!important;
+  }
+}
