@@ -74,8 +74,9 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeCart();setMenu
 (() => {
   const button = document.getElementById('backToTop');
   if (!button) return;
-  const toggle = () => button.classList.toggle('is-visible', window.scrollY > 500);
+  const toggle = () => button.classList.toggle('is-visible', window.scrollY > 180);
   window.addEventListener('scroll', toggle, { passive: true });
   button.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  if (window.lucide) window.lucide.createIcons();
   toggle();
 })();
