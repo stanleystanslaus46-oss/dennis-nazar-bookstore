@@ -1,0 +1,113 @@
+name: Optimize website images
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  optimize-images:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Optimize photographic assets to WebP
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install image optimizer
+        run: npm install sharp --no-save
+
+      - name: Convert and compress images
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const path = require('path');
+          const sharp = require('sharp');
+
+          const dir = 'assets';
+          const targets = [
+            'dennis-nazar-hero-background.png',
+            'author-portrait.webp',
+            'book-shelf.webp',
+            'book-1.webp',
+            'book-2.webp',
+            'book-3.webp',
+            'online-courses-coming-soon.webp',
+            'coming-soon-cover.jpg',
+            'coming-soon-cover-04.jpg'
+          ];
+
+          const replacements = new Map();
+
+          async function optimize(file) {
+            const input = path.join(dir, file);
+            if (!fs.existsSync(input)) return;
+
+            const ext = path.extname(file);
+            const base = file.slice(0, -ext.length);
+            const outputName = base + '.webp';
+            const output = path.join(dir, outputName);
+
+            let image = sharp(input, { failOn: 'none' }).rotate();
+            const meta = await image.metadata();
+
+            const maxWidth = file === 'dennis-nazar-hero-background.png' ? 1600 : 1400;
+            if (meta.width && meta.width > maxWidth) image = image.resize({ width: maxWidth, withoutEnlargement: true });
+
+            let quality = 82;
+            let buffer;
+            do {
+              buffer = await image.webp({ quality, effort: 6 }).toBuffer();
+              quality -= 4;
+            } while (buffer.length > 90 * 1024 && quality >= 52);
+
+            if (buffer.length > 90 * 1024) {
+              buffer = await image.webp({ quality: 50, effort: 6 }).toBuffer();
+            }
+
+            fs.writeFileSync(output, buffer);
+            if (ext.toLowerCase() !== '.webp') fs.unlinkSync(input);
+
+            replacements.set(file, outputName);
+            console.log(outputName + ': ' + Math.round(buffer.length / 1024) + ' KB');
+          }
+
+          (async () => {
+            for (const file of targets) await optimize(file);
+
+            for (const file of fs.readdirSync('.').filter(f => /\\.(html|css|js)$/i.test(f))) {
+              let text = fs.readFileSync(file, 'utf8');
+              for (const [oldName, newName] of replacements) {
+                text = text.split('assets/' + oldName).join('assets/' + newName);
+              }
+              fs.writeFileSync(file, text);
+            }
+            for (const sub of ['css','js']) {
+              if (!fs.existsSync(sub)) continue;
+              for (const file of fs.readdirSync(sub).filter(f => /\\.(html|css|js)$/i.test(f))) {
+                const full = path.join(sub,file);
+                let text = fs.readFileSync(full,'utf8');
+                for (const [oldName, newName] of replacements) {
+                  text = text.split('assets/' + oldName).join('assets/' + newName);
+                }
+                fs.writeFileSync(full,text);
+              }
+            }
+          })().catch(err => { console.error(err); process.exit(1); });
+          NODE
+
+      - name: Commit optimized assets
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets css js *.html
+          if git diff --cached --quiet; then
+            echo "No optimization changes."
+          else
+            git commit -m "perf: optimize website images to webp"
+            git push
+          fi
