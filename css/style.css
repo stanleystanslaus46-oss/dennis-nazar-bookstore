@@ -5701,3 +5701,33 @@ html{scroll-behavior:smooth;scroll-padding-top:24px}
   .back-to-top{right:14px!important;bottom:60px!important;width:30px!important;height:30px!important}
   .back-to-top svg{width:13px!important;height:13px!important}
 }
+
+
+/* ===== FINAL HERO IMAGE FIX =====
+   Use the uploaded Dennis Nazar hero image for both desktop and mobile.
+   Kept as a final override so earlier hero experiments cannot override it.
+*/
+.hero{
+  background-image:
+    linear-gradient(90deg,
+      rgba(18,15,45,.86) 0%,
+      rgba(18,15,45,.68) 30%,
+      rgba(18,15,45,.34) 58%,
+      rgba(18,15,45,.10) 100%),
+    url("../assets/dennis-nazar-hero-background.webp") !important;
+  background-size:cover !important;
+  background-position:center center !important;
+  background-repeat:no-repeat !important;
+}
+@media(max-width:760px){
+  .hero{
+    background-image:
+      linear-gradient(180deg,
+        rgba(18,15,45,.84) 0%,
+        rgba(18,15,45,.62) 48%,
+        rgba(18,15,45,.46) 100%),
+      url("../assets/dennis-nazar-hero-background.webp") !important;
+    background-size:cover !important;
+    background-position:center center !important;
+  }
+}
