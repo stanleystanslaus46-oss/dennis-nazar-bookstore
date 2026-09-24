@@ -74,7 +74,11 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeCart();setMenu
 (() => {
   const button = document.getElementById('backToTop');
   if (!button) return;
-  const toggle = () => button.classList.toggle('is-visible', window.scrollY > Math.max(180, window.innerHeight * 0.78));
+  const hero = document.querySelector('.hero');
+  const toggle = () => {
+    const heroBottom = hero ? hero.getBoundingClientRect().bottom : 0;
+    button.classList.toggle('is-visible', heroBottom <= 0);
+  };
   window.addEventListener('scroll', toggle, { passive: true });
   button.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
   if (window.lucide) window.lucide.createIcons();
