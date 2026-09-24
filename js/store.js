@@ -13,7 +13,7 @@ const DEFAULT_BOOKS={
   book4:{title:"Kitabu kipya kinakuja",subtitle:"NEW RELEASE",price:0,image:"assets/coming-soon-cover.jpg",available:false,pdfUrl:"",sort_order:4},
   book5:{title:"Hadithi nyingine inakuja",subtitle:"NEW RELEASE",price:0,image:"assets/coming-soon-cover-04.jpg",available:false,pdfUrl:"",sort_order:5}
 };
-function normalizeAssetPath(path){const v=String(path||"").trim();if(v==="assets/book-3.jpg"||v==="assets/book-3.jpeg")return "assets/book-3.webp";return v}
+function normalizeAssetPath(path){const v=String(path||"").trim();if(v==="assets/book-3.jpg"||v==="assets/book-3.jpeg")return "assets/book-3.webp";if(v==="assets/coming-soon-cover.jpg"||v==="assets/coming-soon-cover.jpeg")return "assets/coming-soon-cover.webp";if(v==="assets/coming-soon-cover-04.jpg"||v==="assets/coming-soon-cover-04.jpeg")return "assets/coming-soon-cover-04.webp";return v}
 function deepMerge(a,b){const o={...a};for(const k of Object.keys(b||{})){if(b[k]&&typeof b[k]==='object'&&!Array.isArray(b[k])&&a[k])o[k]=deepMerge(a[k],b[k]);else o[k]=b[k]}return o}
 function getStoreConfig(){try{return deepMerge(DEFAULT_STORE,JSON.parse(localStorage.getItem('dennisNazarStoreConfig'))||{})}catch{return deepMerge(DEFAULT_STORE,{})}}
 function getBooks(){try{return deepMerge(DEFAULT_BOOKS,JSON.parse(localStorage.getItem('dennisNazarBooks'))||{})}catch{return deepMerge(DEFAULT_BOOKS,{})}}
