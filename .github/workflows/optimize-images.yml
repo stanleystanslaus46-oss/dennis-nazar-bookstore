@@ -38,7 +38,7 @@ jobs:
           const targets = [
             'dennis-nazar-hero-background.png',
             'author-portrait.webp',
-            'book-shelf.webp',
+            'dennis-nazar-hero-background.webp',
             'book-1.webp',
             'book-2.webp',
             'book-3.webp',
