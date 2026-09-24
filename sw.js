@@ -17,8 +17,8 @@ const APP_SHELL = [
   "/assets/book-3.webp",
   "/assets/dennis-nazar-hero-background.webp?v=20260925",
   "/assets/online-courses-coming-soon.webp?v=20260925",
-  "/assets/coming-soon-cover.jpg",
-  "/assets/coming-soon-cover-04.jpg",
+  "/assets/coming-soon-cover.webp?v=20260925",
+  "/assets/coming-soon-cover-04.webp?v=20260925",
   "/css/style.css?v=ui-final-20260924",
   "/js/pwa.js?v=3"
 ];
