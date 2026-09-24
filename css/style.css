@@ -5663,3 +5663,41 @@ html{scroll-behavior:smooth;scroll-padding-top:24px}
 @media(max-width:760px){
   .back-to-top{right:16px;bottom:72px;width:32px;height:32px;margin-bottom:8px}
 }
+
+
+/* ===== BACK TO TOP — FINAL FIX ===== */
+.back-to-top{
+  position:fixed!important;
+  right:20px!important;
+  bottom:74px!important;
+  z-index:999!important;
+  width:34px!important;
+  height:34px!important;
+  padding:0!important;
+  border:1px solid rgba(255,255,255,.72)!important;
+  border-radius:50%!important;
+  display:grid!important;
+  place-items:center!important;
+  background:rgba(33,29,90,.94)!important;
+  color:#fff!important;
+  box-shadow:0 8px 22px rgba(0,0,0,.22)!important;
+  backdrop-filter:blur(10px)!important;
+  -webkit-backdrop-filter:blur(10px)!important;
+  opacity:0!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+  transform:translateY(8px)!important;
+  transition:opacity .22s ease,transform .22s ease,visibility .22s ease,background .22s ease!important;
+}
+.back-to-top.is-visible{
+  opacity:1!important;
+  visibility:visible!important;
+  pointer-events:auto!important;
+  transform:translateY(0)!important;
+}
+.back-to-top:hover{background:var(--orange)!important;border-color:var(--orange)!important;transform:translateY(-2px)!important}
+.back-to-top svg{width:15px!important;height:15px!important;stroke-width:1.8!important}
+@media(max-width:760px){
+  .back-to-top{right:14px!important;bottom:60px!important;width:30px!important;height:30px!important}
+  .back-to-top svg{width:13px!important;height:13px!important}
+}
