@@ -5354,3 +5354,51 @@ body{background:var(--editorial-paper)}
     letter-spacing:.11em!important;
   }
 }
+
+
+/* ===== HOW IT WORKS MOBILE SWIPE HINT ===== */
+.steps-swipe-hint{
+  display:none;
+}
+
+@media(max-width:760px){
+  .steps-swipe-hint{
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    gap:9px!important;
+    margin:18px auto 0!important;
+    min-height:28px!important;
+    color:#777782!important;
+    font-size:9px!important;
+    font-weight:800!important;
+    letter-spacing:.13em!important;
+    line-height:1!important;
+    text-align:center!important;
+    white-space:nowrap!important;
+  }
+  .steps-swipe-hint svg{
+    width:15px!important;
+    height:15px!important;
+    flex:0 0 auto!important;
+    stroke-width:1.8!important;
+  }
+  .steps-swipe-hint span:last-child{
+    font-size:15px!important;
+    line-height:1!important;
+    letter-spacing:0!important;
+  }
+}
+
+@media(max-width:390px){
+  .steps-swipe-hint{
+    gap:7px!important;
+    margin-top:16px!important;
+    font-size:8px!important;
+    letter-spacing:.10em!important;
+  }
+  .steps-swipe-hint svg{
+    width:14px!important;
+    height:14px!important;
+  }
+}
