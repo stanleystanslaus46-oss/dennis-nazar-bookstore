@@ -5652,8 +5652,8 @@ html{scroll-behavior:smooth;scroll-padding-top:24px}
   background:rgba(33,29,90,.88);color:#fff;
   box-shadow:0 10px 26px rgba(0,0,0,.18);
   backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-  opacity:0;visibility:hidden;pointer-events:none;
-  transform:translateY(8px);
+  opacity:1;visibility:visible;pointer-events:auto;
+  transform:translateY(0);
   transition:opacity .22s ease,transform .22s ease,visibility .22s ease,background .22s ease;
 }
 .back-to-top.is-visible{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0)}
