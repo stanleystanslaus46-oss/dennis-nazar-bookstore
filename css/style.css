@@ -5731,3 +5731,44 @@ html{scroll-behavior:smooth;scroll-padding-top:24px}
     background-position:center center !important;
   }
 }
+
+
+/* ===== HERO BACKGROUND IMAGE — FINAL =====
+   The supplied Dennis Nazar image is the hero itself.
+   Remove the previous foreground portrait/book composition so it cannot cover
+   or visually override the background image.
+*/
+.hero{
+  background-image:
+    linear-gradient(90deg, rgba(10,13,18,.72) 0%, rgba(10,13,18,.46) 36%, rgba(10,13,18,.10) 68%, rgba(10,13,18,.18) 100%),
+    url("../assets/dennis-nazar-hero-background.webp") !important;
+  background-size:cover !important;
+  background-position:center center !important;
+  background-repeat:no-repeat !important;
+}
+.hero-grid{
+  display:block !important;
+}
+.hero-copy{
+  position:relative !important;
+  z-index:5 !important;
+  max-width:620px !important;
+}
+.hero-visual{
+  display:none !important;
+}
+.hero-glow{
+  display:none !important;
+}
+@media(max-width:760px){
+  .hero{
+    background-image:
+      linear-gradient(180deg, rgba(10,13,18,.72) 0%, rgba(10,13,18,.48) 48%, rgba(10,13,18,.30) 100%),
+      url("../assets/dennis-nazar-hero-background.webp") !important;
+    background-position:center center !important;
+    background-size:cover !important;
+  }
+  .hero-copy{
+    max-width:100% !important;
+  }
+}
