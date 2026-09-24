@@ -5316,3 +5316,110 @@ body{background:var(--editorial-paper)}
     align-self:center;
   }
 }
+
+
+/* ===== MOBILE UX GUIDANCE + WHY READ IMAGE-FIRST CARDS ===== */
+@media(max-width:760px){
+  /* Make the horizontal HOW IT WORKS sequence easier to discover. */
+  .steps-grid{
+    position:relative!important;
+    padding-bottom:54px!important;
+  }
+  .steps-grid:after{
+    content:"SWIPE LEFT TO EXPLORE ALL STEPS  →";
+    position:absolute!important;
+    left:0!important;
+    right:0!important;
+    bottom:0!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    height:34px!important;
+    color:#777782!important;
+    font-size:9px!important;
+    font-weight:800!important;
+    letter-spacing:.14em!important;
+    text-align:center!important;
+    pointer-events:none!important;
+  }
+
+  /* WHY READ DENNIS NAZAR: image stays on the left on mobile. */
+  .why-grid{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    gap:0!important;
+  }
+  .why-item{
+    display:grid!important;
+    grid-template-columns:minmax(112px,38%) minmax(0,1fr)!important;
+    column-gap:18px!important;
+    align-items:center!important;
+    padding:22px 0!important;
+    min-height:0!important;
+  }
+  .why-item:nth-child(2),
+  .why-item:nth-child(n+3){
+    padding-top:22px!important;
+  }
+  .why-item:last-child{
+    border-bottom:0!important;
+  }
+  .why-image{
+    width:100%!important;
+    height:170px!important;
+    margin:0!important;
+    overflow:hidden!important;
+    align-self:center!important;
+  }
+  .why-image img{
+    width:100%!important;
+    height:100%!important;
+    object-fit:cover!important;
+    display:block!important;
+  }
+  .why-item:nth-child(2) .why-image img{
+    height:100%!important;
+  }
+  .why-content{
+    min-width:0!important;
+    align-self:center!important;
+  }
+  .why-content h3{
+    font-size:21px!important;
+    line-height:1.08!important;
+    margin:0 0 8px!important;
+  }
+  .why-content p{
+    font-size:11.8px!important;
+    line-height:1.6!important;
+    margin:0!important;
+  }
+  .why-tag{
+    margin-bottom:10px!important;
+  }
+}
+
+@media(max-width:390px){
+  .steps-grid{
+    padding-bottom:50px!important;
+  }
+  .steps-grid:after{
+    font-size:8px!important;
+    letter-spacing:.11em!important;
+  }
+  .why-item{
+    grid-template-columns:104px minmax(0,1fr)!important;
+    column-gap:15px!important;
+    padding:20px 0!important;
+  }
+  .why-image{
+    height:155px!important;
+  }
+  .why-content h3{
+    font-size:19px!important;
+  }
+  .why-content p{
+    font-size:11.3px!important;
+    line-height:1.55!important;
+  }
+}
