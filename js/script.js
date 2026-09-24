@@ -68,3 +68,14 @@ const toast=$("#toast");function showToast(m){if(!toast)return;toast.querySelect
 document.addEventListener("click",e=>{const b=e.target.closest?.("[data-notify]");if(!b)return;$("#email")?.focus();$("#contact")?.scrollIntoView({behavior:"smooth"});showToast("Weka email yako ili upate taarifa za releases mpya.")});
 $("#newsletterForm")?.addEventListener("submit",async e=>{e.preventDefault();const input=$("#email"),email=input?.value.trim();if(!email)return;const btn=e.currentTarget.querySelector("button");if(btn)btn.disabled=true;try{const sb=getSupabase();if(sb){const {error}=await sb.from("newsletter_subscribers").insert({email});if(error && error.code!=="23505")throw error}else{const list=JSON.parse(localStorage.getItem("dnNewsletter")||"[]");if(!list.includes(email))list.push(email);localStorage.setItem("dnNewsletter",JSON.stringify(list))}e.currentTarget.reset();showToast("Umefanikiwa kujiunga na updates za Dennis Nazar.")}catch(err){showToast("Imeshindikana kuhifadhi email. Jaribu tena.")}finally{if(btn)btn.disabled=false}});
 document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeCart();setMenu(false);closeBookDetails()}});})();
+
+
+/* Smooth back-to-top control */
+(() => {
+  const button = document.getElementById('backToTop');
+  if (!button) return;
+  const toggle = () => button.classList.toggle('is-visible', window.scrollY > 500);
+  window.addEventListener('scroll', toggle, { passive: true });
+  button.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  toggle();
+})();
