@@ -5402,3 +5402,241 @@ body{background:var(--editorial-paper)}
     height:14px!important;
   }
 }
+
+
+/* ===== WHY READ — PREMIUM EDITORIAL REDESIGN ===== */
+.why-grid{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  grid-template-areas:
+    "featured featured"
+    "wisdom stories"
+    "growth growth"!important;
+  gap:18px!important;
+}
+.why-item{
+  position:relative!important;
+  min-height:0!important;
+  height:auto!important;
+  overflow:hidden!important;
+  border:1px solid rgba(255,255,255,.16)!important;
+  border-radius:22px!important;
+  background:linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.035))!important;
+  box-shadow:0 20px 55px rgba(0,0,0,.16),inset 0 1px 0 rgba(255,255,255,.05)!important;
+  display:flex!important;
+  flex-direction:column!important;
+}
+.why-item:nth-child(1){grid-area:featured!important;}
+.why-item:nth-child(2){grid-area:wisdom!important;}
+.why-item:nth-child(3){grid-area:stories!important;}
+.why-item:nth-child(4){grid-area:growth!important;}
+.why-image,
+.why-item:nth-child(2) .why-image{
+  position:relative!important;
+  width:100%!important;
+  height:360px!important;
+  min-height:0!important;
+  margin:0!important;
+  border-radius:0!important;
+  overflow:hidden!important;
+  flex:none!important;
+}
+.why-item:nth-child(2) .why-image,
+.why-item:nth-child(3) .why-image{
+  height:250px!important;
+}
+.why-item:nth-child(4) .why-image{
+  height:280px!important;
+}
+.why-image img,
+.why-item:nth-child(2) .why-image img,
+.why-item:nth-child(2):hover .why-image img{
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+  display:block!important;
+  transform:none!important;
+}
+.why-tag{
+  position:absolute!important;
+  left:24px!important;
+  bottom:22px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  gap:8px!important;
+  margin:0!important;
+  padding:0!important;
+  background:transparent!important;
+  color:#fff!important;
+  border:0!important;
+  border-radius:0!important;
+  font-size:10px!important;
+  font-weight:800!important;
+  letter-spacing:.18em!important;
+}
+.why-tag:before{
+  content:""!important;
+  width:26px!important;
+  height:2px!important;
+  background:var(--orange)!important;
+  flex:none!important;
+}
+.why-tag svg{
+  display:none!important;
+}
+.why-content{
+  position:relative!important;
+  min-height:0!important;
+  padding:25px 28px 30px!important;
+  background:transparent!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:flex-start!important;
+  justify-content:flex-start!important;
+  flex:1!important;
+}
+.why-content h3{
+  margin:0 0 10px!important;
+  color:#fff!important;
+  font-size:clamp(27px,3vw,38px)!important;
+  line-height:1.03!important;
+  letter-spacing:-.035em!important;
+}
+.why-content p{
+  max-width:650px!important;
+  margin:0!important;
+  color:rgba(255,255,255,.70)!important;
+  font-size:13px!important;
+  line-height:1.7!important;
+}
+.why-arrow{
+  width:40px!important;
+  height:40px!important;
+  margin-top:20px!important;
+  border:1px solid rgba(244,119,33,.75)!important;
+  border-radius:50%!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  color:var(--orange)!important;
+  text-decoration:none!important;
+  transition:transform .25s ease,background .25s ease,color .25s ease!important;
+}
+.why-arrow svg{
+  width:17px!important;
+  height:17px!important;
+  stroke-width:1.7!important;
+}
+.why-arrow:hover{
+  transform:translate(2px,-2px)!important;
+  background:var(--orange)!important;
+  color:#fff!important;
+}
+@media(max-width:760px){
+  .why-grid{
+    grid-template-columns:1fr!important;
+    grid-template-areas:
+      "featured"
+      "wisdom"
+      "stories"
+      "growth"!important;
+    gap:12px!important;
+  }
+  .why-item{
+    border-radius:19px!important;
+  }
+  .why-image,
+  .why-item:nth-child(2) .why-image,
+  .why-item:nth-child(3) .why-image,
+  .why-item:nth-child(4) .why-image{
+    height:225px!important;
+  }
+  .why-item:nth-child(n+2){
+    display:grid!important;
+    grid-template-columns:42% minmax(0,1fr)!important;
+    align-items:stretch!important;
+  }
+  .why-item:nth-child(n+2) .why-image{
+    height:100%!important;
+    min-height:180px!important;
+  }
+  .why-item:nth-child(n+2) .why-content{
+    padding:20px 18px 20px!important;
+  }
+  .why-item:nth-child(n+2) .why-content h3{
+    font-size:20px!important;
+    line-height:1.04!important;
+    margin-bottom:8px!important;
+  }
+  .why-item:nth-child(n+2) .why-content p{
+    font-size:11.2px!important;
+    line-height:1.55!important;
+  }
+  .why-item:nth-child(n+2) .why-tag{
+    left:14px!important;
+    bottom:14px!important;
+    font-size:8px!important;
+    letter-spacing:.14em!important;
+  }
+  .why-item:nth-child(n+2) .why-tag:before{
+    width:17px!important;
+  }
+  .why-item:nth-child(n+2) .why-arrow{
+    width:31px!important;
+    height:31px!important;
+    margin-top:auto!important;
+    align-self:flex-end!important;
+  }
+  .why-item:nth-child(n+2) .why-arrow svg{
+    width:14px!important;
+    height:14px!important;
+  }
+  .why-content{
+    padding:22px 20px 24px!important;
+  }
+  .why-content h3{
+    font-size:27px!important;
+  }
+  .why-content p{
+    font-size:12.2px!important;
+    line-height:1.62!important;
+  }
+  .why-arrow{
+    width:36px!important;
+    height:36px!important;
+  }
+  .why-arrow svg{
+    width:16px!important;
+    height:16px!important;
+  }
+}
+@media(max-width:390px){
+  .why-image,
+  .why-item:nth-child(2) .why-image,
+  .why-item:nth-child(3) .why-image,
+  .why-item:nth-child(4) .why-image{
+    height:205px!important;
+  }
+  .why-item:nth-child(n+2){
+    grid-template-columns:40% minmax(0,1fr)!important;
+  }
+  .why-item:nth-child(n+2) .why-image{
+    min-height:165px!important;
+  }
+  .why-item:nth-child(n+2) .why-content{
+    padding:17px 14px 17px!important;
+  }
+  .why-item:nth-child(n+2) .why-content h3{
+    font-size:18px!important;
+  }
+  .why-item:nth-child(n+2) .why-content p{
+    font-size:10.4px!important;
+    line-height:1.5!important;
+  }
+  .why-content{
+    padding:19px 17px 21px!important;
+  }
+  .why-content h3{
+    font-size:24px!important;
+  }
+}
