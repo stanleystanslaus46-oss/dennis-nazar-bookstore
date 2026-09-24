@@ -1,4 +1,4 @@
-const CACHE_NAME = "dennis-nazar-pwa-v2";
+const CACHE_NAME = "dennis-nazar-pwa-v3";
 
 const APP_SHELL = [
   "/",
@@ -15,9 +15,11 @@ const APP_SHELL = [
   "/assets/book-1.webp",
   "/assets/book-2.webp",
   "/assets/book-3.webp",
+  "/assets/dennis-nazar-hero-background.webp?v=20260925",
+  "/assets/online-courses-coming-soon.webp?v=20260925",
   "/assets/coming-soon-cover.jpg",
   "/assets/coming-soon-cover-04.jpg",
-  "/css/style.css?v=logo-render-fix",
+  "/css/style.css?v=ui-final-20260924",
   "/js/pwa.js?v=3"
 ];
 
