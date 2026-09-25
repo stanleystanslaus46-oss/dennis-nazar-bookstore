@@ -113,6 +113,22 @@
     </div>
   </header>
 
+  <div class="mobile-menu" id="courseMobileMenu" aria-hidden="true">
+    <div class="mobile-menu-inner container">
+      <button class="menu-close" id="courseMenuClose" aria-label="Funga menyu"><i data-lucide="x"></i></button>
+      <img class="mobile-logo" src="assets/dn-logo-white.png" alt="Dennis Nazar">
+      <p class="mobile-kicker">OFFICIAL BOOK STORE</p>
+      <a href="index.html">Home <i data-lucide="arrow-up-right"></i></a>
+      <a href="index.html#books">Books <i data-lucide="arrow-up-right"></i></a>
+      <a href="#courses" class="active">Online Courses <i data-lucide="play-circle"></i></a>
+      <a href="index.html#about">About <i data-lucide="arrow-up-right"></i></a>
+      <a href="index.html#coming-soon">Coming Soon <i data-lucide="arrow-up-right"></i></a>
+      <a href="index.html#contact">Contact <i data-lucide="arrow-up-right"></i></a>
+      <a href="library.html">My Library <i data-lucide="library"></i></a>
+      <a href="track.html">Track Order <i data-lucide="search-check"></i></a>
+    </div>
+  </div>
+
   <main class="courses-redesign">
     <section class="cr-hero">
       <div class="container cr-hero-inner">
@@ -189,8 +205,36 @@
     </div>
   </footer>
 
+  <style>
+    /* Mobile-only refinements for the Online Courses page. Other sections unchanged. */
+    @media(max-width:760px){
+      .courses-page .cr-feature-section{padding-bottom:24px!important}
+      .courses-page .cr-feature{margin-bottom:0!important}
+    }
+    @media(max-width:760px){
+      .courses-page #courseMobileMenu{display:block!important}
+      .courses-page #courseMenuToggle{position:relative;z-index:101}
+      .courses-page #courseMobileMenu .menu-close{position:absolute;top:24px;right:18px;z-index:3}
+    }
+  </style>
   <script>
-    document.addEventListener('DOMContentLoaded',()=>{ if(window.lucide) lucide.createIcons(); });
+    document.addEventListener('DOMContentLoaded',()=>{
+      const menu=document.getElementById('courseMobileMenu');
+      const openBtn=document.getElementById('courseMenuToggle');
+      const closeBtn=document.getElementById('courseMenuClose');
+      if(menu && openBtn){
+        const setOpen=(open)=>{
+          menu.classList.toggle('open',open);
+          menu.setAttribute('aria-hidden',String(!open));
+          openBtn.setAttribute('aria-expanded',String(open));
+          document.body.classList.toggle('menu-open',open);
+        };
+        openBtn.addEventListener('click',()=>setOpen(true));
+        closeBtn?.addEventListener('click',()=>setOpen(false));
+        menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setOpen(false)));
+      }
+      if(window.lucide) lucide.createIcons();
+    });
   </script>
   <script src="/js/cookie-consent.js?v=1"></script>
 </body>
