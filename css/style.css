@@ -2225,3 +2225,157 @@ html{scroll-behavior:smooth;scroll-padding-top:24px}
     font-size:8.3px!important;
   }
 }
+
+
+/* ===== WHY READ — RESTORE USER-APPROVED DESIGN FROM REFERENCE ===== */
+.why-heading>div{width:100%!important}
+.why-heading .why-intro{
+  display:block!important;
+  max-width:620px!important;
+  margin:14px 0 0!important;
+  color:#b9b6c7!important;
+  font-size:12px!important;
+  line-height:1.75!important;
+}
+.why-grid{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:20px!important;
+}
+.why-item{
+  display:flex!important;
+  flex-direction:column!important;
+  height:390px!important;
+  min-height:390px!important;
+  overflow:hidden!important;
+}
+.why-image{
+  width:100%!important;
+  height:185px!important;
+  min-height:185px!important;
+  flex:0 0 185px!important;
+  overflow:hidden!important;
+}
+.why-image img{
+  width:100%!important;
+  height:100%!important;
+  max-width:none!important;
+  object-fit:cover!important;
+  object-position:center center!important;
+  transform:none!important;
+}
+.why-item:nth-child(2) .why-image img{
+  object-position:center 42%!important;
+  transform:scale(1.03)!important;
+}
+.why-content{
+  flex:1!important;
+  min-height:0!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:flex-start!important;
+  padding:24px 22px 27px!important;
+  overflow:visible!important;
+}
+.why-content h3{
+  margin:0 0 11px!important;
+  font-size:25px!important;
+  line-height:1.1!important;
+}
+.why-content p{
+  margin:0!important;
+  max-width:100%!important;
+  font-size:11.5px!important;
+  line-height:1.7!important;
+}
+.why-arrow{margin-top:auto!important}
+
+@media(max-width:760px){
+  .why-heading .why-intro{
+    max-width:100%!important;
+    margin-top:12px!important;
+    font-size:10px!important;
+    line-height:1.7!important;
+  }
+  .why-grid{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    gap:12px!important;
+  }
+  /* Featured first card */
+  .why-item:first-child{
+    height:420px!important;
+    min-height:420px!important;
+  }
+  .why-item:first-child .why-image{
+    height:205px!important;
+    min-height:205px!important;
+    flex-basis:205px!important;
+  }
+  /* Supporting cards: image left, copy right */
+  .why-item:not(:first-child){
+    display:grid!important;
+    grid-template-columns:36% 64%!important;
+    height:150px!important;
+    min-height:150px!important;
+  }
+  .why-item:not(:first-child) .why-image{
+    width:100%!important;
+    height:150px!important;
+    min-height:150px!important;
+    flex-basis:auto!important;
+  }
+  .why-item:not(:first-child) .why-content{
+    padding:16px 13px 14px!important;
+    min-width:0!important;
+  }
+  .why-item:not(:first-child) .why-content h3{
+    font-size:17px!important;
+    line-height:1.08!important;
+    margin:5px 0 7px!important;
+  }
+  .why-item:not(:first-child) .why-content p{
+    font-size:9px!important;
+    line-height:1.52!important;
+  }
+  .why-item:not(:first-child) .why-tag{
+    top:12px!important;
+    left:12px!important;
+  }
+  .why-item:not(:first-child) .why-arrow{
+    width:28px!important;
+    height:28px!important;
+    min-width:28px!important;
+  }
+  .why-item:first-child .why-content{
+    padding:20px 18px 23px!important;
+  }
+  .why-item:first-child .why-content h3{
+    font-size:23px!important;
+    line-height:1.08!important;
+  }
+  .why-item:first-child .why-content p{
+    font-size:10.5px!important;
+    line-height:1.62!important;
+  }
+}
+@media(max-width:390px){
+  .why-item:first-child{
+    height:400px!important;
+    min-height:400px!important;
+  }
+  .why-item:first-child .why-image{
+    height:190px!important;
+    min-height:190px!important;
+    flex-basis:190px!important;
+  }
+  .why-item:not(:first-child){
+    grid-template-columns:36% 64%!important;
+    height:145px!important;
+    min-height:145px!important;
+  }
+  .why-item:not(:first-child) .why-image{
+    height:145px!important;
+    min-height:145px!important;
+  }
+}
