@@ -2379,3 +2379,136 @@ html{scroll-behavior:smooth;scroll-padding-top:24px}
     min-height:145px!important;
   }
 }
+
+
+/* ===== WHY READ — FINAL REFERENCE MATCH ===== */
+@media(max-width:760px){
+  .why-grid{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    gap:12px!important;
+    direction:ltr!important;
+  }
+
+  /* Featured card remains image above content */
+  .why-item:first-child{
+    display:flex!important;
+    flex-direction:column!important;
+    direction:ltr!important;
+    height:420px!important;
+    min-height:420px!important;
+  }
+  .why-item:first-child .why-image{
+    order:1!important;
+    grid-column:auto!important;
+    width:100%!important;
+    height:205px!important;
+    min-height:205px!important;
+    flex:0 0 205px!important;
+  }
+  .why-item:first-child .why-content{
+    order:2!important;
+    width:100%!important;
+  }
+
+  /* Cards 02–04: IMAGE MUST BE LEFT, TEXT MUST BE RIGHT */
+  .why-item:not(:first-child){
+    display:grid!important;
+    grid-template-columns:36% 64%!important;
+    grid-template-areas:"image content"!important;
+    direction:ltr!important;
+    height:150px!important;
+    min-height:150px!important;
+    padding:0!important;
+    overflow:hidden!important;
+  }
+  .why-item:not(:first-child) .why-image{
+    grid-area:image!important;
+    grid-column:1!important;
+    grid-row:1!important;
+    order:unset!important;
+    width:100%!important;
+    height:150px!important;
+    min-height:150px!important;
+    margin:0!important;
+    align-self:stretch!important;
+    justify-self:stretch!important;
+  }
+  .why-item:not(:first-child) .why-content{
+    grid-area:content!important;
+    grid-column:2!important;
+    grid-row:1!important;
+    order:unset!important;
+    width:100%!important;
+    height:100%!important;
+    min-width:0!important;
+    margin:0!important;
+    padding:16px 13px 14px!important;
+    align-self:stretch!important;
+    justify-self:stretch!important;
+    overflow:hidden!important;
+  }
+  .why-item:not(:first-child) .why-image img{
+    display:block!important;
+    width:100%!important;
+    height:100%!important;
+    object-fit:cover!important;
+    object-position:center center!important;
+  }
+
+  /* Keep the category icon/tag visible over each image */
+  .why-item:not(:first-child) .why-tag{
+    display:flex!important;
+    align-items:center!important;
+    gap:6px!important;
+    position:absolute!important;
+    left:12px!important;
+    bottom:12px!important;
+    top:auto!important;
+    z-index:3!important;
+  }
+  .why-item:not(:first-child) .why-tag svg{
+    display:block!important;
+    width:12px!important;
+    height:12px!important;
+  }
+
+  /* Arrow action stays inside the right-hand text column */
+  .why-item:not(:first-child) .why-arrow{
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    width:28px!important;
+    height:28px!important;
+    min-width:28px!important;
+    margin-top:auto!important;
+    align-self:flex-end!important;
+  }
+  .why-item:not(:first-child) .why-arrow svg{
+    display:block!important;
+    width:14px!important;
+    height:14px!important;
+  }
+}
+
+@media(max-width:390px){
+  .why-item:first-child{
+    height:400px!important;
+    min-height:400px!important;
+  }
+  .why-item:first-child .why-image{
+    height:190px!important;
+    min-height:190px!important;
+    flex-basis:190px!important;
+  }
+  .why-item:not(:first-child){
+    grid-template-columns:36% 64%!important;
+    grid-template-areas:"image content"!important;
+    height:145px!important;
+    min-height:145px!important;
+  }
+  .why-item:not(:first-child) .why-image{
+    height:145px!important;
+    min-height:145px!important;
+  }
+}
