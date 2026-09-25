@@ -2607,3 +2607,40 @@ html{scroll-behavior:smooth;scroll-padding-top:24px}
 @media(max-width:390px){
   .about-author-image{height:360px!important}
 }
+
+
+/* ===== FINAL ABOUT + WHY READ MOBILE POSITIONING ===== */
+.about-author-image-mobile{display:none!important}
+@media(max-width:760px){
+  /* Mobile order: biography → portrait → Explore His Books */
+  .about-single{display:flex!important;flex-direction:column!important;gap:0!important}
+  .about-copy{display:contents!important}
+  .about-copy>.section-kicker{order:1!important}
+  .about-copy>h2{order:2!important}
+  .about-copy>.signature{order:3!important}
+  .about-copy>.about-text{order:4!important}
+  .about-author-image-mobile{
+    display:block!important;
+    order:5!important;
+    width:100%!important;
+    height:380px!important;
+    margin:18px 0 26px!important;
+    overflow:hidden!important;
+    border:1px solid rgba(255,255,255,.14)!important;
+    background:#111!important;
+  }
+  .about-author-image-mobile img{width:100%!important;height:100%!important;display:block!important;object-fit:cover!important;object-position:center top!important}
+  .about-copy>.author-editorial-link{order:6!important;align-self:center!important;margin-top:0!important;margin-bottom:0!important}
+  .about-single>.about-author-image{display:none!important}
+
+  /* Thought-Provoking is the featured card: keep its arrow on the right. */
+  .why-item:first-child .why-arrow{
+    margin-left:auto!important;
+    margin-right:0!important;
+    align-self:flex-end!important;
+    position:static!important;
+  }
+}
+@media(max-width:390px){
+  .about-author-image-mobile{height:360px!important}
+}
