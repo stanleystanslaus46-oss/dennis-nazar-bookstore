@@ -79,6 +79,54 @@ body{min-height:100vh}
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<style>
+/* ===== HOMEPAGE ONLINE COURSES REDESIGN — scoped to #online-courses only ===== */
+#online-courses.course-intro-banner{background:#f7f5ef;padding-top:92px;padding-bottom:100px}
+#online-courses .course-section-heading{max-width:900px;margin-bottom:42px}
+#online-courses .course-section-heading .section-kicker{display:flex;align-items:center;gap:14px}
+#online-courses .homepage-course-rule{display:inline-block;width:42px;height:2px;background:#f47721}
+#online-courses .course-section-heading h2{font-family:var(--serif);font-size:clamp(52px,6vw,84px);line-height:.98;letter-spacing:-.055em;margin:25px 0 20px}
+#online-courses .course-section-heading h2 span{color:#f47721}
+#online-courses .course-section-heading>p:last-child{max-width:720px;font-size:clamp(16px,1.7vw,21px);line-height:1.58;color:#35353b}
+#online-courses .homepage-course-feature{position:relative;min-height:500px;overflow:hidden;border-radius:24px;background:#17191a;color:#fff;display:flex;align-items:stretch;box-shadow:0 28px 70px rgba(16,16,20,.14);isolation:isolate}
+#online-courses .homepage-course-art{position:absolute;inset:0;z-index:-1;overflow:hidden;background:radial-gradient(ellipse at 78% 56%,rgba(188,126,70,.30),transparent 25%),radial-gradient(ellipse at 70% 28%,rgba(244,119,33,.12),transparent 23%),linear-gradient(110deg,#101415 0%,#1b1b1a 48%,#29231e 100%)}
+#online-courses .homepage-course-art:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,10,11,.95) 0%,rgba(8,10,11,.78) 50%,rgba(8,10,11,.25) 100%)}
+#online-courses .homepage-course-art:after{content:"";position:absolute;width:58%;height:2px;right:-6%;top:64%;background:linear-gradient(90deg,transparent,rgba(244,119,33,.55),rgba(255,210,165,.16));transform:rotate(-8deg)}
+#online-courses .homepage-course-line{position:absolute;right:-12%;width:65%;height:1px;background:rgba(255,255,255,.09);transform:rotate(-11deg)}
+#online-courses .homepage-course-line.line-a{top:28%}
+#online-courses .homepage-course-line.line-b{top:77%}
+#online-courses .homepage-course-number{position:absolute;right:40px;top:25px;font-family:var(--serif);font-size:190px;line-height:.8;letter-spacing:-.08em;color:rgba(255,255,255,.09)}
+#online-courses .homepage-course-glow{position:absolute;width:420px;height:420px;right:5%;top:13%;border-radius:50%;border:1px solid rgba(255,255,255,.07);box-shadow:0 0 0 70px rgba(255,255,255,.018),0 0 0 140px rgba(255,255,255,.012)}
+#online-courses .homepage-course-content{position:relative;z-index:1;padding:58px 54px;max-width:690px}
+#online-courses .homepage-course-status{display:flex;align-items:center;gap:12px;font-size:10px;font-weight:800;letter-spacing:.24em;color:#eee}
+#online-courses .homepage-course-status span{width:10px;height:10px;border-radius:50%;background:#f47721;box-shadow:0 0 0 5px rgba(244,119,33,.08)}
+#online-courses .homepage-course-status b{font-weight:400;color:#888}
+#online-courses .homepage-course-content h3{font-family:var(--serif);font-size:clamp(48px,5.3vw,72px);line-height:.98;letter-spacing:-.05em;margin:42px 0 20px}
+#online-courses .homepage-course-content h3 em{font-style:normal;color:#f47721}
+#online-courses .homepage-course-content>p{font-size:16px;line-height:1.6;color:#ddd;max-width:470px}
+#online-courses .homepage-course-types{display:flex;flex-wrap:wrap;gap:24px;margin-top:34px}
+#online-courses .homepage-course-types span{display:flex;align-items:center;gap:8px;font-size:9px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#eee}
+#online-courses .homepage-course-types svg{width:18px;height:18px;color:#f47721;stroke-width:1.7}
+#online-courses .homepage-course-link{display:inline-flex;align-items:center;gap:12px;margin-top:38px;color:#fff;border-bottom:2px solid #f47721;padding-bottom:9px;font-size:10px;font-weight:800;letter-spacing:.18em}
+#online-courses .homepage-course-link svg{width:18px;color:#f47721}
+@media(max-width:760px){
+  #online-courses.course-intro-banner{padding-top:60px;padding-bottom:68px}
+  #online-courses .course-section-heading{margin-bottom:28px}
+  #online-courses .course-section-heading h2{font-size:50px;line-height:.96;margin:22px 0 18px}
+  #online-courses .course-section-heading>p:last-child{font-size:16px;line-height:1.6}
+  #online-courses .homepage-course-feature{min-height:510px;border-radius:18px}
+  #online-courses .homepage-course-content{padding:34px 26px}
+  #online-courses .homepage-course-number{font-size:128px;right:8px;top:32px}
+  #online-courses .homepage-course-glow{width:290px;height:290px;right:-80px;top:28%}
+  #online-courses .homepage-course-content h3{font-size:46px;margin:50px 0 18px}
+  #online-courses .homepage-course-content>p{font-size:14px;max-width:300px}
+  #online-courses .homepage-course-types{display:grid;grid-template-columns:1fr;gap:13px;margin-top:28px}
+  #online-courses .homepage-course-types span{font-size:8.5px}
+  #online-courses .homepage-course-link{margin-top:30px}
+}
+</style>
+
 </head>
 <body>
   <header class="navbar" id="navbar">
@@ -293,17 +341,32 @@ body{min-height:100vh}
     <section class="course-intro-banner section" id="online-courses">
       <div class="container">
         <div class="course-section-heading">
-          <p class="section-kicker">ONLINE COURSES</p>
+          <p class="section-kicker">ONLINE COURSES <span class="homepage-course-rule"></span></p>
           <h2>Learn beyond the <span>page.</span></h2>
-          <p>Video lessons are coming soon, creating a new way to explore ideas, practical wisdom and deeper learning from Dennis Nazar.</p>
+          <p>Video lessons, short readings and practical ideas — coming soon. A new way to explore deeper learning from Dennis Nazar.</p>
         </div>
-        <div class="course-poster-wrap">
-          <img src="assets/online-courses-coming-soon.webp?v=20260925" loading="lazy" decoding="async" alt="Dennis Nazar Online Courses — Coming Soon" class="course-poster">
-          <a class="primary-btn course-poster-btn" href="courses.html">Explore Online Courses <i data-lucide="arrow-right"></i></a>
+
+        <div class="homepage-course-feature">
+          <div class="homepage-course-art" aria-hidden="true">
+            <span class="homepage-course-number">01</span>
+            <span class="homepage-course-line line-a"></span>
+            <span class="homepage-course-line line-b"></span>
+            <span class="homepage-course-glow"></span>
+          </div>
+          <div class="homepage-course-content">
+            <div class="homepage-course-status"><span></span> COMING SOON <b>—</b> 2026</div>
+            <h3>Learn beyond<br><em>the page.</em></h3>
+            <p>A new learning experience from Dennis Nazar — designed around ideas you can watch, read and apply.</p>
+            <div class="homepage-course-types">
+              <span><i data-lucide="play-circle"></i> Video lessons</span>
+              <span><i data-lucide="book-open"></i> Short readings</span>
+              <span><i data-lucide="lightbulb"></i> Practical ideas</span>
+            </div>
+            <a class="homepage-course-link" href="courses.html">Explore Online Courses <i data-lucide="arrow-right"></i></a>
+          </div>
         </div>
       </div>
     </section>
-
     <section class="coming section next-chapter" id="coming-soon">
       <div class="container">
         <div class="section-top reveal"><div><p class="section-kicker">THE NEXT CHAPTER</p><h2>More books are <span>on the way.</span></h2></div><p class="section-copy">Kurasa mpya bado zinaandaliwa. Jiunge na updates ili uwe wa kwanza kujua zinapofunguliwa.</p></div>
