@@ -12,6 +12,87 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/lucide@latest" defer></script>
   <title>Online Courses — Dennis Nazar</title>
+
+  <style>
+    /* ===== ONLINE COURSES REDESIGN — page-scoped only ===== */
+    .courses-page{background:#f7f5ef;color:#111117}
+    .courses-page .navbar{background:#211d5a}
+    .courses-page .courses-redesign{padding-top:110px}
+    .cr-hero{padding:70px 0 52px;background:#f7f5ef}
+    .cr-hero-inner{max-width:1220px}
+    .cr-hero .section-kicker{display:flex;align-items:center;gap:14px;color:#707078}
+    .cr-rule{display:inline-block;width:42px;height:2px;background:#f47721}
+    .cr-hero h1{font:700 clamp(54px,7.2vw,96px)/.98 var(--serif);letter-spacing:-.055em;max-width:920px;margin:28px 0 26px}
+    .cr-hero h1 span{color:#f47721}
+    .cr-lead{max-width:760px;font-size:clamp(17px,2vw,23px);line-height:1.55;color:#25252b}
+    .cr-feature-section{padding:10px 0 92px;background:#f7f5ef}
+    .cr-feature{position:relative;min-height:505px;border-radius:24px;overflow:hidden;background:#17191a;color:#fff;box-shadow:0 28px 70px rgba(16,16,20,.13);isolation:isolate}
+    .cr-feature-bg{position:absolute;inset:0;overflow:hidden;background:
+      radial-gradient(ellipse at 78% 58%,rgba(190,128,72,.30),transparent 26%),
+      radial-gradient(ellipse at 72% 30%,rgba(244,119,33,.11),transparent 22%),
+      linear-gradient(110deg,#111516 0%,#1b1b1a 48%,#26211d 100%);z-index:-1}
+    .cr-feature-bg:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,10,11,.94) 0%,rgba(8,10,11,.78) 48%,rgba(8,10,11,.28) 100%)}
+    .cr-feature-bg:after{content:"";position:absolute;width:55%;height:2px;right:-5%;top:63%;background:linear-gradient(90deg,transparent,rgba(244,119,33,.5),rgba(255,210,165,.2));transform:rotate(-8deg);filter:blur(.2px)}
+    .cr-feature-line{position:absolute;height:1px;background:rgba(255,255,255,.09);transform:rotate(-11deg);right:-12%;width:65%}
+    .cr-line-1{top:28%}.cr-line-2{top:76%}
+    .cr-feature-number{position:absolute;right:42px;top:24px;font:600 190px/.8 var(--serif);color:rgba(255,255,255,.10);letter-spacing:-.08em}
+    .cr-feature-content{padding:55px 52px;max-width:650px;position:relative}
+    .cr-status{display:flex;align-items:center;gap:12px;font-size:10px;font-weight:800;letter-spacing:.24em;color:#eee}
+    .cr-status span{width:10px;height:10px;border-radius:50%;background:#f47721;box-shadow:0 0 0 5px rgba(244,119,33,.08)}
+    .cr-status b{font-weight:400;color:#888}
+    .cr-feature h2{font:700 clamp(48px,5.3vw,72px)/.98 var(--serif);letter-spacing:-.05em;margin:42px 0 20px}
+    .cr-feature h2 span{color:#f47721}
+    .cr-feature-content>p{font-size:17px;color:#ddd;max-width:420px;line-height:1.55}
+    .cr-feature-types{display:flex;gap:28px;flex-wrap:wrap;margin-top:38px}
+    .cr-feature-types span{display:flex;align-items:center;gap:9px;font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#eee}
+    .cr-feature-types svg{width:19px;height:19px;color:#f47721;stroke-width:1.7}
+    .cr-series-link{display:inline-flex;align-items:center;gap:12px;margin-top:40px;color:#fff;border-bottom:2px solid #f47721;padding-bottom:9px;font-size:10px;font-weight:800;letter-spacing:.19em}
+    .cr-series-link svg{width:17px;color:#f47721}
+    .cr-learning{padding:0 0 95px;background:#f7f5ef}
+    .cr-learning-head{display:flex;align-items:center;gap:25px;margin-bottom:40px}
+    .cr-learning-head .section-kicker{white-space:nowrap;color:#15151a}
+    .cr-learning-head>span{height:1px;background:#cfcfc9;flex:1}
+    .cr-learning-grid{display:grid;grid-template-columns:repeat(3,1fr)}
+    .cr-learning-grid article{padding:0 38px 18px 0;border-right:1px solid #d8d6d0;min-height:240px}
+    .cr-learning-grid article+article{padding-left:38px}
+    .cr-learning-grid article:last-child{border-right:0}
+    .cr-learning-grid small{display:block;color:#f47721;font-size:11px;font-weight:800;letter-spacing:.12em;margin-bottom:13px}
+    .cr-icon{width:58px;height:58px;border-radius:17px;background:#efede6;display:grid;place-items:center;margin-bottom:21px}
+    .cr-icon svg{width:24px;height:24px;stroke:#111117;stroke-width:1.7}
+    .cr-learning-grid h3{font:700 25px/1.15 var(--serif);letter-spacing:-.02em;margin-bottom:12px}
+    .cr-learning-grid p{max-width:260px;color:#505058;font-size:14px;line-height:1.7}
+    .cr-notify{display:inline-flex;align-items:center;justify-content:space-between;gap:50px;margin-top:38px;padding:17px 22px;border:1.5px solid #f47721;border-radius:5px;background:transparent;color:#111117;font-size:12px;font-weight:800;min-width:330px}
+    .cr-notify svg{width:20px}
+    .cr-notify:hover{background:#f47721;color:#fff}
+    .cr-closing{padding:42px 0;background:#f0eee7}
+    .cr-closing p{font-size:10px;letter-spacing:.3em;color:#898780}
+    @media(max-width:760px){
+      .courses-page .courses-redesign{padding-top:72px}
+      .cr-hero{padding:55px 0 34px}
+      .cr-hero h1{font-size:52px;line-height:.96;margin:24px 0 20px}
+      .cr-lead{font-size:17px;line-height:1.62}
+      .cr-feature-section{padding:8px 0 58px}
+      .cr-feature{min-height:480px;border-radius:18px}
+      .cr-feature-content{padding:34px 27px}
+      .cr-feature-number{font-size:130px;right:8px;top:30px}
+      .cr-feature h2{font-size:47px;margin:52px 0 17px}
+      .cr-feature-content>p{font-size:15px;max-width:290px}
+      .cr-feature-types{display:grid;grid-template-columns:1fr;gap:14px;margin-top:31px}
+      .cr-feature-types span{font-size:9px}
+      .cr-series-link{margin-top:31px}
+      .cr-learning{padding-bottom:65px}
+      .cr-learning-head{gap:13px;margin-bottom:30px}
+      .cr-learning-grid{display:block}
+      .cr-learning-grid article,.cr-learning-grid article+article,.cr-learning-grid article:last-child{padding:0 0 28px;margin-bottom:28px;border-right:0;border-bottom:1px solid #d8d6d0;min-height:0}
+      .cr-learning-grid article:last-child{border-bottom:0;margin-bottom:0}
+      .cr-learning-grid h3{font-size:24px}
+      .cr-learning-grid p{font-size:13px}
+      .cr-notify{width:100%;min-width:0;margin-top:10px}
+      .cr-closing{padding:30px 0}
+      .cr-closing p{font-size:8px;letter-spacing:.2em}
+    }
+  </style>
+
 </head>
 <body class="courses-page">
   <header class="navbar" id="navbar">
@@ -32,70 +113,71 @@
     </div>
   </header>
 
-  <main>
-    <section class="courses-hero">
-      <div class="courses-hero-glow"></div>
-      <div class="container courses-hero-inner">
-        <p class="eyebrow"><span></span> DENNIS NAZAR · ONLINE COURSES</p>
+  <main class="courses-redesign">
+    <section class="cr-hero">
+      <div class="container cr-hero-inner">
+        <p class="section-kicker">ONLINE COURSES <span class="cr-rule"></span></p>
         <h1>Learn beyond the <span>page.</span></h1>
-        <p>Video lessons, short readings and practical ideas designed to help you move from reading a thought to living it.</p>
-        <div class="courses-hero-meta">
-          <span><i data-lucide="play-circle"></i> Video lessons</span>
-          <span><i data-lucide="book-open"></i> Short readings</span>
-          <span><i data-lucide="library"></i> Companion books</span>
-        </div>
+        <p class="cr-lead">Video lessons, short readings and practical ideas — coming soon from Dennis Nazar.</p>
       </div>
     </section>
 
-    <section class="courses-intro section">
-      <div class="container courses-intro-grid">
-        <div>
-          <p class="section-kicker">A NEW WAY TO LEARN</p>
-          <h2>Ideas become more powerful when you <span>put them into practice.</span></h2>
-        </div>
-        <p>Online Courses extends the Dennis Nazar experience beyond the bookstore. Each course series can bring together focused video lessons, concise reading material and selected books so learning feels connected, intentional and easy to continue.</p>
-      </div>
-    </section>
-
-    <section class="course-series section" id="courses">
+    <section class="cr-feature-section" id="courses">
       <div class="container">
-        <div class="course-section-head">
-          <div><p class="section-kicker">COURSE SERIES</p><h2>Coming <span>soon.</span></h2></div>
-          <span class="course-status"><i data-lucide="clock-3"></i> Preparing the first series</span>
-        </div>
-        <article class="course-feature course-feature-intro">
-          <div class="course-intro-card">
-            <div>
-              <p class="section-kicker">ONLINE COURSES · COMING SOON</p>
-              <h2>Learn beyond the <span>page.</span></h2>
-              <p>Video lessons are coming to Dennis Nazar — bringing ideas, practical wisdom and deeper learning into a new format.</p>
+        <article class="cr-feature">
+          <div class="cr-feature-bg" aria-hidden="true">
+            <span class="cr-feature-line cr-line-1"></span>
+            <span class="cr-feature-line cr-line-2"></span>
+            <span class="cr-feature-number">01</span>
+          </div>
+          <div class="cr-feature-content">
+            <div class="cr-status"><span></span> COMING SOON <b>—</b> 2026</div>
+            <h2>Learn beyond<br><span>the page.</span></h2>
+            <p>A new learning experience from Dennis Nazar.</p>
+            <div class="cr-feature-types">
+              <span><i data-lucide="play-circle"></i> Video lessons</span>
+              <span><i data-lucide="book-open"></i> Short readings</span>
+              <span><i data-lucide="lightbulb"></i> Practical ideas</span>
             </div>
-            <a class="primary-btn" href="#courses">Explore Online Courses <i data-lucide="arrow-down"></i></a>
+            <a class="cr-series-link" href="#learning">THE FIRST SERIES <i data-lucide="arrow-right"></i></a>
           </div>
         </article>
       </div>
     </section>
 
-    <section class="learning-method section">
+    <section class="cr-learning" id="learning">
       <div class="container">
-        <div class="center-heading">
-          <p class="section-kicker">THE LEARNING EXPERIENCE</p>
-          <h2>Watch. Read. <span>Reflect.</span></h2>
+        <div class="cr-learning-head">
+          <p class="section-kicker">WHAT YOU’LL EXPLORE</p>
+          <span></span>
         </div>
-        <div class="learning-grid">
-          <article><span>01</span><i data-lucide="play-circle"></i><h3>Watch</h3><p>Follow focused video lessons built around one clear idea at a time.</p></article>
-          <article><span>02</span><i data-lucide="file-text"></i><h3>Read</h3><p>Use short supporting articles and selected pages to deepen the lesson.</p></article>
-          <article><span>03</span><i data-lucide="lightbulb"></i><h3>Reflect</h3><p>Turn the idea into a question, decision or practical step for everyday life.</p></article>
+        <div class="cr-learning-grid">
+          <article>
+            <small>01</small>
+            <div class="cr-icon"><i data-lucide="play"></i></div>
+            <h3>Video Lessons</h3>
+            <p>Learn through concise, focused lessons.</p>
+          </article>
+          <article>
+            <small>02</small>
+            <div class="cr-icon"><i data-lucide="book-open"></i></div>
+            <h3>Short Readings</h3>
+            <p>Go deeper with accompanying written material.</p>
+          </article>
+          <article>
+            <small>03</small>
+            <div class="cr-icon"><i data-lucide="lightbulb"></i></div>
+            <h3>Practical Ideas</h3>
+            <p>Turn ideas into something you can apply.</p>
+          </article>
         </div>
+        <a class="cr-notify" href="index.html#books">Explore Books <i data-lucide="arrow-right"></i></a>
       </div>
     </section>
 
-    <section class="courses-cta dark-section">
+    <section class="cr-closing">
       <div class="container">
-        <p class="section-kicker light">STAY CONNECTED</p>
-        <h2>The next chapter is <span>coming.</span></h2>
-        <p>Explore the books while the first Online Course series is being prepared.</p>
-        <a class="primary-btn" href="index.html#books">Explore Books <i data-lucide="arrow-right"></i></a>
+        <p>THOUGHT &nbsp; | &nbsp; PURPOSE &nbsp; | &nbsp; GROWTH</p>
       </div>
     </section>
   </main>
