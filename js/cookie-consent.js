@@ -20,7 +20,7 @@
     <div class="dn-cookie-inner">
       <div class="dn-cookie-copy">
         <h2 class="dn-cookie-title">Cookies on Dennis Nazar</h2>
-        <p class="dn-cookie-text">Tunatumia cookies muhimu kusaidia tovuti kufanya kazi, kuhifadhi session na kuboresha matumizi ya msingi. Hatumii advertising cookies kwa sasa. <a href="/privacy.html">Privacy Policy</a></p>
+        <p class="dn-cookie-text">Tunatumia cookies muhimu kusaidia tovuti kufanya kazi, kuhifadhi session na kuboresha matumizi ya msingi. Hatutumii advertising cookies kwa sasa. <a href="/privacy.html">Privacy Policy</a></p>
       </div>
       <div class="dn-cookie-actions">
         <button type="button" class="dn-cookie-btn" data-dn-cookie="essential">Only Essential</button>
