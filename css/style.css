@@ -2512,3 +2512,61 @@ html{scroll-behavior:smooth;scroll-padding-top:24px}
     min-height:145px!important;
   }
 }
+
+
+/* ===== RESTORE APPROVED MOBILE HOW IT WORKS RAIL ===== */
+@media(max-width:760px){
+  .how{overflow:hidden!important;padding-top:54px!important;padding-bottom:54px!important}
+  .how .center-heading{margin-bottom:24px!important;text-align:left!important}
+  .how .center-heading h2{font-size:38px!important;line-height:1.02!important;max-width:340px!important}
+  .how .steps-grid{
+    display:flex!important;
+    gap:14px!important;
+    overflow-x:auto!important;
+    overflow-y:hidden!important;
+    border-top:1px solid rgba(20,20,22,.16)!important;
+    border-bottom:0!important;
+    padding:0 24px 12px 0!important;
+    margin-right:-24px!important;
+    scroll-snap-type:x mandatory!important;
+    -webkit-overflow-scrolling:touch!important;
+    scrollbar-width:none!important;
+  }
+  .how .steps-grid::-webkit-scrollbar{display:none!important}
+  .how .step-card,.how .step-card:first-child,.how .step-card:last-child,
+  .how .step-card:nth-child(3n),.how .step-card:nth-child(3n+2),
+  .how .step-card:nth-child(n+4),.how .step-card:nth-child(n+5){
+    flex:0 0 min(78vw,330px)!important;
+    width:min(78vw,330px)!important;
+    min-height:226px!important;height:226px!important;
+    margin:0!important;padding:24px 22px!important;
+    border:1px solid rgba(255,255,255,.62)!important;
+    border-radius:20px!important;
+    background:linear-gradient(145deg,rgba(255,255,255,.72),rgba(255,255,255,.40))!important;
+    box-shadow:0 18px 45px rgba(20,20,22,.08),inset 0 1px 0 rgba(255,255,255,.78)!important;
+    backdrop-filter:blur(18px) saturate(125%)!important;
+    -webkit-backdrop-filter:blur(18px) saturate(125%)!important;
+    scroll-snap-align:start!important;
+    display:flex!important;flex-direction:column!important;justify-content:center!important;
+    position:relative!important;overflow:hidden!important;
+  }
+  .how .step-card:before{top:0!important;bottom:auto!important;left:0!important;width:100%!important;height:2px!important;background:linear-gradient(90deg,var(--orange),rgba(244,119,33,.18))!important}
+  .how .step-number{position:absolute!important;top:20px!important;left:22px!important;grid-row:auto!important;font-size:34px!important;line-height:1!important;color:rgba(20,20,22,.17)!important}
+  .how .step-card>svg{display:block!important;position:static!important;align-self:center!important;width:30px!important;height:30px!important;margin:0 0 14px!important;color:var(--orange)!important;stroke-width:1.65!important}
+  .how .step-card h3{width:100%!important;max-width:290px!important;margin:0 auto 9px!important;text-align:center!important;font-size:22px!important;line-height:1.08!important}
+  .how .step-card p{width:100%!important;max-width:275px!important;margin:0 auto!important;text-align:center!important;font-size:12.5px!important;line-height:1.6!important;color:#65656d!important}
+  .steps-swipe-hint{display:flex!important;align-items:center!important;justify-content:center!important;gap:9px!important;margin:18px auto 0!important;min-height:28px!important;color:#777782!important;font-size:9px!important;font-weight:800!important;letter-spacing:.13em!important;line-height:1!important;text-align:center!important;white-space:nowrap!important}
+  .steps-swipe-hint svg{width:15px!important;height:15px!important;flex:0 0 auto!important;stroke-width:1.8!important}
+  .steps-swipe-hint span:last-child{font-size:15px!important;line-height:1!important;letter-spacing:0!important}
+}
+@media(max-width:390px){
+  .how{padding-top:48px!important;padding-bottom:48px!important}
+  .how .center-heading h2{font-size:35px!important}
+  .how .step-card,.how .step-card:first-child,.how .step-card:last-child,.how .step-card:nth-child(3n),.how .step-card:nth-child(3n+2),.how .step-card:nth-child(n+4),.how .step-card:nth-child(n+5){flex-basis:82vw!important;width:82vw!important;min-height:216px!important;height:216px!important;padding:22px 19px!important;border-radius:18px!important}
+  .how .step-number{top:18px!important;left:19px!important;font-size:31px!important}
+  .how .step-card>svg{width:28px!important;height:28px!important;margin-bottom:12px!important}
+  .how .step-card h3{font-size:20px!important;margin-bottom:8px!important}
+  .how .step-card p{max-width:260px!important;font-size:11.8px!important;line-height:1.58!important}
+  .steps-swipe-hint{gap:7px!important;margin-top:16px!important;font-size:8px!important;letter-spacing:.10em!important}
+  .steps-swipe-hint svg{width:14px!important;height:14px!important}
+}
