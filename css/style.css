@@ -2859,3 +2859,85 @@ html{scroll-behavior:smooth;scroll-padding-top:24px}
     font-size:22px!important;
   }
 }
+
+
+/* ===== WHY READ — FINAL DESKTOP DETAILS ===== */
+@media(min-width:1001px){
+  .why-item{
+    position:relative!important;
+  }
+
+  /* Keep the sequence labels clearly visible above the media. */
+  .why-item:before{
+    position:absolute!important;
+    top:17px!important;
+    left:20px!important;
+    z-index:5!important;
+    margin:0!important;
+    padding:0!important;
+    font-size:9px!important;
+    line-height:1!important;
+    letter-spacing:.2em!important;
+    font-weight:900!important;
+    color:var(--orange)!important;
+    text-shadow:0 1px 8px rgba(0,0,0,.45)!important;
+    pointer-events:none!important;
+  }
+
+  /* Medium, centered image treatment — no oversized banner effect. */
+  .why-image,
+  .why-item:nth-child(2) .why-image,
+  .why-item:nth-child(3) .why-image,
+  .why-item:nth-child(4) .why-image{
+    height:166px!important;
+    min-height:166px!important;
+    flex-basis:166px!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+  }
+
+  .why-image img,
+  .why-item:nth-child(2) .why-image img,
+  .why-item:nth-child(3) .why-image img,
+  .why-item:nth-child(4) .why-image img{
+    width:100%!important;
+    height:100%!important;
+    object-fit:cover!important;
+    object-position:center center!important;
+  }
+
+  .why-item:nth-child(2) .why-image img,
+  .why-item:nth-child(3) .why-image img,
+  .why-item:nth-child(4) .why-image img{
+    object-position:center center!important;
+  }
+
+  /* True circular action control. */
+  .why-arrow{
+    width:36px!important;
+    height:36px!important;
+    min-width:36px!important;
+    min-height:36px!important;
+    padding:0!important;
+    margin-top:auto!important;
+    border-radius:50%!important;
+    display:grid!important;
+    place-items:center!important;
+    border:1px solid rgba(244,119,33,.62)!important;
+    background:rgba(244,119,33,.035)!important;
+    box-sizing:border-box!important;
+  }
+
+  .why-arrow:hover{
+    background:var(--orange)!important;
+    border-color:var(--orange)!important;
+    color:#fff!important;
+    transform:translateY(-2px)!important;
+  }
+
+  .why-arrow svg{
+    width:14px!important;
+    height:14px!important;
+  }
+}
