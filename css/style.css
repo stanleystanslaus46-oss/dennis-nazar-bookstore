@@ -2644,3 +2644,67 @@ html{scroll-behavior:smooth;scroll-padding-top:24px}
 @media(max-width:390px){
   .about-author-image-mobile{height:360px!important}
 }
+
+
+/* ===== DESKTOP-SPECIFIC POLISH — HERO / HOW IT WORKS / WHY READ ===== */
+@media(min-width:761px){
+  /* Keep the complete first hero phrase on one line. */
+  .hero h1 .hero-line-one{
+    white-space:nowrap!important;
+  }
+
+  /* The swipe instruction is only useful on the mobile horizontal rail. */
+  .steps-swipe-hint{
+    display:none!important;
+  }
+
+  /* Keep Why Read imagery compact and contained on desktop/tablet.
+     Mobile layout remains controlled by the existing mobile rules above. */
+  .why-item{
+    height:360px!important;
+    min-height:360px!important;
+  }
+  .why-image{
+    height:155px!important;
+    min-height:155px!important;
+    flex:0 0 155px!important;
+  }
+  .why-image img{
+    width:100%!important;
+    height:100%!important;
+    max-width:100%!important;
+    object-fit:cover!important;
+    object-position:center center!important;
+    transform:none!important;
+  }
+  .why-item:nth-child(2) .why-image img{
+    object-position:center 42%!important;
+    transform:none!important;
+  }
+  .why-item:nth-child(2):hover .why-image img{
+    transform:scale(1.02)!important;
+  }
+  .why-content{
+    padding:20px 20px 22px!important;
+  }
+  .why-content h3{
+    font-size:23px!important;
+    margin-bottom:9px!important;
+  }
+  .why-content p{
+    font-size:11px!important;
+    line-height:1.65!important;
+  }
+}
+
+@media(min-width:1001px){
+  .why-item{
+    height:370px!important;
+    min-height:370px!important;
+  }
+  .why-image{
+    height:160px!important;
+    min-height:160px!important;
+    flex-basis:160px!important;
+  }
+}
