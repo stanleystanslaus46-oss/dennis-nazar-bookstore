@@ -2717,3 +2717,145 @@ html{scroll-behavior:smooth;scroll-padding-top:24px}
     aspect-ratio:16 / 7!important;
   }
 }
+
+
+/* ===== WHY READ — DESKTOP EDITORIAL CARD GRID ===== */
+@media(min-width:1001px){
+  .why-grid{
+    display:grid!important;
+    grid-template-columns:repeat(12,minmax(0,1fr))!important;
+    grid-template-areas:
+      "thought thought thought thought thought thought thought wisdom wisdom wisdom wisdom wisdom"
+      "stories stories stories stories stories stories growth growth growth growth growth growth"!important;
+    gap:18px!important;
+    align-items:stretch!important;
+  }
+
+  .why-item{
+    height:382px!important;
+    min-height:382px!important;
+    padding:0!important;
+    margin:0!important;
+    border:1px solid rgba(255,255,255,.14)!important;
+    border-radius:16px!important;
+    overflow:hidden!important;
+    background:linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.028))!important;
+    box-shadow:0 18px 45px rgba(0,0,0,.16),inset 0 1px 0 rgba(255,255,255,.045)!important;
+    display:flex!important;
+    flex-direction:column!important;
+    transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .35s ease,box-shadow .35s ease!important;
+  }
+
+  .why-item:nth-child(1){grid-area:thought!important}
+  .why-item:nth-child(2){grid-area:wisdom!important}
+  .why-item:nth-child(3){grid-area:stories!important}
+  .why-item:nth-child(4){grid-area:growth!important}
+
+  .why-item:hover{
+    transform:translateY(-5px)!important;
+    border-color:rgba(244,119,33,.38)!important;
+    box-shadow:0 25px 55px rgba(0,0,0,.23),inset 0 1px 0 rgba(255,255,255,.06)!important;
+  }
+
+  .why-image,
+  .why-item:nth-child(2) .why-image,
+  .why-item:nth-child(3) .why-image,
+  .why-item:nth-child(4) .why-image{
+    position:relative!important;
+    width:100%!important;
+    height:190px!important;
+    min-height:190px!important;
+    flex:0 0 190px!important;
+    margin:0!important;
+    overflow:hidden!important;
+    background:#18181d!important;
+  }
+
+  .why-image:after{
+    content:""!important;
+    position:absolute!important;
+    inset:0!important;
+    background:linear-gradient(180deg,rgba(0,0,0,0) 42%,rgba(0,0,0,.42) 100%)!important;
+    pointer-events:none!important;
+  }
+
+  .why-image img,
+  .why-item:nth-child(2) .why-image img,
+  .why-item:nth-child(3) .why-image img,
+  .why-item:nth-child(4) .why-image img{
+    width:100%!important;
+    height:100%!important;
+    max-width:none!important;
+    display:block!important;
+    object-fit:cover!important;
+    object-position:center center!important;
+    transform:scale(1.001)!important;
+    transition:transform .65s cubic-bezier(.2,.8,.2,1),filter .45s ease!important;
+  }
+
+  .why-item:hover .why-image img{
+    transform:scale(1.045)!important;
+    filter:saturate(1.04) contrast(1.02)!important;
+  }
+
+  .why-item:nth-child(2) .why-image img{object-position:center 42%!important}
+  .why-item:nth-child(3) .why-image img{object-position:center 48%!important}
+  .why-item:nth-child(4) .why-image img{object-position:center 46%!important}
+
+  .why-tag{
+    left:20px!important;
+    bottom:17px!important;
+    z-index:2!important;
+    font-size:8px!important;
+    letter-spacing:.18em!important;
+  }
+
+  .why-tag:before{
+    width:22px!important;
+    height:1px!important;
+  }
+
+  .why-content{
+    min-height:0!important;
+    padding:22px 23px 23px!important;
+    flex:1!important;
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:flex-start!important;
+    justify-content:flex-start!important;
+    background:rgba(255,255,255,.012)!important;
+  }
+
+  .why-content h3{
+    margin:0 0 9px!important;
+    font-size:25px!important;
+    line-height:1.06!important;
+    letter-spacing:-.025em!important;
+  }
+
+  .why-content p{
+    max-width:100%!important;
+    margin:0!important;
+    font-size:10.5px!important;
+    line-height:1.68!important;
+    color:rgba(255,255,255,.62)!important;
+  }
+
+  .why-arrow{
+    width:34px!important;
+    height:34px!important;
+    margin-top:auto!important;
+    border-color:rgba(244,119,33,.55)!important;
+  }
+
+  .why-arrow svg{
+    width:14px!important;
+    height:14px!important;
+  }
+
+  /* Give the two narrower editorial cards a slightly quieter hierarchy. */
+  .why-item:nth-child(2) .why-content h3,
+  .why-item:nth-child(3) .why-content h3{
+    font-size:22px!important;
+  }
+}
