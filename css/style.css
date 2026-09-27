@@ -3153,3 +3153,23 @@ html{scroll-behavior:smooth;scroll-padding-top:24px}
     flex:0 0 32px!important;
   }
 }
+
+
+/* ===== HERO MARQUEE — DESKTOP MOTION FIX ===== */
+@media(min-width:761px){
+  .brand-strip .marquee-track{
+    animation-name:dennis-marquee!important;
+    animation-duration:24s!important;
+    animation-timing-function:linear!important;
+    animation-iteration-count:infinite!important;
+    animation-direction:normal!important;
+    animation-fill-mode:none!important;
+    animation-play-state:running!important;
+    will-change:transform!important;
+  }
+
+  /* Keep the desktop strip moving even while the pointer is over it. */
+  .brand-strip:hover .marquee-track{
+    animation-play-state:running!important;
+  }
+}
