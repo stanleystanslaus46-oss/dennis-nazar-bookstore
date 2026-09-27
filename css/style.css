@@ -2668,15 +2668,19 @@ html{scroll-behavior:smooth;scroll-padding-top:24px}
     height:360px!important;
     min-height:360px!important;
   }
+  /* Desktop: make the image a controlled portrait/landscape panel
+     rather than letting the wide card dominate the composition. */
   .why-image{
-    height:155px!important;
-    min-height:155px!important;
-    flex:0 0 155px!important;
+    width:100%!important;
+    height:135px!important;
+    min-height:135px!important;
+    flex:0 0 135px!important;
+    aspect-ratio:16 / 7!important;
   }
   .why-image img{
     width:100%!important;
     height:100%!important;
-    max-width:100%!important;
+    max-width:none!important;
     object-fit:cover!important;
     object-position:center center!important;
     transform:none!important;
@@ -2707,8 +2711,9 @@ html{scroll-behavior:smooth;scroll-padding-top:24px}
     min-height:370px!important;
   }
   .why-image{
-    height:160px!important;
-    min-height:160px!important;
-    flex-basis:160px!important;
+    height:145px!important;
+    min-height:145px!important;
+    flex-basis:145px!important;
+    aspect-ratio:16 / 7!important;
   }
 }
