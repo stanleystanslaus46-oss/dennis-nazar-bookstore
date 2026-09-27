@@ -3083,3 +3083,30 @@ html{scroll-behavior:smooth;scroll-padding-top:24px}
     height:13px!important;
   }
 }
+
+
+/* ===== WHY READ — DESKTOP SPACE TIGHTENING ===== */
+@media(min-width:1001px){
+  .why-item,
+  .why-item:nth-child(1),
+  .why-item:nth-child(2),
+  .why-item:nth-child(3),
+  .why-item:nth-child(4){
+    height:380px!important;
+    min-height:380px!important;
+  }
+
+  .why-content{
+    padding:18px 3px 0!important;
+    flex:0 0 auto!important;
+  }
+
+  .why-content p{
+    margin-bottom:0!important;
+  }
+
+  .why-arrow{
+    margin-top:14px!important;
+    flex:none!important;
+  }
+}
