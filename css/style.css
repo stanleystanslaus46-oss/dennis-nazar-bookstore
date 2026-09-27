@@ -2941,3 +2941,145 @@ html{scroll-behavior:smooth;scroll-padding-top:24px}
     height:14px!important;
   }
 }
+
+
+/* ===== WHY READ — AWWWARDS-INSPIRED DESKTOP CARDS ===== */
+@media(min-width:1001px){
+  .why-grid{
+    grid-template-columns:repeat(4,minmax(0,1fr))!important;
+    grid-template-areas:none!important;
+    gap:20px!important;
+    border-top:0!important;
+    border-bottom:0!important;
+  }
+
+  .why-item,
+  .why-item:nth-child(1),
+  .why-item:nth-child(2),
+  .why-item:nth-child(3),
+  .why-item:nth-child(4){
+    grid-area:auto!important;
+    height:475px!important;
+    min-height:475px!important;
+    margin:0!important;
+    padding:14px!important;
+    border:1px solid rgba(255,255,255,.12)!important;
+    border-radius:4px!important;
+    overflow:hidden!important;
+    background:#1a1a1f!important;
+    box-shadow:0 10px 30px rgba(0,0,0,.14)!important;
+  }
+
+  .why-item:hover{
+    transform:translateY(-4px)!important;
+    border-color:rgba(244,119,33,.3)!important;
+    box-shadow:0 18px 38px rgba(0,0,0,.22)!important;
+  }
+
+  /* Image sits inside the card like the reference, rather than becoming a full-width banner. */
+  .why-image,
+  .why-item:nth-child(2) .why-image,
+  .why-item:nth-child(3) .why-image,
+  .why-item:nth-child(4) .why-image{
+    position:relative!important;
+    width:100%!important;
+    height:174px!important;
+    min-height:174px!important;
+    flex:0 0 174px!important;
+    margin:0!important;
+    border-radius:2px!important;
+    overflow:hidden!important;
+    background:#25252b!important;
+  }
+
+  .why-image img,
+  .why-item:nth-child(2) .why-image img,
+  .why-item:nth-child(3) .why-image img,
+  .why-item:nth-child(4) .why-image img{
+    width:100%!important;
+    height:100%!important;
+    display:block!important;
+    object-fit:cover!important;
+    object-position:center center!important;
+    transform:none!important;
+  }
+
+  .why-item:nth-child(1) .why-image img{object-position:center 50%!important}
+  .why-item:nth-child(2) .why-image img{object-position:center 50%!important}
+  .why-item:nth-child(3) .why-image img{object-position:center 48%!important}
+  .why-item:nth-child(4) .why-image img{object-position:center 50%!important}
+
+  .why-image:after{
+    background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.18))!important;
+  }
+
+  /* Clear numbered marker, inspired by the reference's restrained metadata treatment. */
+  .why-item:before{
+    top:23px!important;
+    left:23px!important;
+    z-index:8!important;
+    padding:5px 7px!important;
+    border:1px solid rgba(244,119,33,.45)!important;
+    border-radius:2px!important;
+    background:rgba(12,12,15,.78)!important;
+    backdrop-filter:blur(5px)!important;
+    font-size:8px!important;
+    letter-spacing:.16em!important;
+    line-height:1!important;
+    color:var(--orange)!important;
+    text-shadow:none!important;
+  }
+
+  .why-tag{
+    left:15px!important;
+    bottom:14px!important;
+    z-index:7!important;
+    font-size:7px!important;
+    letter-spacing:.18em!important;
+  }
+
+  .why-content{
+    padding:21px 3px 2px!important;
+    flex:1!important;
+    min-height:0!important;
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:flex-start!important;
+    justify-content:flex-start!important;
+    background:transparent!important;
+  }
+
+  .why-content h3,
+  .why-item:nth-child(2) .why-content h3,
+  .why-item:nth-child(3) .why-content h3{
+    margin:0 0 10px!important;
+    font-size:19px!important;
+    line-height:1.18!important;
+    letter-spacing:-.02em!important;
+  }
+
+  .why-content p{
+    margin:0!important;
+    max-width:100%!important;
+    font-size:9.5px!important;
+    line-height:1.7!important;
+    color:rgba(255,255,255,.55)!important;
+  }
+
+  .why-arrow{
+    width:32px!important;
+    height:32px!important;
+    min-width:32px!important;
+    min-height:32px!important;
+    margin-top:auto!important;
+    border-radius:50%!important;
+    display:grid!important;
+    place-items:center!important;
+    padding:0!important;
+  }
+
+  .why-arrow svg{
+    width:13px!important;
+    height:13px!important;
+  }
+}
