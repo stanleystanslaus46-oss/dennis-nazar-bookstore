@@ -3133,3 +3133,23 @@ html{scroll-behavior:smooth;scroll-padding-top:24px}
     align-self:flex-start!important;
   }
 }
+
+
+/* ===== WHY READ — DESKTOP CARDS 03/04 ARROW CLEARANCE ===== */
+@media(min-width:1001px){
+  .why-item:nth-child(3) .why-content,
+  .why-item:nth-child(4) .why-content{
+    padding-bottom:8px!important;
+  }
+
+  .why-item:nth-child(3) .why-content p,
+  .why-item:nth-child(4) .why-content p{
+    line-height:1.58!important;
+  }
+
+  .why-item:nth-child(3) .why-arrow,
+  .why-item:nth-child(4) .why-arrow{
+    margin-top:8px!important;
+    flex:0 0 32px!important;
+  }
+}
