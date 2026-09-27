@@ -2648,8 +2648,12 @@ html{scroll-behavior:smooth;scroll-padding-top:24px}
 
 /* ===== DESKTOP-SPECIFIC POLISH — HERO / HOW IT WORKS / WHY READ ===== */
 @media(min-width:761px){
-  /* Keep the complete first hero phrase on one line. */
+  /* Keep the complete first hero phrase on one line and give it enough room. */
+  .hero h1{
+    font-size:clamp(48px,5.3vw,76px)!important;
+  }
   .hero h1 .hero-line-one{
+    display:inline-block!important;
     white-space:nowrap!important;
   }
 
