@@ -199,6 +199,7 @@ body.locked{overflow:hidden}
 .footer-socials a.tiktok{color:#fff}
 .footer-socials a.threads{color:#fff}
 .footer-socials a.facebook{color:#1877F2}
+.footer-socials a.youtube{color:#FF0000!important}
 .footer-socials a:hover{filter:brightness(1.15)}
 .whatsapp-float{position:fixed;right:22px;bottom:22px;z-index:80;width:52px;height:52px;border-radius:50%;background:#25D366;color:#fff;display:grid;place-items:center;box-shadow:0 12px 30px rgba(0,0,0,.24);font-size:26px;transition:transform .2s,box-shadow .2s}
 .whatsapp-float:hover{transform:translateY(-3px);box-shadow:0 16px 34px rgba(0,0,0,.28)}
