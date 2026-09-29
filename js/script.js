@@ -40,7 +40,24 @@ const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelecto
   }
   const comingGrid=$('.coming-grid');
   if(comingGrid){
-	    comingGrid.innerHTML=coming.length?coming.map(([id,b],i)=>`<article class="coming-card reveal ${i%2?'reveal-delay':''}"><div class="coming-cover"><img src="${escapeHtml(b.image||'assets/coming-soon-cover.webp?v=20260925')}" alt="${escapeHtml(b.title||'Dennis Nazar book coming soon')}" loading="lazy" onerror="this.onerror=null;this.src='assets/coming-soon-cover.webp?v=20260925'"><div class="coming-overlay"><span>COMING SOON</span><strong>BOOK ${String(i+1+available.length).padStart(2,'0')}</strong></div></div><div class="coming-body"><div><small>NEW RELEASE</small><h3>${escapeHtml(b.title||'New book coming soon')}</h3></div><button class="outline-btn" data-notify>Notify Me <i data-lucide="bell"></i></button></div></article>`).join(''):`<div class="admin-empty"><strong>No upcoming books.</strong><span>New titles can be added from the Admin Dashboard.</span></div>`;
+    comingGrid.innerHTML=coming.length?coming.map(([id,b],i)=>{
+      const description=b.description||b.subtitle||'';
+      const cover=b.image||'assets/coming-soon-cover.webp?v=20260925';
+      return `<article class="coming-card reveal ${i%2?'reveal-delay':''}" data-book-card="${escapeHtml(id)}">
+        <div class="coming-cover">
+          <img src="${escapeHtml(cover)}" alt="${escapeHtml(b.title||'Dennis Nazar book coming soon')}" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='assets/coming-soon-cover.webp?v=20260929';this.classList.add('asset-fallback')">
+          <div class="coming-overlay"><span>COMING SOON</span><strong>BOOK ${String(i+1+available.length).padStart(2,'0')}</strong></div>
+        </div>
+        <div class="coming-body">
+          <div>
+            <small>NEW RELEASE</small>
+            <h3>${escapeHtml(b.title||'New book coming soon')}</h3>
+            <p class="coming-description">${escapeHtml(description)}</p>
+          </div>
+          <button class="outline-btn" data-notify>Notify Me <i data-lucide="bell"></i></button>
+        </div>
+      </article>`;
+    }).join(''):`<div class="admin-empty"><strong>No upcoming books.</strong><span>New titles can be added from the Admin Dashboard.</span></div>`;
   }
   $$('.reveal').forEach(e=>{if('IntersectionObserver'in window)e.classList.remove('visible');});
   if(window.lucide)lucide.createIcons();
