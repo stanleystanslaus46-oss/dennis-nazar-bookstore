@@ -33,9 +33,63 @@ function renderBookEditor(b){const editor=$("#bookEditor");const rows=Object.ent
 <label>Upload private PDF<input data-pdf-file="${safeId}" type="file" accept="application/pdf"></label>
 <label>Availability<select data-book="${safeId}" data-field="available"><option value="true" ${x.available?'selected':''}>Yes — sell now</option><option value="false" ${!x.available?'selected':''}>No — not for sale</option></select></label>
 <label>Status<select data-book="${safeId}" data-field="status"><option value="available" ${status==='available'?'selected':''}>Available</option><option value="coming_soon" ${status==='coming_soon'?'selected':''}>Coming Soon</option><option value="inactive" ${status==='inactive'?'selected':''}>Inactive</option></select></label>
-<div class="book-admin-note">PDF files stay in the private book-pdfs bucket. The storefront never receives the PDF path.</div>
+<div class="book-admin-note">PDF files stay in the private book-pdfs bucket. Saving a real PDF also builds protected reader pages in the private book-pages bucket.</div>
 ${status!=='available'?'<button type="button" class="admin-secondary deactivate-book" data-deactivate-book="'+safeId+'"><i data-lucide="archive"></i> Deactivate Book</button>':''}
 </article>`}).join('')||'<div class="admin-empty"><strong>No books found</strong><span>Add your first catalog item below.</span></div>';window.lucide?.createIcons?.();$$('.deactivate-book',editor).forEach(button=>button.addEventListener('click',()=>deactivateBook(button.dataset.deactivateBook)))}
+async function processReaderPages(bookId,pdf,button){
+  if(!window.pdfjsLib)throw new Error('PDF reader engine is unavailable. Please refresh the admin page and try again.');
+  if(!bookId||!pdf)throw new Error('Book PDF is required.');
+  const old=await sb.from('book_pages').select('id,image_path').eq('book_id',bookId);
+  if(old.error)throw old.error;
+  const batch=crypto.randomUUID();
+  const uploaded=[];
+  const rows=[];
+  let doc=null;
+  try{
+    const bytes=await pdf.arrayBuffer();
+    doc=await window.pdfjsLib.getDocument({data:bytes}).promise;
+    for(let pageNumber=1;pageNumber<=doc.numPages;pageNumber++){
+      if(button)button.innerHTML='Processing '+bookId+' — page '+pageNumber+' / '+doc.numPages+'…';
+      const page=await doc.getPage(pageNumber);
+      const viewport=page.getViewport({scale:1.3});
+      const canvas=document.createElement('canvas');
+      canvas.width=Math.ceil(viewport.width);
+      canvas.height=Math.ceil(viewport.height);
+      const ctx=canvas.getContext('2d',{alpha:false});
+      await page.render({canvasContext:ctx,viewport}).promise;
+      const blob=await new Promise((resolve,reject)=>canvas.toBlob(b=>b?resolve(b):reject(new Error('Could not encode reader page '+pageNumber+'.')),'image/webp',.82));
+      const path=bookId+'/'+batch+'/'+String(pageNumber).padStart(4,'0')+'.webp';
+      const upload=await sb.storage.from('book-pages').upload(path,blob,{upsert:false,contentType:'image/webp',cacheControl:'31536000'});
+      if(upload.error)throw upload.error;
+      uploaded.push(path);
+      rows.push({book_id:bookId,page_number:pageNumber,image_path:path});
+      canvas.width=1;canvas.height=1;
+    }
+    for(let i=0;i<rows.length;i+=50){
+      const result=await sb.from('book_pages').insert(rows.slice(i,i+50));
+      if(result.error)throw result.error;
+    }
+    if(old.data?.length){
+      const oldIds=old.data.map(x=>x.id).filter(Boolean);
+      for(let i=0;i<oldIds.length;i+=50){
+        const result=await sb.from('book_pages').delete().in('id',oldIds.slice(i,i+50));
+        if(result.error)throw result.error;
+      }
+      const oldPaths=old.data.map(x=>x.image_path).filter(Boolean);
+      for(let i=0;i<oldPaths.length;i+=100){
+        const result=await sb.storage.from('book-pages').remove(oldPaths.slice(i,i+100));
+        if(result.error)console.warn('Old reader page cleanup failed:',result.error);
+      }
+    }
+    return {pageCount:doc.numPages,batch};
+  }catch(e){
+    if(uploaded.length){
+      for(let i=0;i<uploaded.length;i+=100)await sb.storage.from('book-pages').remove(uploaded.slice(i,i+100));
+    }
+    throw e;
+  }
+}
+
 async function deactivateBook(id){if(!id)return;if(!confirm('Deactivate this book? It will remain in the database and stop appearing as an active sale.'))return;try{const {error}=await sb.from('books').update({available:false,status:'inactive',updated_at:new Date().toISOString()}).eq('id',id);if(error)throw error;await populate();alert('Book deactivated.')}catch(e){alert(err(e))}}
 function nextBookId(books){const used=new Set(Object.keys(books||{}));let n=1;while(used.has(`book${n}`))n++;return `book${n}`}
 async function addBook(){try{const loaded=await loadBackendStore(),books=loaded.books||{},id=nextBookId(books),sort=Object.values(books).reduce((m,b)=>Math.max(m,Number(b.sort_order||0)),0)+1;const slug=`kitabu-${sort}`;const payload={id,title:`Kitabu kipya ${String(sort).padStart(2,'0')}`,slug,description:'',author:'Dennis Nazar',subtitle:'NEW RELEASE',price:2500,currency:'TZS',status:'coming_soon',image_path:'assets/coming-soon-cover.jpg',pdf_path:'',available:false,sort_order:sort,updated_at:new Date().toISOString()};const {error}=await sb.from('books').insert(payload);if(error)throw error;await populate();const card=$(`[data-book-card="${id}"]`);card?.scrollIntoView({behavior:'smooth',block:'center'});alert(`Book ${id} added. Edit the book details and save the catalog.`)}catch(e){alert(err(e))}}
@@ -83,6 +137,10 @@ $(".save-books")?.addEventListener('click',async e=>{
       if(!payload.title||!payload.slug)throw new Error(`${id}: title and slug are required.`);
       const result=await sb.from('books').update(payload).eq('id',id);
       if(result.error)throw result.error;
+      if(pdf){
+        const built=await processReaderPages(id,pdf,button);
+        console.info(id+' reader pages built:',built.pageCount);
+      }
     }
     await populate();
     alert('Book catalog saved live. Covers and private PDFs are synced safely to Supabase.');
