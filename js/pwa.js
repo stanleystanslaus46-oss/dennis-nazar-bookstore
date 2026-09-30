@@ -291,9 +291,7 @@
       navigator.serviceWorker.register("/sw.js", { scope: "/" }).catch(() => {});
     }
 
-    if (!isStandalone && (isIOS || isAndroid)) {
-      setTimeout(showInstallModal, 2200);
-    }
+    /* Never block the storefront with an automatic install overlay. Installation is user-initiated only. */
   }
 
   if (document.readyState === "loading") {
