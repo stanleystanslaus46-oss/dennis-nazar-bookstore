@@ -15,7 +15,7 @@
       const user=await getUser();
       if(!user){showSignedOut();return}
       authCard.hidden=true;libraryView.hidden=false;logout.hidden=false;emailLabel.textContent=user.email||'';grid.innerHTML='<div class="library-message">Loading your library…</div>';empty.hidden=true;
-      const {data,error}=await sb.functions.invoke('ensure-access',{body:{}});if(error)throw error;if(data?.error)throw new Error(data.error);
+      const {data,error}=await sb.functions.invoke('ensure-access',{body:{}});if(error)throw error;if(data?.code==='ADMIN_SESSION'){localStorage.removeItem('dnLastPurchaseEmail');await sb.auth.signOut({scope:'local'});showSignedOut('Enter the email address you used during checkout to access your private Library.');return}if(data?.error)throw new Error(data.error);
       const books=data?.books||[];
       if(!books.length){grid.innerHTML='';empty.hidden=false;icons();return}
       const ids=books.map(x=>x.book_id);let progressMap={};
