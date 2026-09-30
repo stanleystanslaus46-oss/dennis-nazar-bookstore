@@ -2,6 +2,8 @@
 /* Core-content safety: never leave the homepage invisible if a later initialization step fails. */
 const dnRevealNodes=()=>[...document.querySelectorAll('.reveal')];
 const dnShowReveals=()=>dnRevealNodes().forEach(el=>el.classList.add('visible'));
+const dnCreateIcons=()=>{try{if(window.lucide?.createIcons)window.lucide.createIcons()}catch(_){}};
+window.addEventListener('load',dnCreateIcons,{once:true});
 /* Activate reveal animation only after an observer exists; static content remains visible if JS fails. */
 document.documentElement.classList.add('dn-reveal-runtime');
 try{
