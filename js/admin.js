@@ -9,11 +9,35 @@ function err(e){const message=String(e?.message||e||'Unknown error');if(/row-lev
 function esc(v){return String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;')}
 function setLoginError(message){loginError.hidden=false;loginError.textContent=message}
 async function ensureAdmin(){const session=await getAdminSession();if(!session)return false;const {data,error}=await sb.from('admin_users').select('user_id,email,role').eq('user_id',session.user.id).maybeSingle();if(error||!data||data.role!=='admin'){await sb.auth.signOut();return false}return true}
-async function openDash(){loginCard.hidden=true;dashboard.hidden=false;logout.hidden=false;await Promise.all([populate(),renderOrders()]);if(window.lucide)lucide.createIcons()}
+async function openDash(){loginCard.hidden=true;dashboard.hidden=false;logout.hidden=false;await Promise.all([populate(),renderOrders(),loadAdminIdentity()]);if(window.lucide)lucide.createIcons()}
 if(sb&&await ensureAdmin())await openDash();
 sb?.auth.onAuthStateChange((event)=>{if(event==='SIGNED_OUT'){dashboard.hidden=true;logout.hidden=true;loginCard.hidden=false}});
 $("#loginBtn")?.addEventListener('click',async()=>{loginError.hidden=true;const button=$("#loginBtn"),email=$("#loginEmail").value.trim(),password=$("#loginPassword").value;if(!email||!password){setLoginError('Enter your email and password.');return}button.disabled=true;const old=button.innerHTML;button.textContent='Signing in…';try{const {error}=await sb.auth.signInWithPassword({email,password});if(error)throw error;if(!(await ensureAdmin())){setLoginError('Akaunti hii haina admin role kwenye public.admin_users.');return}await openDash()}catch(e){setLoginError(err(e))}finally{button.disabled=false;button.innerHTML=old;if(window.lucide)lucide.createIcons()}});
 logout?.addEventListener('click',async()=>{logout.disabled=true;await sb?.auth.signOut();location.reload()});
+async function loadAdminIdentity(){
+  const {data}=await sb.auth.getUser();
+  const email=$("#adminAccountEmail");
+  if(email)email.textContent=data.user?.email||'Signed-in administrator';
+}
+$("#changeAdminPassword")?.addEventListener('click',async()=>{
+  const button=$("#changeAdminPassword"),message=$("#adminPasswordMessage");
+  const current=$("#adminCurrentPassword").value,newPassword=$("#adminNewPassword").value,confirmPassword=$("#adminConfirmPassword").value;
+  message.hidden=true;
+  if(!current||!newPassword||!confirmPassword){message.hidden=false;message.className='admin-password-message is-error';message.textContent='Fill in all password fields.';return}
+  if(newPassword.length<8){message.hidden=false;message.className='admin-password-message is-error';message.textContent='The new password must be at least 8 characters.';return}
+  if(newPassword!==confirmPassword){message.hidden=false;message.className='admin-password-message is-error';message.textContent='The new passwords do not match.';return}
+  button.disabled=true;const old=button.innerHTML;button.textContent='Changing password…';
+  try{
+    const {error}=await sb.auth.updateUser({password:newPassword,current_password:current});
+    if(error)throw error;
+    $("#adminCurrentPassword").value='';$("#adminNewPassword").value='';$("#adminConfirmPassword").value='';
+    message.hidden=false;message.className='admin-password-message is-success';message.textContent='Admin password changed successfully. Your current session remains active.';
+  }catch(e){
+    message.hidden=false;message.className='admin-password-message is-error';
+    message.textContent=/password|credential|invalid/i.test(String(e?.message||''))?'The current password is incorrect or the new password was rejected.':err(e);
+  }finally{button.disabled=false;button.innerHTML=old;window.lucide?.createIcons?.()}
+});
+
 $$('.tab').forEach(t=>t.onclick=async()=>{$$('.tab').forEach(x=>x.classList.remove('active'));$$('.admin-tab').forEach(x=>x.hidden=true);t.classList.add('active');$("#tab-"+t.dataset.tab).hidden=false;if(t.dataset.tab==='orders')await renderOrders();if(t.dataset.tab==='access')window.dispatchEvent(new CustomEvent('dn:refresh-access'));if(t.dataset.tab==='reader')window.dispatchEvent(new CustomEvent('dn:refresh-reader'));if(window.lucide)lucide.createIcons()});
 async function populate(){try{const loaded=await loadBackendStore(),c=loaded.config,b=loaded.books;$$('[data-cfg]').forEach(el=>el.value=c[el.dataset.cfg]??'');$$('[data-color]').forEach(el=>el.value=c.colors?.[el.dataset.color]||'#000000');const plainContent=(value)=>String(value??'').replace(/<br[^>]*>/gi,'\n').replace(/<[^>]*>/g,'').replace(/&lt;/gi,'<').replace(/&gt;/gi,'>').replace(/&amp;/gi,'&').replace(/&quot;/gi,'\"').replace(/&#39;/gi,"'");$$('[data-content]').forEach(el=>el.value=plainContent(c.content?.[el.dataset.content]));renderBookEditor(b)}catch(e){setLoginError(err(e))}}
 function bookStatus(x){return x.status|| (x.available?'available':'coming_soon')}
