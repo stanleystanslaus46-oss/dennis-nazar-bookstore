@@ -1,6 +1,18 @@
 (async function(){
 let {config:SITE_CONFIG,books:BOOKS}=await loadBackendStore();
 const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+	function applyMedia(){
+	  const mediaConfig=SITE_CONFIG.media||{};
+	  if(mediaConfig.hero)document.documentElement.style.setProperty('--hero-image','url("'+String(mediaConfig.hero).replace(/"/g,'\\"')+'")');
+	  const authorSrc=mediaConfig.author;
+	  if(authorSrc){$('.about-author-image img').forEach(img=>{img.src=authorSrc;img.dataset.mediaManaged='true'});const heroAuthor=$('.hero-author img');if(heroAuthor)heroAuthor.src=authorSrc}
+	  const art=$('.homepage-course-art');
+	  if(art&&mediaConfig.courseVideo){
+	    let video=art.querySelector('.homepage-course-video');
+	    if(!video){video=document.createElement('video');video.className='homepage-course-video';video.autoplay=true;video.muted=true;video.loop=true;video.playsInline=true;video.setAttribute('aria-label','Dennis Nazar online courses video');art.appendChild(video)}
+	    video.src=mediaConfig.courseVideo;video.load();video.play().catch(()=>{});
+	  }
+	}
 	function applyTypography(){
 	  const fonts=SITE_CONFIG.fonts||{};
 	  const sans=fonts.sans||'Manrope',serif=fonts.serif||'Playfair Display';
@@ -74,7 +86,7 @@ const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelecto
   if(window.lucide)lucide.createIcons();
 }
 function escapeHtml(v){return String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
-applyTypography();applySiteConfig();applyBooks();if(window.lucide)lucide.createIcons();
+applyTypography();applyMedia();applySiteConfig();applyBooks();if(window.lucide)lucide.createIcons();
 
 const bookDetails={
  book1:{kicker:"DIGITAL EDITION · 01",description:"Mwongozo wa kujitambua na kufanya maamuzi ya busara unapochagua mwenzi wa maisha, ukiangalia tabia, mawasiliano, maadili na mwelekeo wa baadaye.",features:["Misingi ya kuchagua mwenzi kwa hekima","Maswali ya kujitafakari kabla ya kufanya maamuzi","Mtazamo wa mahusiano unaolenga maisha ya muda mrefu"]},
