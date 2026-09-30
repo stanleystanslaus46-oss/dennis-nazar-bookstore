@@ -29,3 +29,41 @@ function getSupabase(){if(!hasSupabase())return null;if(!window.__dnSupabase)win
 async function loadBackendStore(){const sb=getSupabase();if(!sb)return {config:getStoreConfig(),books:getBooks(),backend:false};try{const [{data:settings,error:sErr},{data:rows,error:bErr}]=await Promise.all([sb.from('store_settings').select('data').eq('id',1).maybeSingle(),sb.from('books').select('id,title,subtitle,price,image_path,available,sort_order,updated_at,slug,description,author,currency,status,created_at').order('sort_order')]);if(sErr||bErr)throw(sErr||bErr);const config=deepMerge(DEFAULT_STORE,settings?.data||{});const books=Object.fromEntries((rows||[]).map(b=>[b.id,{title:b.title,subtitle:b.subtitle,price:b.price,image:normalizeAssetPath(b.image_path),available:b.available,sort_order:b.sort_order,status:b.status,description:b.description,author:b.author,currency:b.currency,slug:b.slug}]));saveStoreConfig(config);saveBooks(books);return {config,books,backend:true}}catch(e){return {config:getStoreConfig(),books:{},backend:false,error:e}}}
 async function invokePublicFunction(name,body){const sb=getSupabase();if(!sb)throw new Error('BACKEND_NOT_CONFIGURED');const {data,error}=await sb.functions.invoke(name,{body});if(error)throw error;return data}
 async function getAdminSession(){const sb=getSupabase();if(!sb)return null;const {data}=await sb.auth.getSession();return data.session||null}
+
+
+/* Password visibility — available on every page and for dynamically added fields. */
+(function(){
+  function addPasswordToggle(input){
+    if(!input||input.dataset.passwordToggleReady==='true')return;
+    input.dataset.passwordToggleReady='true';
+    const wrap=document.createElement('span');
+    wrap.className='password-field-wrap';
+    input.parentNode.insertBefore(wrap,input);
+    wrap.appendChild(input);
+    const toggle=document.createElement('button');
+    toggle.type='button';
+    toggle.className='password-toggle';
+    toggle.setAttribute('aria-label','Show password');
+    toggle.setAttribute('title','Show password');
+    toggle.innerHTML='<i data-lucide="eye"></i>';
+    wrap.appendChild(toggle);
+    toggle.addEventListener('click',()=>{
+      const visible=input.type==='text';
+      input.type=visible?'password':'text';
+      toggle.setAttribute('aria-label',visible?'Show password':'Hide password');
+      toggle.setAttribute('title',visible?'Show password':'Hide password');
+      toggle.innerHTML='<i data-lucide="'+(visible?'eye':'eye-off')+'"></i>';
+      window.lucide?.createIcons?.();
+      input.focus({preventScroll:true});
+    });
+    window.lucide?.createIcons?.();
+  }
+  function initPasswordToggles(root=document){
+    root.querySelectorAll?.('input[type="password"]').forEach(addPasswordToggle);
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>initPasswordToggles(),{once:true});
+  else initPasswordToggles();
+  new MutationObserver(mutations=>mutations.forEach(m=>m.addedNodes.forEach(node=>{
+    if(node.nodeType===1)initPasswordToggles(node);
+  }))).observe(document.documentElement,{childList:true,subtree:true});
+})();
