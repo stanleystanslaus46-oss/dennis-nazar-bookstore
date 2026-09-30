@@ -123,7 +123,7 @@ function applyTypography(){
             <h3>${escapeHtml(b.title||'New book coming soon')}</h3>
             <p class="coming-description">${escapeHtml(description)}</p>
           </div>
-          <button class="outline-btn" data-book-details="${escapeHtml(id)}">Explore Book <i data-lucide="arrow-up-right"></i></button>
+          <button class="outline-btn" data-notify="${escapeHtml(id)}">Notify Me <i data-lucide="bell"></i></button>
         </div>
       </article>`;
     }).join(''):`<div class="admin-empty"><strong>No upcoming books.</strong><span>New titles can be added from the Admin Dashboard.</span></div>`;
@@ -142,7 +142,12 @@ const bookDetails={
 const bookModal=$("#bookModal");let activeDetailsBook=null;
 	function openBookDetails(id){const b=BOOKS[id];if(!b||!bookModal)return;const base=bookDetails[id]||{kicker:`DIGITAL EDITION · ${String(b?.sort_order||1).padStart(2,"0")}`,description:"Dennis Nazar digital edition.",features:["Thought-provoking ideas","Practical reflection and personal growth","Private Library access"]},d={...base,description:b.description||b.subtitle||base.description};activeDetailsBook=id;$("#bookModalImage").src=b.image;$("#bookModalImage").alt=b.title;$("#bookModalKicker").textContent=d.kicker;$("#bookModalTitle").textContent=b.title;$("#bookModalSubtitle").textContent=d.description;$("#bookModalPrice").textContent=Number(b.price).toLocaleString("en-US");const currency=bookModal.querySelector(".book-modal-price span");if(currency)currency.textContent=b.currency||SITE_CONFIG.currency||"TZS";bookModal.querySelector(".book-modal-feature-list").innerHTML=d.features.map((f,i)=>`<div><i data-lucide="${["book-open","lightbulb","target"][i]}"></i><span>${f}</span></div>`).join("")+`<div><i data-lucide="library"></i><span>Private Library access baada ya payment verification</span></div>`;bookModal.classList.add("open");bookModal.setAttribute("aria-hidden","false");document.body.classList.add("locked");if(window.lucide)lucide.createIcons()}
 function closeBookDetails(){bookModal?.classList.remove("open");bookModal?.setAttribute("aria-hidden","true");document.body.classList.remove("locked");activeDetailsBook=null}
-document.addEventListener("click",e=>{const details=e.target.closest?.("[data-book-details]");if(details){e.preventDefault();openBookDetails(details.dataset.bookDetails)}});
+document.addEventListener("click",e=>{
+  const notify=e.target.closest?.("[data-notify]");
+  if(notify){e.preventDefault();const b=BOOKS[notify.dataset.notify];showToast(b?.title?"You'll be notified about "+b.title:"You'll be notified when this book is released.");return}
+  const details=e.target.closest?.("[data-book-details]");
+  if(details){e.preventDefault();openBookDetails(details.dataset.bookDetails)}
+});
 $("#bookModalClose")?.addEventListener("click",closeBookDetails);bookModal?.addEventListener("click",e=>{if(e.target===bookModal)closeBookDetails()});
 $("#bookModalBuy")?.addEventListener("click",()=>{if(activeDetailsBook){const id=activeDetailsBook;closeBookDetails();buyNow(id)}});$("#bookModalCart")?.addEventListener("click",()=>{if(activeDetailsBook){addToCart(activeDetailsBook);closeBookDetails();openCart()}});
 
@@ -169,3 +174,6 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeCart();setMenu
   if (window.lucide) window.lucide.createIcons();
   toggle();
 })();
+
+/* Lucide is loaded synchronously in index.html; re-run after dynamic content is rendered. */
+window.addEventListener("DOMContentLoaded",()=>{try{window.lucide?.createIcons?.()}catch(_){}});
