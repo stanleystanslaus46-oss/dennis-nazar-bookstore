@@ -1,4 +1,22 @@
 (async function(){
+/* Core-content safety: never leave the homepage invisible if a later initialization step fails. */
+const dnRevealNodes=()=>[...document.querySelectorAll('.reveal')];
+const dnShowReveals=()=>dnRevealNodes().forEach(el=>el.classList.add('visible'));
+/* Activate reveal animation only after an observer exists; static content remains visible if JS fails. */
+document.documentElement.classList.add('dn-reveal-runtime');
+try{
+  if('IntersectionObserver' in window){
+    const dnRevealObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
+      if(entry.isIntersecting){entry.target.classList.add('visible');dnRevealObserver.unobserve(entry.target)}
+    }),{threshold:0.01,rootMargin:'0px 0px 180px 0px'});
+    dnRevealNodes().forEach(el=>dnRevealObserver.observe(el));
+    requestAnimationFrame(()=>dnRevealNodes().filter(el=>el.getBoundingClientRect().top<window.innerHeight+180).forEach(el=>el.classList.add('visible')));
+  }else dnShowReveals();
+}catch(_){dnShowReveals()}
+/* If any uncaught initialization error occurs later, keep all core content visible. */
+window.addEventListener('error',dnShowReveals);
+window.addEventListener('unhandledrejection',dnShowReveals);
+setTimeout(dnShowReveals,1800);
 let {config:SITE_CONFIG,books:BOOKS}=await Promise.race([
   loadBackendStore(),
   new Promise(resolve=>setTimeout(()=>resolve({config:getStoreConfig(),books:getBooks(),backend:false,error:new Error('Backend load timeout')}),3500))
