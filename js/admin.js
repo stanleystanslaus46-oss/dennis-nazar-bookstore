@@ -119,9 +119,19 @@ function loadMediaFields(media){
   const m=media||{};
   $('[data-media-url]').forEach(el=>el.value=m[el.dataset.mediaUrl]||'');
   const previews={hero:$('#heroMediaPreview'),author:$('#authorMediaPreview'),courseVideo:$('#courseMediaPreview')};
-  if(previews.hero)previews.hero.innerHTML=m.hero?'<img src="'+esc(m.hero)+'" alt="Current hero background">':'<span>No hero image selected</span>';
-  if(previews.author)previews.author.innerHTML=m.author?'<img src="'+esc(m.author)+'" alt="Current author image">':'<span>No author image selected</span>';
-  if(previews.courseVideo)previews.courseVideo.innerHTML=m.courseVideo?'<video src="'+esc(m.courseVideo)+'" muted controls playsinline></video>':'<span>No homepage video selected</span>';
+  if(previews.hero)previews.hero.innerHTML=m.hero?'<div class="media-preview-badge">CURRENT LIVE IMAGE</div><img src="'+esc(m.hero)+'" alt="Current hero background">':'<span>No hero image selected</span>';
+  if(previews.author)previews.author.innerHTML=m.author?'<div class="media-preview-badge">CURRENT LIVE IMAGE</div><img src="'+esc(m.author)+'" alt="Current author image">':'<span>No author image selected</span>';
+  if(previews.courseVideo)previews.courseVideo.innerHTML=m.courseVideo?'<div class="media-preview-badge">CURRENT LIVE VIDEO</div><video src="'+esc(m.courseVideo)+'" muted controls playsinline></video>':'<span>No homepage video selected</span>';
+}
+function previewSelectedMedia(key,file){
+  if(!file)return;
+  const preview=key==='hero'?$('#heroMediaPreview'):key==='author'?$('#authorMediaPreview'):$('#courseMediaPreview');
+  if(!preview)return;
+  const url=URL.createObjectURL(file);
+  preview.dataset.previewObjectUrl=url;
+  preview.innerHTML=key==='courseVideo'
+    ? '<div class="media-preview-badge is-new">NEW — UNSAVED</div><video src="'+esc(url)+'" muted controls playsinline></video>'
+    : '<div class="media-preview-badge is-new">NEW — UNSAVED</div><img src="'+esc(url)+'" alt="New selected media">';
 }
 async function uploadSiteMedia(file,key){
   if(!file)return '';
@@ -160,6 +170,7 @@ async function deactivateBook(id){if(!id)return;if(!confirm('Deactivate this boo
 function nextBookId(books){const used=new Set(Object.keys(books||{}));let n=1;while(used.has(`book${n}`))n++;return `book${n}`}
 async function addBook(){try{const loaded=await loadBackendStore(),books=loaded.books||{},id=nextBookId(books),sort=Object.values(books).reduce((m,b)=>Math.max(m,Number(b.sort_order||0)),0)+1;const slug=`kitabu-${sort}`;const payload={id,title:`Kitabu kipya ${String(sort).padStart(2,'0')}`,slug,description:'',author:'Dennis Nazar',subtitle:'NEW RELEASE',price:2500,currency:'TZS',status:'coming_soon',image_path:'assets/coming-soon-cover.jpg',pdf_path:'',available:false,sort_order:sort,updated_at:new Date().toISOString()};const {error}=await sb.from('books').insert(payload);if(error)throw error;await populate();const card=$(`[data-book-card="${id}"]`);card?.scrollIntoView({behavior:'smooth',block:'center'});alert(`Book ${id} added. Edit the book details and save the catalog.`)}catch(e){alert(err(e))}}
 async function saveSettings(){const {data:row,error:getErr}=await sb.from('store_settings').select('data').eq('id',1).single();if(getErr)throw getErr;const c=deepMerge(getStoreConfig(),row.data||{});$$('[data-cfg]').forEach(el=>c[el.dataset.cfg]=el.value.trim());c.colors={...(c.colors||{})};$('[data-color]').forEach(el=>c.colors[el.dataset.color]=el.value);c.fonts={...(c.fonts||{})};$('[data-font]').forEach(el=>c.fonts[el.dataset.font]=el.value);const {error}=await sb.from('store_settings').update({data:c,updated_at:new Date().toISOString()}).eq('id',1);if(error)throw error;saveStoreConfig(c);alert('Settings saved live.')}
+$('[data-media-file]').forEach(input=>input.addEventListener('change',()=>previewSelectedMedia(input.dataset.mediaFile,input.files?.[0])));
 $('.save-media')?.addEventListener('click',saveMedia);
 $('.save-general,.save-colors').forEach(b=>b.onclick=async()=>{b.disabled=true;try{await saveSettings()}catch(e){alert(err(e))}finally{b.disabled=false}});
 $(".save-content")?.addEventListener('click',async e=>{const b=e.currentTarget;b.disabled=true;try{const {data:row,error:se}=await sb.from('store_settings').select('data').eq('id',1).single();if(se)throw se;const c=deepMerge(getStoreConfig(),row.data||{});c.content={...(c.content||{})};$$('[data-content]').forEach(el=>c.content[el.dataset.content]=el.value);const {error}=await sb.from('store_settings').update({data:c,updated_at:new Date().toISOString()}).eq('id',1);if(error)throw error;saveStoreConfig(c);alert('Website content saved live.')}catch(e){alert(err(e))}finally{b.disabled=false}});
