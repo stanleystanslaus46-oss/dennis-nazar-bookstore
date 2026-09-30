@@ -34,10 +34,7 @@ try{
 window.addEventListener('error',dnShowReveals);
 window.addEventListener('unhandledrejection',dnShowReveals);
 setTimeout(dnShowReveals,1800);
-let {config:SITE_CONFIG,books:BOOKS}=await Promise.race([
-  loadBackendStore(),
-  new Promise(resolve=>setTimeout(()=>resolve({config:getStoreConfig(),books:getBooks(),backend:false,error:new Error('Backend load timeout')}),3500))
-]);
+let SITE_CONFIG=getStoreConfig(),BOOKS=getBooks();
 const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
 	function applyMedia(){
   const mediaConfig=SITE_CONFIG.media||{};
@@ -151,6 +148,12 @@ function applyTypography(){
 }
 function escapeHtml(v){return String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
 applyTypography();applyMedia();applySiteConfig();applyBooks();dnEnsureLucide();
+loadBackendStore().then(result=>{
+  if(result?.config)SITE_CONFIG=result.config;
+  if(result?.books)BOOKS=result.books;
+  applyTypography();applyMedia();applySiteConfig();applyBooks();updateCartCount?.();
+  dnEnsureLucide();
+}).catch(()=>{});
 
 const bookDetails={
  book1:{kicker:"DIGITAL EDITION · 01",description:"Mwongozo wa kujitambua na kufanya maamuzi ya busara unapochagua mwenzi wa maisha, ukiangalia tabia, mawasiliano, maadili na mwelekeo wa baadaye.",features:["Misingi ya kuchagua mwenzi kwa hekima","Maswali ya kujitafakari kabla ya kufanya maamuzi","Mtazamo wa mahusiano unaolenga maisha ya muda mrefu"]},
@@ -162,7 +165,11 @@ const bookModal=$("#bookModal");let activeDetailsBook=null;
 function closeBookDetails(){bookModal?.classList.remove("open");bookModal?.setAttribute("aria-hidden","true");document.body.classList.remove("locked");activeDetailsBook=null}
 document.addEventListener("click",e=>{
   const notify=e.target.closest?.("[data-notify]");
-  if(notify){e.preventDefault();const b=BOOKS[notify.dataset.notify];showToast(b?.title?"You'll be notified about "+b.title:"You'll be notified when this book is released.");return}
+  if(notify){e.preventDefault();return}
+  const cartButton=e.target.closest?.("[data-add-cart]");
+  if(cartButton){e.preventDefault();addToCart(cartButton.dataset.addCart);return}
+  const buyButton=e.target.closest?.(".buy-btn");
+  if(buyButton){e.preventDefault();buyNow(buyButton.dataset.book);return}
   const details=e.target.closest?.("[data-book-details]");
   if(details){e.preventDefault();openBookDetails(details.dataset.bookDetails)}
 });
