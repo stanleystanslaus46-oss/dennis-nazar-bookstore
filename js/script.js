@@ -1,5 +1,8 @@
 (async function(){
-let {config:SITE_CONFIG,books:BOOKS}=await loadBackendStore();
+let {config:SITE_CONFIG,books:BOOKS}=await Promise.race([
+  loadBackendStore(),
+  new Promise(resolve=>setTimeout(()=>resolve({config:getStoreConfig(),books:getBooks(),backend:false,error:new Error('Backend load timeout')}),3500))
+]);
 const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
 	function applyMedia(){
   const mediaConfig=SITE_CONFIG.media||{};
