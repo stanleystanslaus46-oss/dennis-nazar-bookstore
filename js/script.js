@@ -2,7 +2,22 @@
 /* Core-content safety: never leave the homepage invisible if a later initialization step fails. */
 const dnRevealNodes=()=>[...document.querySelectorAll('.reveal')];
 const dnShowReveals=()=>dnRevealNodes().forEach(el=>el.classList.add('visible'));
-const dnCreateIcons=()=>{try{if(window.lucide?.createIcons)window.lucide.createIcons()}catch(_){}};
+const dnCreateIcons=()=>{
+  try{
+    if(window.lucide?.createIcons){window.lucide.createIcons();return true}
+  }catch(_){}
+  return false
+};
+const dnEnsureLucide=()=>{
+  if(dnCreateIcons())return;
+  if(document.querySelector('script[data-dn-lucide-fallback]'))return;
+  const s=document.createElement('script');
+  s.src='https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.js';
+  s.async=true;s.dataset.dnLucideFallback='true';
+  s.onload=()=>dnCreateIcons();
+  document.head.appendChild(s);
+};
+window.addEventListener('load',dnEnsureLucide,{once:true});
 window.addEventListener('load',dnCreateIcons,{once:true});
 /* Activate reveal animation only after an observer exists; static content remains visible if JS fails. */
 document.documentElement.classList.add('dn-reveal-runtime');
@@ -123,16 +138,19 @@ function applyTypography(){
             <h3>${escapeHtml(b.title||'New book coming soon')}</h3>
             <p class="coming-description">${escapeHtml(description)}</p>
           </div>
-          <button class="outline-btn" data-notify="${escapeHtml(id)}">Notify Me <i data-lucide="bell"></i></button>
+          <button class="outline-btn" data-notify="${escapeHtml(id)}">Explore Books <i data-lucide="arrow-up-right"></i></button>
         </div>
       </article>`;
     }).join(''):`<div class="admin-empty"><strong>No upcoming books.</strong><span>New titles can be added from the Admin Dashboard.</span></div>`;
   }
-  $$('.reveal').forEach(e=>{if('IntersectionObserver'in window)e.classList.remove('visible');});
-  if(window.lucide)lucide.createIcons();
+  $('.reveal').forEach(e=>{if('IntersectionObserver'in window)e.classList.remove('visible');});
+  $('.book-card.reveal,.coming-card.reveal').forEach(e=>{
+    if(e.getBoundingClientRect().top < window.innerHeight + 180)e.classList.add('visible');
+  });
+  dnEnsureLucide();
 }
 function escapeHtml(v){return String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
-applyTypography();applyMedia();applySiteConfig();applyBooks();if(window.lucide)lucide.createIcons();
+applyTypography();applyMedia();applySiteConfig();applyBooks();dnEnsureLucide();
 
 const bookDetails={
  book1:{kicker:"DIGITAL EDITION · 01",description:"Mwongozo wa kujitambua na kufanya maamuzi ya busara unapochagua mwenzi wa maisha, ukiangalia tabia, mawasiliano, maadili na mwelekeo wa baadaye.",features:["Misingi ya kuchagua mwenzi kwa hekima","Maswali ya kujitafakari kabla ya kufanya maamuzi","Mtazamo wa mahusiano unaolenga maisha ya muda mrefu"]},
@@ -140,7 +158,7 @@ const bookDetails={
  book3:{kicker:"DIGITAL EDITION · 03",description:"Mwongozo wa kutafakari alama unazoacha katika maisha ya wengine, maamuzi unayofanya leo na namna ya kujenga historia yenye maana, kusudi na matokeo mema.",features:["Reflection kuhusu maisha na legacy","Maswali yanayochochea fikra","Hatua za kuishi maisha yenye kusudi"]}
 };
 const bookModal=$("#bookModal");let activeDetailsBook=null;
-	function openBookDetails(id){const b=BOOKS[id];if(!b||!bookModal)return;const base=bookDetails[id]||{kicker:`DIGITAL EDITION · ${String(b?.sort_order||1).padStart(2,"0")}`,description:"Dennis Nazar digital edition.",features:["Thought-provoking ideas","Practical reflection and personal growth","Private Library access"]},d={...base,description:b.description||b.subtitle||base.description};activeDetailsBook=id;$("#bookModalImage").src=b.image;$("#bookModalImage").alt=b.title;$("#bookModalKicker").textContent=d.kicker;$("#bookModalTitle").textContent=b.title;$("#bookModalSubtitle").textContent=d.description;$("#bookModalPrice").textContent=Number(b.price).toLocaleString("en-US");const currency=bookModal.querySelector(".book-modal-price span");if(currency)currency.textContent=b.currency||SITE_CONFIG.currency||"TZS";bookModal.querySelector(".book-modal-feature-list").innerHTML=d.features.map((f,i)=>`<div><i data-lucide="${["book-open","lightbulb","target"][i]}"></i><span>${f}</span></div>`).join("")+`<div><i data-lucide="library"></i><span>Private Library access baada ya payment verification</span></div>`;bookModal.classList.add("open");bookModal.setAttribute("aria-hidden","false");document.body.classList.add("locked");if(window.lucide)lucide.createIcons()}
+	function openBookDetails(id){const b=BOOKS[id];if(!b||!bookModal)return;const base=bookDetails[id]||{kicker:`DIGITAL EDITION · ${String(b?.sort_order||1).padStart(2,"0")}`,description:"Dennis Nazar digital edition.",features:["Thought-provoking ideas","Practical reflection and personal growth","Private Library access"]},d={...base,description:b.description||b.subtitle||base.description};activeDetailsBook=id;$("#bookModalImage").src=b.image;$("#bookModalImage").alt=b.title;$("#bookModalKicker").textContent=d.kicker;$("#bookModalTitle").textContent=b.title;$("#bookModalSubtitle").textContent=d.description;$("#bookModalPrice").textContent=Number(b.price).toLocaleString("en-US");const currency=bookModal.querySelector(".book-modal-price span");if(currency)currency.textContent=b.currency||SITE_CONFIG.currency||"TZS";bookModal.querySelector(".book-modal-feature-list").innerHTML=d.features.map((f,i)=>`<div><i data-lucide="${["book-open","lightbulb","target"][i]}"></i><span>${f}</span></div>`).join("")+`<div><i data-lucide="library"></i><span>Private Library access baada ya payment verification</span></div>`;bookModal.classList.add("open");bookModal.setAttribute("aria-hidden","false");document.body.classList.add("locked");dnEnsureLucide()}
 function closeBookDetails(){bookModal?.classList.remove("open");bookModal?.setAttribute("aria-hidden","true");document.body.classList.remove("locked");activeDetailsBook=null}
 document.addEventListener("click",e=>{
   const notify=e.target.closest?.("[data-notify]");
@@ -154,7 +172,7 @@ $("#bookModalBuy")?.addEventListener("click",()=>{if(activeDetailsBook){const id
 const mobileMenu=$("#mobileMenu"),menuToggle=$("#menuToggle"),menuClose=$("#menuClose");function setMenu(open){mobileMenu?.classList.toggle('open',open);mobileMenu?.setAttribute('aria-hidden',String(!open));menuToggle?.setAttribute('aria-expanded',String(open));document.body.classList.toggle('locked',open)}menuToggle?.addEventListener('click',()=>setMenu(true));menuClose?.addEventListener('click',()=>setMenu(false));$$('.mobile-menu a').forEach(a=>a.addEventListener('click',()=>setMenu(false)));
 if('IntersectionObserver'in window){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}}),{threshold:.08});$$('.reveal').forEach(e=>io.observe(e))}else $$('.reveal').forEach(e=>e.classList.add('visible'));
 	function updateCartCount(){const e=$("#cartCount");if(e)e.textContent=getCart().length}function addToCart(id){const b=BOOKS[id];if(!b?.available||b.status==='inactive')return;const cart=getCart().map(x=>({id:String(x.id)})).filter(x=>BOOKS[x.id]?.available&&BOOKS[x.id]?.status!=='inactive');if(!cart.some(x=>x.id===id))cart.push({id});saveCart(cart);updateCartCount();showToast(`${b.title} imeongezwa kwenye cart.`)}function buyNow(id){const b=BOOKS[id];if(!b?.available||b.status==='inactive')return;saveCart([{id}]);location.href=`checkout.html?book=${encodeURIComponent(id)}`}$$( '[data-add-cart]').forEach(b=>b.addEventListener('click',()=>addToCart(b.dataset.addCart)));$$('.buy-btn').forEach(b=>b.addEventListener('click',()=>buyNow(b.dataset.book)));updateCartCount();
-	const cartEl=$("#cart"),cartItems=$("#cartItems"),cartEmpty=$("#cartEmpty"),cartFoot=$("#cartFoot"),cartTotal=$("#cartTotal");function renderCart(){const cart=getCart().map(i=>({id:i.id,b:BOOKS[i.id]})).filter(x=>x.b?.available&&x.b.status!=='inactive');saveCart(cart.map(x=>({id:x.id})));if(!cartItems)return;cartItems.innerHTML=cart.map(({id:bId,b})=>`<div class="cart-item"><img src="${escapeHtml(b.image||'')}" alt="${escapeHtml(b.title||'Book')}"><div><h3>${escapeHtml(b.title||'Book')}</h3><small>Digital Softcopy</small><br><button class="cart-remove" data-remove="${escapeHtml(bId)}">Remove</button></div><strong class="cart-item-price">${formatPrice(b.price)}</strong></div>`).join('');$$('[data-remove]',cartItems).forEach(b=>b.onclick=()=>{saveCart(getCart().filter(i=>i.id!==b.dataset.remove).map(i=>({id:i.id})));renderCart();updateCartCount()});const empty=!cart.length;if(cartEmpty)cartEmpty.hidden=!empty;if(cartFoot)cartFoot.hidden=empty;if(cartTotal)cartTotal.textContent=formatPrice(cart.reduce((a,x)=>a+Number(x.b.price||0),0));if(window.lucide)lucide.createIcons()}function openCart(){renderCart();cartEl?.classList.add('open');cartEl?.setAttribute('aria-hidden','false');document.body.classList.add('locked')}function closeCart(){cartEl?.classList.remove('open');cartEl?.setAttribute('aria-hidden','true');document.body.classList.remove('locked')}$("#cartTrigger")?.addEventListener('click',openCart);$("#cartClose")?.addEventListener('click',closeCart);cartEl?.addEventListener('click',e=>{if(e.target===cartEl)closeCart()});$("#cartCheckout")?.addEventListener('click',()=>{if(getCart().length)location.href='checkout.html'});$("#cartBrowse")?.addEventListener('click',closeCart);
+	const cartEl=$("#cart"),cartItems=$("#cartItems"),cartEmpty=$("#cartEmpty"),cartFoot=$("#cartFoot"),cartTotal=$("#cartTotal");function renderCart(){const cart=getCart().map(i=>({id:i.id,b:BOOKS[i.id]})).filter(x=>x.b?.available&&x.b.status!=='inactive');saveCart(cart.map(x=>({id:x.id})));if(!cartItems)return;cartItems.innerHTML=cart.map(({id:bId,b})=>`<div class="cart-item"><img src="${escapeHtml(b.image||'')}" alt="${escapeHtml(b.title||'Book')}"><div><h3>${escapeHtml(b.title||'Book')}</h3><small>Digital Softcopy</small><br><button class="cart-remove" data-remove="${escapeHtml(bId)}">Remove</button></div><strong class="cart-item-price">${formatPrice(b.price)}</strong></div>`).join('');$$('[data-remove]',cartItems).forEach(b=>b.onclick=()=>{saveCart(getCart().filter(i=>i.id!==b.dataset.remove).map(i=>({id:i.id})));renderCart();updateCartCount()});const empty=!cart.length;if(cartEmpty)cartEmpty.hidden=!empty;if(cartFoot)cartFoot.hidden=empty;if(cartTotal)cartTotal.textContent=formatPrice(cart.reduce((a,x)=>a+Number(x.b.price||0),0));dnEnsureLucide()}function openCart(){renderCart();cartEl?.classList.add('open');cartEl?.setAttribute('aria-hidden','false');document.body.classList.add('locked')}function closeCart(){cartEl?.classList.remove('open');cartEl?.setAttribute('aria-hidden','true');document.body.classList.remove('locked')}$("#cartTrigger")?.addEventListener('click',openCart);$("#cartClose")?.addEventListener('click',closeCart);cartEl?.addEventListener('click',e=>{if(e.target===cartEl)closeCart()});$("#cartCheckout")?.addEventListener('click',()=>{if(getCart().length)location.href='checkout.html'});$("#cartBrowse")?.addEventListener('click',closeCart);
 const toast=$("#toast");function showToast(m){if(!toast)return;toast.querySelector("span").textContent=m;toast.classList.add("show");setTimeout(()=>toast.classList.remove("show"),3500)}
 $("#newsletterForm")?.addEventListener("submit",async e=>{e.preventDefault();const input=$("#email"),email=input?.value.trim();if(!email)return;const btn=e.currentTarget.querySelector("button");if(btn)btn.disabled=true;try{const sb=getSupabase();if(sb){const {error}=await sb.from("newsletter_subscribers").insert({email});if(error && error.code!=="23505")throw error}else{const list=JSON.parse(localStorage.getItem("dnNewsletter")||"[]");if(!list.includes(email))list.push(email);localStorage.setItem("dnNewsletter",JSON.stringify(list))}e.currentTarget.reset();showToast("Umefanikiwa kujiunga na updates za Dennis Nazar.")}catch(err){showToast("Imeshindikana kuhifadhi email. Jaribu tena.")}finally{if(btn)btn.disabled=false}});
 document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeCart();setMenu(false);closeBookDetails()}});})();
