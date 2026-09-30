@@ -1,4 +1,4 @@
-const CACHE_NAME = "dennis-nazar-pwa-v9";
+const CACHE_NAME = "dennis-nazar-pwa-v10";
 
 const APP_SHELL = [
   "/",
