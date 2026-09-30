@@ -39,7 +39,7 @@ $("#changeAdminPassword")?.addEventListener('click',async()=>{
 });
 
 $$('.tab').forEach(t=>t.onclick=async()=>{$$('.tab').forEach(x=>x.classList.remove('active'));$$('.admin-tab').forEach(x=>x.hidden=true);t.classList.add('active');$("#tab-"+t.dataset.tab).hidden=false;if(t.dataset.tab==='orders')await renderOrders();if(t.dataset.tab==='access')window.dispatchEvent(new CustomEvent('dn:refresh-access'));if(t.dataset.tab==='reader')window.dispatchEvent(new CustomEvent('dn:refresh-reader'));if(window.lucide)lucide.createIcons()});
-async function populate(){try{const loaded=await loadBackendStore(),c=loaded.config,b=loaded.books;$$('[data-cfg]').forEach(el=>el.value=c[el.dataset.cfg]??'');$('[data-color]').forEach(el=>el.value=c.colors?.[el.dataset.color]||'#000000');$('[data-font]').forEach(el=>el.value=c.fonts?.[el.dataset.font]|| (el.dataset.font==='serif'?'Playfair Display':'Manrope'));const plainContent=(value)=>String(value??'').replace(/<br[^>]*>/gi,'\n').replace(/<[^>]*>/g,'').replace(/&lt;/gi,'<').replace(/&gt;/gi,'>').replace(/&amp;/gi,'&').replace(/&quot;/gi,'\"').replace(/&#39;/gi,"'");$$('[data-content]').forEach(el=>el.value=plainContent(c.content?.[el.dataset.content]));renderBookEditor(b)}catch(e){setLoginError(err(e))}}
+async function populate(){try{const loaded=await loadBackendStore(),c=loaded.config,b=loaded.books;$$('[data-cfg]').forEach(el=>el.value=c[el.dataset.cfg]??'');$('[data-color]').forEach(el=>el.value=c.colors?.[el.dataset.color]||'#000000');$('[data-font]').forEach(el=>el.value=c.fonts?.[el.dataset.font]|| (el.dataset.font==='serif'?'Playfair Display':'Manrope'));const plainContent=(value)=>String(value??'').replace(/<br[^>]*>/gi,'\n').replace(/<[^>]*>/g,'').replace(/&lt;/gi,'<').replace(/&gt;/gi,'>').replace(/&amp;/gi,'&').replace(/&quot;/gi,'\"').replace(/&#39;/gi,"'");$('[data-content]').forEach(el=>el.value=plainContent(c.content?.[el.dataset.content]));loadMediaFields(c.media||{});renderBookEditor(b)}catch(e){setLoginError(err(e))}}
 function bookStatus(x){return x.status|| (x.available?'available':'coming_soon')}
 function renderBookEditor(b){const editor=$("#bookEditor");const rows=Object.entries(b).sort((a,b)=>Number(a[1]?.sort_order??999)-Number(b[1]?.sort_order??999));editor.innerHTML=rows.map(([id,x],idx)=>{const safeId=esc(id),status=bookStatus(x);return `<article class="book-admin" data-book-card="${safeId}">
 <div class="book-admin-head"><div><p class="section-kicker">CATALOG ITEM ${String(idx+1).padStart(2,'0')}</p><h3>${safeId}</h3></div><span class="book-admin-status ${status==='available'?'is-live':''}">${esc(status.replace('_',' ').toUpperCase())}</span></div>
@@ -115,11 +115,53 @@ async function processReaderPages(bookId,pdf,button){
   }
 }
 
+function loadMediaFields(media){
+  const m=media||{};
+  $('[data-media-url]').forEach(el=>el.value=m[el.dataset.mediaUrl]||'');
+  const previews={hero:$('#heroMediaPreview'),author:$('#authorMediaPreview'),courseVideo:$('#courseMediaPreview')};
+  if(previews.hero)previews.hero.innerHTML=m.hero?'<img src="'+esc(m.hero)+'" alt="Current hero background">':'<span>No hero image selected</span>';
+  if(previews.author)previews.author.innerHTML=m.author?'<img src="'+esc(m.author)+'" alt="Current author image">':'<span>No author image selected</span>';
+  if(previews.courseVideo)previews.courseVideo.innerHTML=m.courseVideo?'<video src="'+esc(m.courseVideo)+'" muted controls playsinline></video>':'<span>No homepage video selected</span>';
+}
+async function uploadSiteMedia(file,key){
+  if(!file)return '';
+  const image=/^image\/(jpeg|png|webp)$/i.test(file.type);
+  const video=/^video\/(mp4|webm|ogg)$/i.test(file.type);
+  const max=image?10*1024*1024:100*1024*1024;
+  if(!image&&!video)throw new Error(key==='courseVideo'?'Video must be MP4, WebM or OGG.':'Image must be JPG, PNG or WebP.');
+  if(file.size>max)throw new Error(key==='courseVideo'?'Video must be under 100 MB.':'Image must be under 10 MB.');
+  const ext=(file.name.split('.').pop()||'bin').toLowerCase().replace(/[^a-z0-9]/g,'');
+  const path='site-media/'+key+'/'+crypto.randomUUID()+'.'+ext;
+  const upload=await sb.storage.from('book-covers').upload(path,file,{upsert:false,contentType:file.type,cacheControl:'31536000'});
+  if(upload.error)throw upload.error;
+  return sb.storage.from('book-covers').getPublicUrl(path).data.publicUrl;
+}
+async function saveMedia(){
+  const message=$('#mediaSaveMessage'),button=$('.save-media');
+  message.hidden=true;button.disabled=true;const old=button.innerHTML;button.textContent='Uploading media…';
+  try{
+    const {data:row,error:getErr}=await sb.from('store_settings').select('data').eq('id',1).single();if(getErr)throw getErr;
+    const loaded=deepMerge(getStoreConfig(),row.data||{}),media={...(loaded.media||{})};
+    for(const key of ['hero','author','courseVideo']){
+      const file=$('[data-media-file="'+key+'"]')?.files?.[0];
+      const url=$('[data-media-url="'+key+'"]')?.value.trim()||'';
+      if(file)media[key]=await uploadSiteMedia(file,key);
+      else if(url)media[key]=url;
+    }
+    loaded.media=media;
+    const {error}=await sb.from('store_settings').update({data:loaded,updated_at:new Date().toISOString()}).eq('id',1);if(error)throw error;
+    saveStoreConfig(loaded);loadMediaFields(media);
+    message.hidden=false;message.className='admin-password-message is-success';message.textContent='Website media saved live.';
+    ['hero','author','courseVideo'].forEach(k=>{const el=$('[data-media-file="'+k+'"]');if(el)el.value=''});
+  }catch(e){message.hidden=false;message.className='admin-password-message is-error';message.textContent=err(e)}
+  finally{button.disabled=false;button.innerHTML=old;window.lucide?.createIcons?.()}
+}
 async function deactivateBook(id){if(!id)return;if(!confirm('Deactivate this book? It will remain in the database and stop appearing as an active sale.'))return;try{const {error}=await sb.from('books').update({available:false,status:'inactive',updated_at:new Date().toISOString()}).eq('id',id);if(error)throw error;await populate();alert('Book deactivated.')}catch(e){alert(err(e))}}
 function nextBookId(books){const used=new Set(Object.keys(books||{}));let n=1;while(used.has(`book${n}`))n++;return `book${n}`}
 async function addBook(){try{const loaded=await loadBackendStore(),books=loaded.books||{},id=nextBookId(books),sort=Object.values(books).reduce((m,b)=>Math.max(m,Number(b.sort_order||0)),0)+1;const slug=`kitabu-${sort}`;const payload={id,title:`Kitabu kipya ${String(sort).padStart(2,'0')}`,slug,description:'',author:'Dennis Nazar',subtitle:'NEW RELEASE',price:2500,currency:'TZS',status:'coming_soon',image_path:'assets/coming-soon-cover.jpg',pdf_path:'',available:false,sort_order:sort,updated_at:new Date().toISOString()};const {error}=await sb.from('books').insert(payload);if(error)throw error;await populate();const card=$(`[data-book-card="${id}"]`);card?.scrollIntoView({behavior:'smooth',block:'center'});alert(`Book ${id} added. Edit the book details and save the catalog.`)}catch(e){alert(err(e))}}
 async function saveSettings(){const {data:row,error:getErr}=await sb.from('store_settings').select('data').eq('id',1).single();if(getErr)throw getErr;const c=deepMerge(getStoreConfig(),row.data||{});$$('[data-cfg]').forEach(el=>c[el.dataset.cfg]=el.value.trim());c.colors={...(c.colors||{})};$('[data-color]').forEach(el=>c.colors[el.dataset.color]=el.value);c.fonts={...(c.fonts||{})};$('[data-font]').forEach(el=>c.fonts[el.dataset.font]=el.value);const {error}=await sb.from('store_settings').update({data:c,updated_at:new Date().toISOString()}).eq('id',1);if(error)throw error;saveStoreConfig(c);alert('Settings saved live.')}
-$$('.save-general,.save-colors').forEach(b=>b.onclick=async()=>{b.disabled=true;try{await saveSettings()}catch(e){alert(err(e))}finally{b.disabled=false}});
+$('.save-media')?.addEventListener('click',saveMedia);
+$('.save-general,.save-colors').forEach(b=>b.onclick=async()=>{b.disabled=true;try{await saveSettings()}catch(e){alert(err(e))}finally{b.disabled=false}});
 $(".save-content")?.addEventListener('click',async e=>{const b=e.currentTarget;b.disabled=true;try{const {data:row,error:se}=await sb.from('store_settings').select('data').eq('id',1).single();if(se)throw se;const c=deepMerge(getStoreConfig(),row.data||{});c.content={...(c.content||{})};$$('[data-content]').forEach(el=>c.content[el.dataset.content]=el.value);const {error}=await sb.from('store_settings').update({data:c,updated_at:new Date().toISOString()}).eq('id',1);if(error)throw error;saveStoreConfig(c);alert('Website content saved live.')}catch(e){alert(err(e))}finally{b.disabled=false}});
 $(".add-book")?.addEventListener('click',addBook);
 $(".save-books")?.addEventListener('click',async e=>{
