@@ -39,6 +39,7 @@ ${status!=='available'?'<button type="button" class="admin-secondary deactivate-
 async function processReaderPages(bookId,pdf,button){
   if(!window.pdfjsLib)throw new Error('PDF reader engine is unavailable. Please refresh the admin page and try again.');
   if(!bookId||!pdf)throw new Error('Book PDF is required.');
+  window.pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
   const old=await sb.from('book_pages').select('id,image_path').eq('book_id',bookId);
   if(old.error)throw old.error;
   const batch=crypto.randomUUID();
