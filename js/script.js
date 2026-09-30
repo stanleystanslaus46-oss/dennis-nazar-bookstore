@@ -2,18 +2,41 @@
 let {config:SITE_CONFIG,books:BOOKS}=await loadBackendStore();
 const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
 	function applyMedia(){
-	  const mediaConfig=SITE_CONFIG.media||{};
-	  if(mediaConfig.hero)document.documentElement.style.setProperty('--hero-image','url("'+String(mediaConfig.hero).replace(/"/g,'\\"')+'")');
-	  const authorSrc=mediaConfig.author;
-	  if(authorSrc){$('.about-author-image img').forEach(img=>{img.src=authorSrc;img.dataset.mediaManaged='true'});const heroAuthor=$('.hero-author img');if(heroAuthor)heroAuthor.src=authorSrc}
-	  const art=$('.homepage-course-art');
-	  if(art&&mediaConfig.courseVideo){
-	    let video=art.querySelector('.homepage-course-video');
-	    if(!video){video=document.createElement('video');video.className='homepage-course-video';video.autoplay=true;video.muted=true;video.loop=true;video.playsInline=true;video.setAttribute('aria-label','Dennis Nazar online courses video');art.appendChild(video)}
-	    video.src=mediaConfig.courseVideo;video.load();video.play().catch(()=>{});
-	  }
-	}
-	function applyTypography(){
+  const mediaConfig=SITE_CONFIG.media||{};
+  const hero=document.querySelector('.hero');
+  if(mediaConfig.hero)document.documentElement.style.setProperty('--hero-image','url("'+String(mediaConfig.hero).replace(/"/g,'\\\"')+'")');
+  const authorSrc=mediaConfig.author;
+  if(authorSrc){$('.about-author-image img').forEach(img=>{img.src=authorSrc;img.dataset.mediaManaged='true'});const heroAuthor=$('.hero-author img');if(heroAuthor)heroAuthor.src=authorSrc)}
+  const videoSrc=mediaConfig.courseVideo;
+  if(videoSrc&&hero){
+    let heroVideo=hero.querySelector('.hero-background-video');
+    if(!heroVideo){
+      heroVideo=document.createElement('video');
+      heroVideo.className='hero-background-video';
+      heroVideo.autoplay=true;heroVideo.muted=true;heroVideo.loop=true;heroVideo.playsInline=true;
+      heroVideo.setAttribute('aria-hidden','true');
+      heroVideo.setAttribute('tabindex','-1');
+      hero.insertBefore(heroVideo,hero.firstChild);
+    }
+    heroVideo.src=videoSrc;
+    if(mediaConfig.hero)heroVideo.poster=mediaConfig.hero;
+    heroVideo.load();heroVideo.play().catch(()=>{});
+  }
+  const art=$('.homepage-course-art');
+  if(art&&videoSrc){
+    let video=art.querySelector('.homepage-course-video');
+    if(!video){
+      video=document.createElement('video');
+      video.className='homepage-course-video';
+      video.autoplay=true;video.muted=true;video.loop=true;video.playsInline=true;
+      video.setAttribute('aria-label','Dennis Nazar online courses video');
+      art.appendChild(video)
+    }
+    video.src=videoSrc;
+    video.load();video.play().catch(()=>{});
+  }
+}
+function applyTypography(){
 	  const fonts=SITE_CONFIG.fonts||{};
 	  const sans=fonts.sans||'Manrope',serif=fonts.serif||'Playfair Display';
 	  document.documentElement.style.setProperty('--sans',`"${sans}",Arial,sans-serif`);
