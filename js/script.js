@@ -1,6 +1,17 @@
 (async function(){
 let {config:SITE_CONFIG,books:BOOKS}=await loadBackendStore();
 const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+	function applyTypography(){
+	  const fonts=SITE_CONFIG.fonts||{};
+	  const sans=fonts.sans||'Manrope',serif=fonts.serif||'Playfair Display';
+	  document.documentElement.style.setProperty('--sans',`"${sans}",Arial,sans-serif`);
+	  document.documentElement.style.setProperty('--serif',`"${serif}",Georgia,serif`);
+	  const linkId='dnTypographyFonts';
+	  let link=document.getElementById(linkId);
+	  if(!link){link=document.createElement('link');link.id=linkId;link.rel='stylesheet';document.head.appendChild(link)}
+	  const families=[sans,serif].filter((v,i,a)=>a.indexOf(v)===i).map(v=>`family=${encodeURIComponent(v).replace(/%20/g,'+')}:wght@400;500;600;700;800`).join('&');
+	  link.href=`https://fonts.googleapis.com/css2?${families}`;
+	}
 	function applySiteConfig(){
 	  const c=SITE_CONFIG.content||{},colors=SITE_CONFIG.colors||{};
 	  Object.entries(colors).forEach(([k,v])=>document.documentElement.style.setProperty(`--${k.replace(/[A-Z]/g,m=>'-'+m.toLowerCase())}`,v));
@@ -63,7 +74,7 @@ const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelecto
   if(window.lucide)lucide.createIcons();
 }
 function escapeHtml(v){return String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
-applySiteConfig();applyBooks();if(window.lucide)lucide.createIcons();
+applyTypography();applySiteConfig();applyBooks();if(window.lucide)lucide.createIcons();
 
 const bookDetails={
  book1:{kicker:"DIGITAL EDITION · 01",description:"Mwongozo wa kujitambua na kufanya maamuzi ya busara unapochagua mwenzi wa maisha, ukiangalia tabia, mawasiliano, maadili na mwelekeo wa baadaye.",features:["Misingi ya kuchagua mwenzi kwa hekima","Maswali ya kujitafakari kabla ya kufanya maamuzi","Mtazamo wa mahusiano unaolenga maisha ya muda mrefu"]},
