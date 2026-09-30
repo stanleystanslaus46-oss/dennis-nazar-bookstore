@@ -6,7 +6,7 @@ const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelecto
   const hero=document.querySelector('.hero');
   if(mediaConfig.hero)document.documentElement.style.setProperty('--hero-image','url("'+String(mediaConfig.hero).replace(/"/g,'\\\"')+'")');
   const authorSrc=mediaConfig.author;
-  if(authorSrc){$('.about-author-image img').forEach(img=>{img.src=authorSrc;img.dataset.mediaManaged='true'});const heroAuthor=$('.hero-author img');if(heroAuthor)heroAuthor.src=authorSrc)}
+  if(authorSrc){$$('.about-author-image img').forEach(img=>{img.src=authorSrc;img.dataset.mediaManaged='true'});const heroAuthor=$('.hero-author img');if(heroAuthor)heroAuthor.src=authorSrc)}
   const videoSrc=mediaConfig.courseVideo;
   if(videoSrc&&hero){
     let heroVideo=hero.querySelector('.hero-background-video');
