@@ -3263,7 +3263,7 @@ html{scroll-behavior:smooth;scroll-padding-top:24px}
   font-size:8px!important;
   letter-spacing:.16em!important;
   font-weight:800!important;
-  color:#8c8c95!important;
+  color:var(--orange)!important;
 }
 
 .next-chapter .coming-body h3{
