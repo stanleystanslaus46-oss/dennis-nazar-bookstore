@@ -384,7 +384,7 @@ body.locked{overflow:hidden}
       rgba(18,15,45,.62) 46%,
       rgba(18,15,45,.30) 68%,
       rgba(18,15,45,.10) 100%),
-    var(--hero-image, url("../assets/dennis-nazar-hero-background.webp?v=20260925"));
+    var(--hero-image, var(--hero-image, url("../assets/dennis-nazar-hero-background.webp?v=20260925")));
   background-size: cover;
   background-position: center 42%;
   background-repeat: no-repeat;
@@ -403,7 +403,7 @@ body.locked{overflow:hidden}
         rgba(18,15,45,.78) 34%,
         rgba(18,15,45,.62) 68%,
         rgba(18,15,45,.52) 100%),
-      url("../assets/dennis-nazar-hero-background.webp?v=20260925");
+      var(--hero-image, url("../assets/dennis-nazar-hero-background.webp?v=20260925"));
     background-size:cover;
   }
 }
@@ -3406,3 +3406,6 @@ html{scroll-behavior:smooth;scroll-padding-top:24px}
   height:17px;
   stroke-width:1.9;
 }
+
+.homepage-course-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;opacity:.82;filter:saturate(.85) contrast(1.03)}
+.homepage-course-art:has(.homepage-course-video){background:#111!important}
