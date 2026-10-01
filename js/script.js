@@ -2,21 +2,8 @@
 /* Core-content safety: never leave the homepage invisible if a later initialization step fails. */
 const dnRevealNodes=()=>[...document.querySelectorAll('.reveal')];
 const dnShowReveals=()=>dnRevealNodes().forEach(el=>el.classList.add('visible'));
-const dnCreateIcons=()=>{
-  try{
-    if(window.lucide?.createIcons){window.lucide.createIcons();return true}
-  }catch(_){}
-  return false
-};
-const dnEnsureLucide=()=>{
-  if(dnCreateIcons())return;
-  if(document.querySelector('script[data-dn-lucide-fallback]'))return;
-  const s=document.createElement('script');
-  s.src='https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.js';
-  s.async=true;s.dataset.dnLucideFallback='true';
-  s.onload=()=>dnCreateIcons();
-  document.head.appendChild(s);
-};
+const dnCreateIcons=()=>{try{if(window.dnCreateIcons){window.dnCreateIcons();return true}}catch(_){}return false};
+const dnEnsureLucide=()=>{dnCreateIcons()};
 window.addEventListener('load',dnEnsureLucide,{once:true});
 window.addEventListener('load',dnCreateIcons,{once:true});
 /* Activate reveal animation only after an observer exists; static content remains visible if JS fails. */
