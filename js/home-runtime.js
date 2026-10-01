@@ -14,7 +14,8 @@ function applyConfig(){
   const c=CONFIG.content||{}, colors=CONFIG.colors||{}, media=CONFIG.media||{};
   Object.entries(colors).forEach(([k,v])=>document.documentElement.style.setProperty("--"+k.replace(/[A-Z]/g,m=>"-"+m.toLowerCase()),v));
   const set=(sel,val,html=false)=>{const e=$(sel);if(e&&val!=null){if(html)e.innerHTML=String(val);else e.textContent=String(val)}};
-  set(".hero h1",c.heroTitle,true);
+  const setHeroTitle=(value)=>{const e=$(".hero h1");if(!e)return;const raw=String(value||"Books that shape\nhow you think.").trim();const parts=raw.split(/\\r?\\n/);const line1=parts[0]||"Books that shape";const line2=parts.slice(1).join(" ")||"how you think.";const escHtml=(s)=>String(s).replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[m]));const first=escHtml(line1).replace(/\\b(shape)\\b/gi,"<span>$1</span>");const second=escHtml(line2).replace(/\\b(think\\.)$/i,"<span>$1</span>");e.innerHTML=`<span class="hero-line-one">${first}</span><br>${second}`};
+  setHeroTitle(c.heroTitle);
   set(".hero-lead",c.heroLead,true);
   set(".why-heading h2",c.whyTitle,true);
   set(".why-heading>p:last-child",c.whyLead);
