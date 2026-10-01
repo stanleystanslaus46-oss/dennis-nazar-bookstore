@@ -4,6 +4,7 @@
   const BRAND = "Dennis Nazar";
   const DISMISS_KEY = "dn-pwa-install-dismissed";
   const DISMISS_DAYS = 7;
+  const SPLASH_SESSION_KEY = "dn-pwa-splash-shown";
   let deferredPrompt = null;
   let installModal = null;
 
@@ -97,6 +98,10 @@
 
   function showSplash() {
     if (!isStandalone) return;
+    try {
+      if (sessionStorage.getItem(SPLASH_SESSION_KEY) === "1") return;
+      sessionStorage.setItem(SPLASH_SESSION_KEY, "1");
+    } catch (_) {}
 
     const splash = document.createElement("div");
     splash.id = "dn-pwa-splash";
@@ -272,8 +277,9 @@
   window.addEventListener("beforeinstallprompt", event => {
     event.preventDefault();
     deferredPrompt = event;
-    // Installation is never presented automatically. The storefront must remain
-    // fully interactive; the install UI can only be opened by an explicit action.
+    if (!isStandalone && !recentlyDismissed()) {
+      setTimeout(() => showInstallModal(), 900);
+    }
   });
 
   window.addEventListener("appinstalled", () => {
@@ -290,7 +296,7 @@
       navigator.serviceWorker.register("/sw.js", { scope: "/" }).catch(() => {});
     }
 
-    /* Never block the storefront with an automatic install overlay. Installation is user-initiated only. */
+    // The install prompt is shown only after the browser confirms that the site is installable.
   }
 
   if (document.readyState === "loading") {
