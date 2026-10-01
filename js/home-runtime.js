@@ -54,7 +54,7 @@ function bind(){
     const el=e.target.closest?.("[data-add-cart]"); if(el){e.preventDefault();e.stopPropagation();addCart(el.dataset.addCart);return}
     const buyBtn=e.target.closest?.(".buy-btn"); if(buyBtn){e.preventDefault();e.stopPropagation();buy(buyBtn.dataset.book);return}
     const details=e.target.closest?.("[data-book-details]"); if(details){e.preventDefault();e.stopPropagation();openDetails(details.dataset.bookDetails);return}
-    const notify=e.target.closest?.("[data-notify]"); if(notify){e.preventDefault();e.stopPropagation();document.querySelector("#books")?.scrollIntoView({behavior:"smooth"});return}
+    const remove=e.target.closest?.("[data-remove]"); if(remove){e.preventDefault();e.stopPropagation();const id=String(remove.dataset.remove||"");saveCart(cart().filter(x=>x.id!==id));syncCart();renderCart();toast("Kitabu kimeondolewa kwenye cart.");return}\n    const notify=e.target.closest?.("[data-notify]"); if(notify){e.preventDefault();e.stopPropagation();document.querySelector("#books")?.scrollIntoView({behavior:"smooth"});return}
   },true);
   $("#cartTrigger")?.addEventListener("click",e=>{e.preventDefault();openCart()});
   $("#cartClose")?.addEventListener("click",closeCart);
