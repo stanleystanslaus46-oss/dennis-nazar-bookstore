@@ -1,4 +1,4 @@
-const CACHE_NAME = "dennis-nazar-pwa-v19";
+const CACHE_NAME = "dennis-nazar-pwa-v20";
 
 const APP_SHELL = [
   "/",
@@ -20,7 +20,7 @@ const APP_SHELL = [
   "/assets/coming-soon-cover.webp?v=20260925",
   "/assets/coming-soon-cover-04.webp?v=20260925",
   "/css/style.css?v=20260930-lucide-global-final",
-  "/js/pwa.js?v=8"
+  "/js/pwa.js?v=9"
 ];
 
 self.addEventListener("install", event => {
