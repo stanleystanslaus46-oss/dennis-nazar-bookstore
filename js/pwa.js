@@ -2,7 +2,7 @@
   "use strict";
 
   const BRAND = "Dennis Nazar";
-  const DISMISS_KEY = "dn-pwa-install-dismissed-v2";
+  const DISMISS_KEY = "dn-pwa-install-dismissed-v3";
   const DISMISS_DAYS = 7;
   const SPLASH_SESSION_KEY = "dn-pwa-splash-shown";
   let deferredPrompt = null;
@@ -237,7 +237,13 @@
     }
 
     if (isIOS) {
-      dismiss();
+      // iOS does not expose a web API that can start PWA installation.
+      // Keep the instructions visible so the user can follow them.
+      renderInstructions();
+      if (action) {
+        action.textContent = "Done";
+        action.dataset.mode = "close";
+      }
       return;
     }
 
