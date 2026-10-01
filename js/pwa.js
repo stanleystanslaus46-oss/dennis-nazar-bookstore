@@ -272,9 +272,8 @@
   window.addEventListener("beforeinstallprompt", event => {
     event.preventDefault();
     deferredPrompt = event;
-    if (!isStandalone && !recentlyDismissed()) {
-      setTimeout(showInstallModal, 700);
-    }
+    // Installation is never presented automatically. The storefront must remain
+    // fully interactive; the install UI can only be opened by an explicit action.
   });
 
   window.addEventListener("appinstalled", () => {
