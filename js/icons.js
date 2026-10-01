@@ -1,6 +1,7 @@
 (() => {
   "use strict";
   const ICONS = {
+    "arrow-up": '<path d="m5 12 7-7 7 7"/><path d="M12 19V5"/>',
     "arrow-right": '<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>',
     "arrow-up-right": '<path d="M7 17 17 7"/><path d="M7 7h10v10"/>',
     "shopping-bag": '<path d="M6 8h12l-1 13H7L6 8Z"/><path d="M9 8a3 3 0 0 1 6 0"/>',
