@@ -2,7 +2,7 @@
   "use strict";
 
   const BRAND = "Dennis Nazar";
-  const DISMISS_KEY = "dn-pwa-install-dismissed";
+  const DISMISS_KEY = "dn-pwa-install-dismissed-v2";
   const DISMISS_DAYS = 7;
   const SPLASH_SESSION_KEY = "dn-pwa-splash-shown";
   let deferredPrompt = null;
@@ -296,7 +296,9 @@
       navigator.serviceWorker.register("/sw.js", { scope: "/" }).catch(() => {});
     }
 
-    // The install prompt is shown only after the browser confirms that the site is installable.
+    if (!isStandalone && (isAndroid || isIOS) && !recentlyDismissed()) {
+      setTimeout(() => showInstallModal(), 2200);
+    }
   }
 
   if (document.readyState === "loading") {
